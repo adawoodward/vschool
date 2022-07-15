@@ -73,13 +73,3 @@ form.addEventListener('submit', (e) =>
     })
 });
 
-
-
-// function createEditBtn() {
-//     const editBtn = document.createElement("button");
-//     editBtn.innerHTML = "edit";
-//     editBtn.id = 'edit';
-//     var onclick = editBtn.getAttribute("onclick");
-//     document.getElementById("li").appendChild(editBtn);
-// }
-
