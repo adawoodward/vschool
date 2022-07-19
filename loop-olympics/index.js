@@ -77,9 +77,6 @@ const peopleArray = [
     }
   ]
   
-  // ["Harrison Ford", "Vladimir Putin"] // names
-  // ["Singer", "Entertainer"] // occupations
-  
 for (var i = 0; i < peopleArray.length; i++) {
     console.log(peopleArray[i].name)
 }
