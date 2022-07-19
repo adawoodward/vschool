@@ -1,8 +1,4 @@
- var readline = require('readline-sync');
- var userName = readline.question('May I have your name? ');
- console.log('Hi ' + userName + '!');
-
- // - A function that adds two numbers and returns the result
+// - A function that adds two numbers and returns the result
 // - A function that multiplies two numbers and returns the result
 // - A function that divides two numbers and returns the result
 // - A function that subtracts two numbers and returns the result
@@ -13,6 +9,12 @@
 // - *Please enter the operation to perform: **add**, **sub**, **mul**, **div*** (then store the operation)
 // - Based on the operation entered by the user, you will call one of your 4 functions to perform the correct operation
 // - You will then print to the console: *The result is: [the result]*
+
+var readline = require('readline-sync');
+var userName = readline.question('May I have your name? ');
+console.log('Hi ' + userName + '!');
+
+
 
 //test
 var firstNumber = readline.question('Please enter your first number: ');
