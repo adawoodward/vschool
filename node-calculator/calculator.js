@@ -1,3 +1,4 @@
+// Instructions
 // - A function that adds two numbers and returns the result
 // - A function that multiplies two numbers and returns the result
 // - A function that divides two numbers and returns the result
