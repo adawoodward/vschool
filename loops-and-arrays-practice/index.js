@@ -3,7 +3,7 @@
 var officeItems = ["stapler", "monitor", "computer", "desk", "lamp", "computer", "lamp", "stapler", "computer",  "computer"]
 
 var counter = 0;
-for (i = 0; i < officeItems.length; i++) {
+for (var i = 0; i < officeItems.length; i++) {
     if (officeItems[i] == "computer") counter++;
 }
 
@@ -39,7 +39,7 @@ var peopleWhoWantToSeeMadMaxFuryRoad = [
     }
   ]
 
-for (i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++) {
+for (var i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++) {
     if (peopleWhoWantToSeeMadMaxFuryRoad[i].age >= 18) {
         if (peopleWhoWantToSeeMadMaxFuryRoad[i].gender == 'male') {
             console.log(peopleWhoWantToSeeMadMaxFuryRoad[i].name + " is old enough to see Mad Max," + " so HE can go inside.")
@@ -55,7 +55,7 @@ for (i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++) {
 }  
 
 
-for (i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++) {
+for (var i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++) {
     if (peopleWhoWantToSeeMadMaxFuryRoad[i].age >= 18) {
         console.log(peopleWhoWantToSeeMadMaxFuryRoad[i].name + " is old enough to see Mad Max")
     } else {
