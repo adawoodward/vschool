@@ -28,7 +28,7 @@ form.addEventListener('submit', (e) =>
     
     li.innerHTML += "<button class='editBtn' id='edit' type='button'>" + "edit" + "</button>" + " ";
     
-    li.innerHTML += "<button class='removeBtn' id='remove' type='button'>" + "X" + "</button>"
+    li.innerHTML += "<button class='removeBtn' id='remove' type='button'>" + "X" + "</button>" + " ";
 
     var remove = document.querySelectorAll('.removeBtn')
 
@@ -56,7 +56,8 @@ form.addEventListener('submit', (e) =>
             saveBtn.addEventListener('click', function() {
                 div.contentEditable = false;
                 saveBtn.remove();
-                editBtn.style.display = 'inline-block';
+                editBtn.style.display = 'inline';
+                saveBtn.style.display = 'none'
             })
             // save.forEach (saveBtn => {
             //     saveBtn.addEventListener('click', function(e) {
