@@ -15,7 +15,7 @@ const name = readline.question("What is your name? ");
 
 
 function runGame() {
-    console.log("Hello " + name + ", welcome to excape room game.");
+    console.log("Hello " + name + ", welcome to Escape Room game.");
     while (true) {
         let enteredOperator = readline.keyIn("Choose a number for your option here: 1. Put hand in hole, 2. Find the key, 3. Open the door | Your answer: ")
         if (enteredOperator == 2) {
