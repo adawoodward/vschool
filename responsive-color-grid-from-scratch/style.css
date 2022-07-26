@@ -1,0 +1,123 @@
+/* To practice media queries, you must make this color grid keep it's regular form (look like the picture above) on screens above 768px (large screens).  */
+/* Once below 768px(small screens), each color must expand to the full-width of its container, so it looks like this: */
+
+* {
+    box-sizing: border-box;
+    font-size: 0px;
+}
+
+#box1 {
+    display: inline-block;
+    background-color: #F5C6D6;
+    height: 150px;
+    width: 1830px;
+    margin: 5px;
+} 
+
+#box2 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 150px;
+    width: 450px;
+    margin: 5px;
+}
+
+#box3 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 150px;
+    width: 450px;
+    margin: 5px;
+
+}
+
+#box4 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 150px;
+    width: 450px;
+    margin: 5px;
+
+}
+
+#box5 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 150px;
+    width: 450px;
+    margin: 5px;
+
+}
+
+#box6 {
+    display: inline-block;
+    background-color: #85CFD8;
+    height: 150px;
+    width: 910px;
+    margin: 5px;
+}
+
+#box7 {
+    display: inline-block;
+    background-color: #85CFD8;
+    height: 150px;
+    width: 910px;
+    margin: 5px;
+}
+
+#box8 {
+    display: inline-block;
+    background-color: #8DC63F;
+    height: 150px;
+    width: 1375px;
+    margin: 5px;
+
+}
+
+#box9 {
+    display: inline-block;
+    background-color: #E76E34;
+    height: 150px;
+    width: 445px;
+    margin: 5px;
+
+} 
+
+@media (max-width: 768px) {
+    #box1 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box2 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box3 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box4 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box5 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box6 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box7 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box8 {
+        width: 100%;
+        margin: 2px;
+    }
+    #box9 {
+        width: 100%;
+        margin: 2px;
+    }
+}
