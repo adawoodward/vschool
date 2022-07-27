@@ -1,0 +1,94 @@
+.container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: #ffeead;
+}
+
+html, body {
+  background-color: #ffeead;
+  margin: 10px;
+}
+
+.container > div:nth-child(1n) {
+  background-color: #96ceb4;
+}
+
+.container > div:nth-child(3n) {
+  background-color: #88d8b0;
+}
+
+.container > div:nth-child(2n) {
+      background-color: #ff6f69;
+}
+
+.container > div:nth-child(4n) {
+      background-color: #ffcc5c;
+}
+
+
+/* .container {
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 40px auto 40px;
+} */
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 40px auto 40px;
+    grid-template-areas:
+        "m h h h h h h h h h h h"
+        "m c c c c c c c c c c c"
+        "f f f f f f f f f f f f";
+}
+
+/* The letters there are just to name each column on each row of our grid. The `h` is for header, `m` is for menu, `c` is for content, and `f` is for footer.
+
+These names are arbitrary, the `h` could just as well be named `header` or `dolphinpants`. But best practice is to name it in a way that allows you to clearly understand its relation to its column, so in this case `h` is for header.
+
+We will now remove all the `grid-columns` and replace them with `grid-area` like this. */
+
+.header {
+    grid-area: h;
+}
+
+.menu {
+    grid-area: m;
+}
+
+.content {
+    grid-area: c;
+}
+
+.footer {
+    grid-area: f;
+}
+
+
+/* 
+.header {
+    /* grid-column-start:1;
+    grid-column-end: 3; */
+    /* grid-column: 1/-1;
+}
+
+
+.menu {
+}
+
+
+.content {
+    grid-column: 2/-1;
+}
+
+
+.footer {
+    grid-column: 1 / span 12;
+} */
+
+
