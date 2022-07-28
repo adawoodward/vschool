@@ -5,7 +5,7 @@
 }
 
 html, body {
-    margin: 10pxl
+    margin: 10px;
 }
 
 .container > div:nth-child(1n) {
