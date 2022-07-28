@@ -1,0 +1,90 @@
+.container > div {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5em;
+}
+
+html, body {
+    margin: 10px;
+}
+  
+.container > div:nth-child(1n) {
+    background-color: red;
+}
+  
+.container > div:nth-child(2n) {
+    background-color: red;
+}
+  
+.container > div:nth-child(3n) {
+    background-color: blue;
+}
+  
+.container > div:nth-child(4n) {
+    background-color: blue;
+}
+
+.container > div:nth-child(5n) {
+    background-color: green;
+}
+
+.container > div:nth-child(6n) {
+    background-color: purple;
+}
+
+.container > div:nth-child(7n) {
+    background-color: purple;
+}
+
+.container > div:nth-child(8n) {
+    background-color: purple;
+}
+
+.container > div:nth-child(9n) {
+    background-color: yellow;
+}
+
+.container > div:nth-child(10n) {
+    background-color: yellow;
+}
+
+.container > div:nth-child(11n) {
+    background-color: yellow;
+}
+
+.container > div:nth-child(12n) {
+    background-color: yellow;
+}
+
+.container {
+    display: grid;
+    grid-gap: 10px; 
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 150px 150px 150px;
+    grid-template-areas: 
+        "r r b b"
+        "g p p p"
+        "y y y y";
+}
+
+.red {
+    grid-area: r;
+}
+
+.blue {
+    grid-area: b;
+}
+
+.green {
+    grid-area: g;
+}
+
+.purple {
+    grid-area: p;
+}
+
+.yellow {
+    grid-area: y;
+}
+
