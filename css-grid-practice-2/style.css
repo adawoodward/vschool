@@ -1,0 +1,61 @@
+.container > div {
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5em;
+}
+
+html, body {
+    margin: 10pxl
+}
+
+.container > div:nth-child(1n) {
+    background-color: red;
+}
+
+.container > div:nth-child(2n) {
+    background-color: blue;
+}
+
+.container > div:nth-child(3n) {
+    background-color: green;
+}
+
+.container > div:nth-child(4n) {
+    background-color: purple;
+}
+
+.container > div:nth-child(5n) {
+    background-color: purple;
+}
+
+
+.container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 300px 300px 300px;
+    grid-template-areas: 
+        "r r r r"
+        "b b g g"
+        "b b p p";
+}
+
+.red {
+    grid-area: r;
+}
+
+.blue {
+    grid-area: b;
+}
+
+.green {
+    grid-area: g;
+}
+
+.purple1 {
+    grid-area: p;
+}
+
+.purple2 {
+    grid-area: p;
+}
