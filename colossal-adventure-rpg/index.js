@@ -27,10 +27,10 @@ function game() {
     if (gameActions[options] == 'walk') {
         let randomTime = Math.random();
         if (randomTime <= 0.4) {
-            console.log("The " + randEnemy + " is here!!!!!");
-            
+            // console.log("The " + randEnemy + " is here!!!!!");
+
             while (enemyHp > 0 && playerHp > 0) {
-                // console.log("An enemy, " + randEnemy + " has arrived!!!!!!!!");
+                console.log("The " + randEnemy + " is here!!!!!");
 
                 const enteredOption = readline.keyIn('Press "a" for attack or "r" for running away or "p" for pause....', {limit: ['a', 'r', 'p']} );
                 console.log("--------------------------------------------------------------")
@@ -41,15 +41,20 @@ function game() {
                     let enemyRandomDamage = randomDamage(1, 25);
 
                 if (enteredOption == 'a') {
-                    console.log(`The ${randEnemy} got ${enemyRandomDamage} damage points from your attack!`)
-                    console.log(`You got ${playerRandomDamage} damage from ${randEnemy}.`);
-                    enemyHp = enemyHp - enemyRandomDamage;
-                    playerHp = playerHp - playerRandomDamage;
-                    // let totalEnemyHp = 0;
-                    // let totalPlayerHp = 0;
+                        console.log(`The ${randEnemy} got ${enemyRandomDamage} damage points from your attack!`)
+                        console.log(`You got ${playerRandomDamage} damage from ${randEnemy}.`);
+                        enemyHp = enemyHp - enemyRandomDamage;
+                        playerHp = playerHp - playerRandomDamage;
 
-                    console.log("     *** The enemy's current Hp: " + enemyHp);
-                    console.log("     *** Your current Hp: " + playerHp);
+                        console.log("     *** The enemy's current Hp: " + enemyHp);
+                        console.log("     *** Your current Hp: " + playerHp);
+                    // console.log(`The ${randEnemy} got ${enemyRandomDamage} damage points from your attack!`)
+                    // console.log(`You got ${playerRandomDamage} damage from ${randEnemy}.`);
+                    // enemyHp = enemyHp - enemyRandomDamage;
+                    // playerHp = playerHp - playerRandomDamage;
+
+                    // console.log("     *** The enemy's current Hp: " + enemyHp);
+                    // console.log("     *** Your current Hp: " + playerHp);
                     if (enemyHp <= 0) { // enemyHp <= 0 
                         let itemRandom = Math.random();
                         let inventory = prize[Math.floor(Math.random() * prize.length)];
@@ -57,6 +62,7 @@ function game() {
                             prizeDropped.push(inventory);
                             playerHp += 5;
                             console.log(`You nailed it! The ${randEnemy} has dropped: ${prizeDropped}, and you have gained 5Hp!`);
+                            // const options = readline.keyInSelect(gameActions, "Please choose your next move. You can press '1' for walking, '2' for vewing your status, or '3' for exiting this game. ");
                         }
                         console.log('If you want to check your inventory, press [2] print!');
                         game();
