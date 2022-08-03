@@ -26,64 +26,21 @@ const treasure = ['roses', 'muffins', 'chocolates', 'juice'];
 let inventory = [];
 let playerHp = 100;
 let beastHp = 100;
-function runGame() {
+let hasHealed = false;
+function startGame() {
     console.log("Hey " + playerName + ", let's start this game!");
     console.log("You can walk, attack, run, and check your inventory.");
-    console.log("Let's start walking now.");
     walk();
 }
-runGame();
+startGame();
 
 function walk() {
-    while (true) {
-        let walking = readline.keyIn("Press 'w' for walking. ", {limit: 'w'} )
+        let walking = readline.keyIn("Let's start walking now. Press 'w' for walking. ", {limit: 'w'} )
     // let enteredOption = readline.keyIn("Your option is 'a'ttack or 'r'unning. ", {limit: ['a', 'r']})
         if (walking == 'w') {
-            console.log("Walking now in the forest...........................");
+            console.log("Walking now in the forest...............................");
         }
-        if (walking == 'w') {
-            console.log("Walking in peace................")
-        }
-        if (walking == 'w') {
-            console.log("So quite................")
-        }  
-        // alertBeast();        
-        // shuffleBeasts(beasts);
-        showBeast();
-        }
-        // setTimeout (alertBeast, randomDelay(), newBeasts[0])
-        // function randomDelay() {
-        //     return Math.floor(1000 * Math.randome())
-        // }
-    }
-
-
-// function shuffleBeasts(beasts) {
-//     for (let i = beasts.length -1; i > 0; i--) {
-//         let j = Math.floor(Math.random() * (i + 1));
-//         let temp = beasts[i];
-//         beasts[i] = beasts[j];
-//         beasts[j] = temp;
-//     }
-//     return beasts;
-// }
-
-
-// function alertBeast() {
-//     let beasts = ['warewolf', 'troll', 'vampire', 'zombie'];
-//     let newBeasts = shuffleBeasts(beasts);
-//     let beast = newBeasts[0];
-//     console.log("The " + beast + " is trying to attack you now!!!!!!!!!!!!!!!! ");
-// }
-
-// (function loop() {
-//     var random = Math.round(Math.random() * 10);
-//     setTimeout(function() {
-//         alertBeast();
-//         console.log("After " + random + " secs, the enemy appeard!");
-//         loop();
-//     }, random*1000);
-// }());
+}
 
 
 // const beastInterval = setInterval(showBeast, 5000);
@@ -91,36 +48,48 @@ function walk() {
 function randomDamage (min, max) {
     return Math.floor(Math.random() * (25 - 1) + 1);
 }
-function showBeast() {
-    // alertBeast();
-    function shuffleBeasts(beasts) {
-        for (let i = beasts.length -1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            let temp = beasts[i];
-            beasts[i] = beasts[j];
-            beasts[j] = temp;
-        }
-        return beasts;
-    }
 
-    function alertBeast() {
+
+
+
+function shuffleBeasts(beasts) {
+    for (let i = beasts.length -1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = beasts[i];
+        beasts[i] = beasts[j];
+        beasts[j] = temp;
+    }
+    return beasts;
+}
+
+
+let keepLooping = true;
+(function ontimeout(){
+    if (keepLooping) {
         let beasts = ['warewolf', 'troll', 'vampire', 'zombie'];
         let newBeasts = shuffleBeasts(beasts);
         let beast = newBeasts[0];
-        console.log("The " + beast + " is trying to attack you now!!!!!!!!!!!!!!!! ");
-    }
-    
-    (function loop() {
-        var random = Math.round(Math.random() * 10);
-        setTimeout(function() {
-            alertBeast();
+        let random = Math.round(Math.random()*10);
+        setTimeout(ontimeout, Math.random()*100);
+        function alertBeast() {
+            console.log("The " + beast + " is trying to attack you now!!!!!!!!!!!!!!!! ");
             console.log("After " + random + " secs, the enemy appeard!");
-            loop();
-        }, random*1000);
-    }());
+        }
+        alertBeast();
+    }
+})();
 
-    alertBeast();
+// (function loop() {
+//     var random = Math.round(Math.random() * 10);
+//     setTimeout(function() {
+//         alertBeast();
+//         console.log("After " + random + " secs, the enemy appeard!");
+//         loop();
+//     }, random*1000);}());
 
+
+function attackBeast() {
+    // alertBeast();
     let enteredOption = readline.keyIn("Your option here is 'a' for attack or 'r' for running. ", {limit: ['a', 'r']})
     if (enteredOption == 'a') {
         console.log("You are attacking now.")
@@ -130,6 +99,8 @@ function showBeast() {
         console.log("You are running now.")
     }
 }
+attackBeast();
+
 
 const chance = Math.floor(Math.random() * 11);
 if (chance >= 3) { // 70% chance beast will appear
