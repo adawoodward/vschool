@@ -91,7 +91,7 @@ function game() {
             console.log(`${name} got 5 extra points, and awarded with a ${prizeDropped}.`);
             return playerHp = 0;
             }
-    } else if (gameActions[options] == 'exit' || enteredOption == 'e') {
+    } else if (gameActions[options] == 'exit') {
         console.log('GAME OVER');
         return playerHp = 0;
     }
