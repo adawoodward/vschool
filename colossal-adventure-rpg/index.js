@@ -1,5 +1,5 @@
 const readline = require('readline-sync');
-console.log('The year is 1985. Welcome to the Little Red Riding Hood Game! ');
+console.log('This is Colossal Adventure RPG. Welcome to the Little Red Riding Hood Game! ');
 const name = readline.question('Please enter your name: ');
 
 let playerHp = 100;
@@ -13,25 +13,13 @@ const gameActions = ['walk', 'print', 'exit'];
 
 
 function game() {
-    const enemies = ['Warewolf', 'Troll', 'Vampire', 'Zombie']
-
-    // function randomDamage (min, max) {
-    //     return Math.floor(Math.random() * (25 - 1) + 1);
-    // }
-
-    // let playerRandomDamage = randomDamage(1, 25);
-    // let enemyRandomDamage = randomDamage(1, 25);
-
-    const randEnemy = enemies[Math.floor(Math.random() * enemies.length)];
     const options = readline.keyInSelect(gameActions, "Please choose your next move. You can press '1' for walking, '2' for vewing your status, or '3' for exiting this game. ");
     if (gameActions[options] == 'walk') {
         let randomTime = Math.random();
         if (randomTime <= 0.4) {
-            // console.log("The " + randEnemy + " is here!!!!!");
-
-            while (enemyHp > 0 && playerHp > 0) {
-                console.log("The " + randEnemy + " is here!!!!!");
-
+            const randEnemy = enemies[Math.floor(Math.random() * enemies.length)];
+            console.log("The " + randEnemy + " is here!!!!!");
+            while (playerHp > 0) {
                 const enteredOption = readline.keyIn('Press "a" for attack or "r" for running away or "p" for pause....', {limit: ['a', 'r', 'p']} );
                 console.log("--------------------------------------------------------------")
                 function randomDamage (min, max) {
@@ -48,37 +36,34 @@ function game() {
 
                         console.log("     *** The enemy's current Hp: " + enemyHp);
                         console.log("     *** Your current Hp: " + playerHp);
-                    // console.log(`The ${randEnemy} got ${enemyRandomDamage} damage points from your attack!`)
-                    // console.log(`You got ${playerRandomDamage} damage from ${randEnemy}.`);
-                    // enemyHp = enemyHp - enemyRandomDamage;
-                    // playerHp = playerHp - playerRandomDamage;
 
-                    // console.log("     *** The enemy's current Hp: " + enemyHp);
-                    // console.log("     *** Your current Hp: " + playerHp);
-                    if (enemyHp <= 0) { // enemyHp <= 0 
-                        let itemRandom = Math.random();
-                        let inventory = prize[Math.floor(Math.random() * prize.length)];
-                        if (itemRandom) {
+                        if (enemyHp <= 0) { 
+                            let itemRandom = Math.random();
+                            let inventory = prize[Math.floor(Math.random() * prize.length)];
+                            if (itemRandom) {
                             prizeDropped.push(inventory);
                             playerHp += 5;
                             console.log(`You nailed it! The ${randEnemy} has dropped: ${prizeDropped}, and you have gained 5Hp!`);
-                            // const options = readline.keyInSelect(gameActions, "Please choose your next move. You can press '1' for walking, '2' for vewing your status, or '3' for exiting this game. ");
+                            return enemyHp = 100;
+                            }
+                            console.log('If you want to check your inventory, press [2] print!');
+                            game();
+                        } else if (playerHp <= 0) {
+                            console.log("Sorry. You are dead. GAME OVER.");
                         }
-                        console.log('If you want to check your inventory, press [2] print!');
-                        game();
-                    } else if (playerHp <= 0) {
-                        console.log("Sorry. You are dead. GAME OVER.");
-                    }
-                } else if (enteredOption == 'r') {
-                    const runAway = Math.random();
-                    if (runAway < 0.5) {
-                        console.log(`The ${randEnemy} has attacked you with ${playerRandomDamage} damage!`);
-                        playerHp = playerHp - playerRandomDamage;
-                        console.log("     *Your current Hp: " + playerHp);
-                    } else {
-                        console.log(`Lucky you! You escaped!`);
-                        game();
-                    }
+                        } else if (enteredOption == 'r') {
+                            const runAway = Math.random();
+                            if (runAway < 0.5) {
+                                console.log(`The ${randEnemy} has attacked you with ${playerRandomDamage} damage!`);
+                                playerHp = playerHp - playerRandomDamage;
+                                console.log("     ***Your current Hp: " + playerHp);
+                            if (playerHp <= 0) {
+                                console.log("You are dead. GAME OVER.")
+                            }
+                        } else {
+                            console.log(`Lucky you! You escaped!`);
+                            game();
+                        }
                 }
             }
         } else {
@@ -91,11 +76,9 @@ function game() {
             console.log(`${name} got nothing in the inventory.`);
             console.log("Keep playing the game...");
             console.log("When the enemy shows up, be prepared to take an action! He might be hiding behind of you. Be aware!");
-            
-            // console.log("An enemy, " + randEnemy + " has arrived!!!!!!!!")
             } else {
             console.log(`${name} got 5 extra points, and awarded with a ${prizeDropped}.`);
-            return playerHp = 0;
+            game();
             }
     } else if (gameActions[options] == 'exit') {
         console.log('GAME OVER');
