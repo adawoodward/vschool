@@ -65,7 +65,7 @@ function game() {
                                 return enemyHp = 100;
                                 game();
                             }
-                    }
+                }
             }
         } else {
             console.log(`You are walking in the woods...........`);
