@@ -57,14 +57,15 @@ function game() {
                                 console.log(`The ${randEnemy} has attacked you with ${playerRandomDamage} damage!`);
                                 playerHp = playerHp - playerRandomDamage;
                                 console.log("     ***Your current Hp: " + playerHp);
-                            if (playerHp <= 0) {
-                                console.log("You are dead. GAME OVER.")
+                                if (playerHp <= 0) {
+                                    console.log("You are dead. GAME OVER.")
+                                }
+                            } else {
+                                console.log(`Lucky you! You escaped!`);
+                                return enemyHp = 100;
+                                game();
                             }
-                        } else {
-                            console.log(`Lucky you! You escaped!`);
-                            game();
-                        }
-                }
+                    }
             }
         } else {
             console.log(`You are walking in the woods...........`);
@@ -79,7 +80,7 @@ function game() {
             } else {
             console.log(`${name} got 5 extra points, and awarded with a ${prizeDropped}.`);
             game();
-            }
+        }
     } else if (gameActions[options] == 'exit') {
         console.log('GAME OVER');
         return playerHp = 0;
