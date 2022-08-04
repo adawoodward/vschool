@@ -4,7 +4,7 @@ const name = readline.question('Please enter your name: ');
 
 let playerHp = 100;
 let enemyHp = 100;
-const prize = ['Rose', 'Muffin', 'Box of Grape juice', 'Wisdom Book'];
+const prize = ['Rose', 'Muffin', 'Box of Grape juice', 'The Wisdom Book'];
 const inventory = [];
 const prizeDropped = [];
 const enemies = ['Warewolf', 'Troll', 'Vampire', 'Zombie'];
