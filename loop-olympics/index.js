@@ -109,6 +109,8 @@ for (var i = 0; i < peopleArray.length; i++) {
     names.push(peopleArray[i].name)
     ocupations.push(peopleArray[i].occupation)
 }
+console.log(names);
+console.log(ocupations);
 
 // 3. Write a loop that pushes every other name to an array starting with the first person, in this case "Harrison Ford", and every other occupation to *another* array starting with, in this case, "Singer".
 

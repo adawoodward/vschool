@@ -11,6 +11,9 @@ const enemies = ['Warewolf', 'Troll', 'Vampire', 'Zombie'];
 const randEnemy = [];
 const gameActions = ['walk', 'print', 'exit'];
 
+function randomDamage (min, max) {
+    return Math.floor(Math.random() * (25 - 1) + 1);
+}
 
 function game() {
     const options = readline.keyInSelect(gameActions, "Please choose your next move. You can press '1' for walking, '2' for vewing your status, or '3' for exiting this game. ");
@@ -22,11 +25,9 @@ function game() {
             while (playerHp > 0) {
                 const enteredOption = readline.keyIn('Press "a" for attack or "r" for running away or "p" for pause....', {limit: ['a', 'r', 'p']} );
                 console.log("--------------------------------------------------------------")
-                function randomDamage (min, max) {
-                    return Math.floor(Math.random() * (25 - 1) + 1);
-                    }
-                    let playerRandomDamage = randomDamage(1, 25);
-                    let enemyRandomDamage = randomDamage(1, 25);
+
+                let playerRandomDamage = randomDamage(1, 25);
+                let enemyRandomDamage = randomDamage(1, 25);
 
                 if (enteredOption == 'a') {
                         console.log(`The ${randEnemy} got ${enemyRandomDamage} damage points from your attack!`)

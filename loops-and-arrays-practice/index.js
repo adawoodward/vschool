@@ -90,3 +90,27 @@ if (sum %2 === 0) {
 }
 
 
+// reduce method is an array method that takes 
+// 2 arguments: 1st one is a callback function
+// 2nd arg is the initialized datatype
+
+// taking an array and REDUCING it to ONE single value
+// this single value can be ANY datatype 
+
+
+// in the cb function, you get access to FOUR paremeters 
+// in This order: cumulative value, current value, index, reference back to array
+let finalSum = array.reduce(function(final, current){
+    final = final+current
+    return final
+},0)
+
+let letters = ["a", "b", "c"]
+// desired output about: "abc"
+
+let finalString = letters.reduce(function(final, current){
+    final = final + current
+    return final
+}, "")
+
+console.log(finalString)
