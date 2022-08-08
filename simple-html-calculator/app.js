@@ -6,10 +6,9 @@
 // - Your website will have proper padding/spacing to lay things out nicely
 
 // const form = document["calculator"]
-const form = document.calculator;
 
-form.addEventListener("submit", function(e){
-    e.preventDefault();
+// form.addEventListener("submit", function(e){
+//     e.preventDefault();
     // // add
     // let num1 = document.calculator.num1.value;
     // let num2 = document.calculator.num2.value;
@@ -44,8 +43,13 @@ form.addEventListener("submit", function(e){
     // const addBtn = document.getElementById("addBtn");
     // const substractBtn = document.getElementById("substractBtn");
     // const multiplyBtn = document.getElementById("multiplyBtn");
+// })
 
-    form.addEventListener('submit', function(){
+
+    const form = document.calculator;
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
         let num1 = document.calculator.num1.value;
         let num2 = document.calculator.num2.value;
         const sum = parseInt(num1) + parseInt(num2);
@@ -56,7 +60,8 @@ form.addEventListener("submit", function(e){
         document.calculator.num2.value = "";
     })
 
-    form.addEventListener('submit', function() {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
         let num3 = document.calculator.num3.value;
         let num4 = document.calculator.num4.value;
         let difference = parseInt(num3) - parseInt(num4);
@@ -67,7 +72,8 @@ form.addEventListener("submit", function(e){
         document.calculator.num4.value = "";
     })
 
-    form.addEventListener('submit', function() {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
         let num5 = document.calculator.num5.value;
         let num6 = document.calculator.num6.value;
         let multiplied = parseInt(num5) * parseInt(num6);
@@ -77,5 +83,4 @@ form.addEventListener("submit", function(e){
         document.calculator.num5.value = "";
         document.calculator.num6.value = "";
     })
-})
 
