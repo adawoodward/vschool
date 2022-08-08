@@ -5,7 +5,8 @@
 // - Your website will have 3 colors
 // - Your website will have proper padding/spacing to lay things out nicely
 
-const form = document["calculator"]
+// const form = document["calculator"]
+const form = document.calculator;
 
 form.addEventListener("submit", function(e){
     e.preventDefault();
