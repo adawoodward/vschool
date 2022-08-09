@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* .grid-container > div {
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.2em;
+    text-align: center;
+} */
+
+html, body {
+    margin: 10px;
+    background-color: aliceblue;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    /* height: 100%; */
+    justify-content: center;
+    align-items: space-around;
+    align-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 20px;
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas: 
+    "h h h h"
+    "p p p p"
+    "i i i t"
+    "f f f f"
+    ;
+}
+
+.header {
+    grid-area: h;
+    display: grid;
+    text-align: center;
+    align-content: center;
+}
+.pricing {
+    grid-area: p;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    display: flex;
+}
+
+.invoice {
+    grid-area: i;
+    justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+}
+
+#totalPrice {
+    grid-area: t;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+.footer {
+    grid-area: f;
+    text-align: center;
+}
+
+.grid-container > div:nth-child(1n) {
+    background-color: lightblue;
+}
+  
+.grid-container > div:nth-child(2n) {
+    background-color: lightpink;
+}
+
+.grid-container > div:nth-child(3n) {
+    background-color: #88d8b0;
+}
+
+input[type=number] {
+    width: 60%;
+    padding: 15px;
+    margin: 10px;
+    box-sizing: border-box;
+    border: 2px solid navy;
+    border-radius: 4px;
+    align-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .grid-container {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-gap: 15px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "h"
+            "p"
+            "i"
+            "t"
+            "f";
+    }
+
+    html, body {
+        background-color: lightgoldenrodyellow;
+    }
+}
