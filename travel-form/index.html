@@ -1,0 +1,107 @@
+<!-- - First name (text input)
+- Last name (text input)
+- Age (number input)
+- Gender (radio buttons with 2 or more options)
+- Location they're traveling to (select box with at least 3 options. You're an airline that doesn't fly to many places...)
+- Whether they have any dietary restrictions (check boxes for vegetarian, kosher, lactose free, etc. Include at least 3 options) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center;
+        }
+        /* form {
+            display: inline-block;
+        } */
+
+        input[type=text] {
+            width: 30%;
+            padding: 15px;
+            margin: 10px;
+            box-sizing: border-box;
+            border: 2px solid navy;
+            border-radius: 4px;
+        }
+
+        input[type=number] {
+            width: 30%;
+            padding: 15px;
+            margin: 10px;
+            box-sizing: border-box;
+            border: 2px solid darkmagenta;
+            border-radius: 4px;
+        }
+
+        input[type=select] {
+            width: 30%;
+            padding: 15px;
+            margin: 10px;
+            box-sizing: border-box;
+            border: 2px solid darkmagenta;
+            border-radius: 4px;
+        }
+        select {
+            width: 30%;
+            padding: 15px;
+            margin: 10px;
+            box-sizing: border-box;
+            border: 2px solid darkmagenta;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            position: relative;
+            display: inline-block;
+            background-color: darkblue;
+        }
+
+        input[type="radio"] {
+            place-content: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+<form name="travelForm">
+    <label for="firstName">First Name:</label><br>
+    <input type="text" name="firstName" placeholder="First Name">
+    <p></p>
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" name="lastName" placeholder="Last Name">
+    <p></p>
+    <label for="age">Age:</label><br>
+    <input type="number" name="age" placeholder="Age">
+    <p></p>
+    <label for="gender">Gender:</label><br>
+    Male<input type="radio" name="gender" value="Male">
+    Female<input type="radio" name="gender" value="Female">
+    <p></p>
+
+    Location:<br>
+    <select name="location">
+        <option value="Seoul">Seoul, South Korea</option>
+        <option value="Tokyo">Tokyo, Japan</option>
+        <option value="Honolulu">Honolulu, USA</option>
+    </select>
+    <p></p>
+
+    Dietary restrictions:<br>
+    <input type="checkbox" value="vegetarian" name="dietary">Vegetarian
+    <input type="checkbox" value="gluten free" name="dietary">Gluten free
+    <input type="checkbox" value="dairy free" name="dietary">Dairy free
+    <p></p>
+    
+    <button name="submit">submit</button>
+
+</form>
+
+
+
+    <script src="index.js"></script>
+</body>
+</html>
