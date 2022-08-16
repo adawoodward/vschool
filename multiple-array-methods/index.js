@@ -45,14 +45,6 @@ function sortedOfAge(arr){
 
     const concatArr = secondResult.concat(arr2);
 
-    // return ylastNames;
-    // let lastNames = peopleArray.lastName;
-    // let pattern = /y$/;
-    // if (peopleArray.lastName.match(/y$/)){
-    //     console.log("matched!")
-    // }
-    // console.log(matchY);
-
     const thirdResult = concatArr.filter(function(person){
         if (!person.lastName.match(/y$/)) {
             return person;
