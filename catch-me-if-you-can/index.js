@@ -17,6 +17,22 @@ try {
 }
 
 // function sum(x, y){
+//     return x + y;
+// }
+// try {
+//     // let x = 1;
+//     let x = 2;
+//     let y = 2;
+//     if (typeof (x) == 'number' && typeof (y) == 'number'){
+//         console.log(sum(x, y));
+//     } else {
+//         throw "Error: This is not number!"
+//     }
+// } catch(err){
+//     console.log(err)
+// }
+
+// function sum(x, y){
 //     if (typeof(x)!== 'number'){
 //         throw "Error: first one is not number!"
 //     } else if (typeof(y) !== 'number'){
