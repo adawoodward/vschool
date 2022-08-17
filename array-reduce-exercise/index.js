@@ -71,21 +71,30 @@
  
 // 5) Given an array of arrays, flatten them into a single array
 // Note: Take a look at Array.concat() to help with this one
-// function flatten(arr) {
-//     // your code here
-//     return arr.reduce(function(final, array){
-//         let newArr = arrays[0].concat(arr[1], arr[2]);
-//         return newArr; 
-//     })
-// }
+function flatten(arr) {
+    // your code here
+    return arr.reduce(function(final, array){
+        let newArr = final.concat(array);
+        return newArr; 
+    }, [])
+}
+
+// first itr
+// [].concat(["1", "2", "3"])
+// final = ["1", "2", "3"]
+
+// second itr
+// ["1", "2", "3"].concat([true])
+// final = ["1", "2", "3", true]
  
-// var arrays = [
-//      ["1", "2", "3"],
-//      [true],
-//      [4, 5, 6]
-// ];
+var arrays = [
+     ["1", "2", "3"],
+     [true],
+     [4, 5, 6], 
+     [7,8,9]
+];
  
-// console.log(flatten(arrays)); // ["1", "2", "3", true, 4, 5, 6];
+console.log(flatten(arrays)); // ["1", "2", "3", true, 4, 5, 6];
  
 // 6) Given an array of potential voters, return an object representing the results of the vote
 // Include how many of the potential voters were in the ages 18-25, how many from 26-35, how many from 36-55, and how many of each of those age ranges actually voted.
