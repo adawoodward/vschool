@@ -1,0 +1,19 @@
+.box {
+    width: 300px;
+    height: 300px;
+    background-color: aquamarine;
+    margin: auto;
+    border: 1px solid #333;
+    box-shadow: 10px 10px 5px 0 #999;
+    border-radius: 10%;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.box:hover {
+    box-shadow: none;
+    border-radius: 0;
+    background-color: cyan;
+}
