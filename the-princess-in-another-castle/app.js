@@ -3,7 +3,7 @@ let statusOptions = ["Power Up", "Big", "Small", "Dead"];
 
 let i = 0;
 // let i = statusOptions.indexOf("");
-let totalCoins = 10;
+let totalCoins = 0;
 let hasStar = "No Star!";
 let gameActive = true;
 let status = "Big";
@@ -13,7 +13,7 @@ class Player {
     constructor(namePicked, status, totalCoins, hasStar) {
         this.namePicked = name[Math.floor(Math.random()*2)]
         this.status = this.statusOptions[i];
-        this.totalCoins = totalCoins;
+        this.totalCoins = totalCoins++;
         this.hasStar = "No Star.";
     }
 
@@ -40,6 +40,7 @@ class Player {
     }
     addCoins() {
         this.totalCoins = totalCoins++;
+        // this.totalCoins++;
     }
 
     statusOptions = ["Power Up", "Big", "Small", "Dead"];
