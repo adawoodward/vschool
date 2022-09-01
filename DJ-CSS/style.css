@@ -1,4 +1,10 @@
+body {
+    background-image: url(music/dj.jpg);
+    background-size: 100%;
+}
+
 .box1 {
+    display: block;
     width: 150px;
     height: 150px;
     background-color: cyan;
