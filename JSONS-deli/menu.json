@@ -1,0 +1,62 @@
+{
+    "appetizers": [
+        {
+            "name": "French fries",
+            "ingredients": ["Potatoes", "Salt"],
+            "description": "Idaho potatoes fries"
+        },
+        {
+            "name": "Fried calamari",
+            "ingredients": ["Calamari", "Panko", "Flour", "Salt", "Pepper", "Lemon"],
+            "description": "Breaded calamari ligthly fried in canola oil"
+        }
+    ],
+    "coldSandwiches": [
+        {
+            "name": "BLT Sandwich",
+            "ingredients": ["Bacon", "Lettuce", "Tomato", "Baguette", "Butter", "Mayonnaise", "Avocado"],
+            "description": "Iconic sandwich with avocados added"
+        },
+        {
+            "name": "Clubhouse Sandwich",
+            "ingredients": ["Toasted bread", "Ham", "Bacon", "Lettuce", "Pickle", "Tomato", "Mayonnaise", "Cheese"],
+            "description": "Classic sandwich made of three layers of bread filled with turkey and ham"
+        }
+    ],
+    "hotSandwiches": [
+        {
+            "name": "Philly Cheese Sandwich",
+            "ingredients": ["Ribeye steak", "Onion", "Provolone cheese", "Peppers"],
+            "description": "Thinly sliced ribeye steak, caramelized onion, and provolone cheese"
+        },
+        {
+            "name": "Pulled Pork Sandwich",
+            "ingredients": ["Pork", "Cabbage slaw", "Hawaiian King roll", "Mayonnaise"],
+            "description": "Fork-tender pulled pork on a brioche bun"
+        }
+    ],
+    "desserts": [
+        {
+            "name": "Sundae Icecream",
+            "ingredients": ["Icecream", "Cone", "Syrup", "Fruit topping"],
+            "description": "Soft served icecream with your choice of syrup and fruit toppings"
+        },
+        {
+            "name": "Brownie",
+            "ingredients": ["Coco Powder", "Flour", "Egg", "Butter", "Brown Sugar", "Fudge"],
+            "description": "Our brownie has fudge inside, you can add an scoop of icecream on top"
+        }
+    ],
+    "drinks": [
+        {
+            "name": "Lemonade",
+            "ingredients": ["Lemon", "Sparkling water", "Sugar"],
+            "description": "Freshly squeezed lemon"
+        },
+        {
+            "name": "Italian Soda",
+            "ingredients": ["Syrup", "Sparkling water", "Whipping cream", "Cherry"],
+            "description": "Sweet bubbly drink without the caffeine"
+        }
+    ]
+}
