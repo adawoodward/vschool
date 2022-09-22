@@ -1,21 +1,16 @@
 let name = ["Mario", "Luigi"];
-let status = ["Power Up", "Big", "Small", "Dead"];
+let status = ["Powered Up", "Big", "Small", "Dead"];
 let currentIndex;
 let i;
-let totalCoins = 1;
+let totalCoins = 0;
 let hasStar = "No Star!";
 let Enabled = true;
-let statusNow = "Big";
-
-// let statusNow = status[currentIndex];
+// this.statusNow = "Small"
 
 class Player {
     constructor(namePicked, statusNow, totalCoins, hasStar) {
         this.namePicked = name[Math.floor(Math.random()*2)]
-        // this.statusNow = "Big";
-        // this.statusNow = status[currentIndex];
-        this.statusNow = status[1];
-
+        this.statusNow = "Small";
         this.totalCoins = 0;
         this.hasStar = "No Star.";
     }
@@ -25,58 +20,89 @@ class Player {
     }
 
     gotHit() {
-        status = ["Power Up", "Big", "Small", "Dead"];
-        this.statusNow = status[(currentIndex+1)%4];
-        // this.statusNow = status[(currentIndex++)];
-        // console.log("Got hit")
-        if (this.statusNow == status[(currentIndex === 0)]) {
-            this.statusNow == status[1]
-            this.statusNow == "Big"
+        let status = ["Powered Up", "Big", "Small", "Dead"];
+
+        if (this.statusNow == "Powered Up") {
+            console.log("Got hit!")
+            if (this.hasStar == "No Star.") {
+                this.statusNow = "Big"
+            }
+
+            if (this.hasStar == "You have a star!") {
+                this.statusNow = "Powered Up"
+                this.hasStar = "No Star."
+                console.log("You got saved from a star!")
+            }
+
+            console.log(`Name: ${this.namePicked}, 
+            Total Coins: ${this.totalCoins}, 
+            Status: ${this.statusNow}, 
+            Star: ${this.hasStar}`);
         }
 
-        if (this.statusNow == status[(currentIndex === 1)]) {
-            this.statusNow == "Small"
+        if (this.statusNow == "Big") {
+            console.log("Got hit!")
+            this.statusNow = "Small"
+            console.log(`Name: ${this.namePicked}, 
+            Total Coins: ${this.totalCoins}, 
+            Status: ${this.statusNow}, 
+            Star: ${this.hasStar}`);
         }
 
-        if (this.statusNow == status[(currentIndex === 2)]) {
+        if (this.statusNow == "Small") {
+            console.log("Got hit!")
             this.statusNow = "Dead"
+            console.log(`Name: ${this.namePicked}, 
+            Total Coins: ${this.totalCoins}, 
+            Status: ${this.statusNow}, 
+            Star: ${this.hasStar}`);
         }
-
-        // if (this.statusNow == status[(currentIndex === 3)]) {
-        //     console.log("GAME OVER");
-        // }
     }
+
     gotPowerUp() {
-        status = ["Power Up", "Big", "Small", "Dead"];
-        // this.statusNow = this.status[(currentIndex-1)];
-        this.statusNow = status[(currentIndex+3)%4];
-        // this.statusNow = status[currentIndex--];
-        if (this.statusNow == status[(currentIndex === 2)]) {
-            this.statusNow == "Big";
+        let status = ["Powered Up", "Big", "Small", "Dead"];
+
+        if (this.statusNow == "Small") {
+            console.log("Got powered up!")
+            this.statusNow = "Big"
+            console.log(`Name: ${this.namePicked}, 
+            Total Coins: ${this.totalCoins}, 
+            Status: ${this.statusNow}, 
+            Star: ${this.hasStar}`);
         }
 
-        if (this.statusNow == status[(currentIndex === 1)]) {
-            this.statusNow == "Power Up";
+        if (this.statusNow == "Big") {
+            console.log("Got powered up!")
+            this.statusNow = "Powered Up";
+            console.log(`Name: ${this.namePicked}, 
+            Total Coins: ${this.totalCoins}, 
+            Status: ${this.statusNow}, 
+            Star: ${this.hasStar}`);
         }
 
-        if (this.statusNow === status[(currentIndex === 0)]) {
-            this.hasStar = "Yes Star!";
-            this.statusNow = statusNow;
+        if (this.statusNow == "Powered Up") {
+            console.log("More power up!")
+            this.hasStar = "You have a star!"
+            this.statusNow = "Powered Up"
+            console.log(`Name: ${this.namePicked}, 
+            Total Coins: ${this.totalCoins}, 
+            Status: ${this.statusNow}, 
+            Star: ${this.hasStar}`);
+
         }
     }
+
     addCoins() {
-        // console.log("GOT COINS")
+        console.log("Got Coins!")
         this.totalCoins++;
-        // this.statusNow = status[currentIndex];
     }
 
-    print() {
-        // const namePicked = this.namePicked;
-        // const totalCoins = this.totalCoins;
-        // const status = this.statusOptions;
-        // const hasStar = this.hasStar;
-        return `name: ${this.namePicked}, status: ${this.statusNow}, totalCoins: ${this.totalCoins}, hasStar: ${this.hasStar}`;
-    }
+    // print(){
+    //     console.log(`Name: ${this.namePicked}, 
+    //     Total Coins: ${this.totalCoins}, 
+    //     Status: ${this.statusNow}, 
+    //     Star: ${this.hasStar}`);
+    // }
 }
 
 function randomRange() {
@@ -91,23 +117,20 @@ function randomRange() {
         player.addCoins();
     }
     if (player.statusNow === "Dead") {
-        console.log("You are dead")
+        console.log("You are dead...")
+        console.log("Game Over...")
         Enabled = false;
         stopRandomRange();
     }
-    // console.log(player);
-    console.log(`Name: ${player.namePicked}, 
-    Status: ${player.statusNow}, 
-    Total coins: ${player.totalCoins}, 
-    Has star: ${player.hasStar}`);
 };
+
 
 function stopRandomRange() {
     clearInterval(interval)
 }
 
-let interval = setInterval(randomRange, 1000);
-setTimeout(stopRandomRange, 8000)
+let interval = setInterval(randomRange, 500);
+setTimeout(stopRandomRange, 5000)
 
 const player = new Player(this.namePicked, this.statusNow, 0, this.hasStar);
 
