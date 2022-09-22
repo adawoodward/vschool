@@ -26,36 +26,27 @@ class Player {
             console.log("Got hit!")
             if (this.hasStar == "No Star.") {
                 this.statusNow = "Big"
+                this.print();
             }
 
             if (this.hasStar == "You have a star!") {
                 this.statusNow = "Powered Up"
                 this.hasStar = "No Star."
                 console.log("You got saved from a star!")
+                this.print();
             }
-
-            console.log(`Name: ${this.namePicked}, 
-            Total Coins: ${this.totalCoins}, 
-            Status: ${this.statusNow}, 
-            Star: ${this.hasStar}`);
         }
 
         if (this.statusNow == "Big") {
             console.log("Got hit!")
             this.statusNow = "Small"
-            console.log(`Name: ${this.namePicked}, 
-            Total Coins: ${this.totalCoins}, 
-            Status: ${this.statusNow}, 
-            Star: ${this.hasStar}`);
+            this.print();
         }
 
         if (this.statusNow == "Small") {
             console.log("Got hit!")
             this.statusNow = "Dead"
-            console.log(`Name: ${this.namePicked}, 
-            Total Coins: ${this.totalCoins}, 
-            Status: ${this.statusNow}, 
-            Star: ${this.hasStar}`);
+            this.print();
         }
     }
 
@@ -65,44 +56,35 @@ class Player {
         if (this.statusNow == "Small") {
             console.log("Got powered up!")
             this.statusNow = "Big"
-            console.log(`Name: ${this.namePicked}, 
-            Total Coins: ${this.totalCoins}, 
-            Status: ${this.statusNow}, 
-            Star: ${this.hasStar}`);
+            this.print();
         }
 
         if (this.statusNow == "Big") {
             console.log("Got powered up!")
             this.statusNow = "Powered Up";
-            console.log(`Name: ${this.namePicked}, 
-            Total Coins: ${this.totalCoins}, 
-            Status: ${this.statusNow}, 
-            Star: ${this.hasStar}`);
+            this.print();
         }
 
         if (this.statusNow == "Powered Up") {
             console.log("More power up!")
             this.hasStar = "You have a star!"
             this.statusNow = "Powered Up"
-            console.log(`Name: ${this.namePicked}, 
-            Total Coins: ${this.totalCoins}, 
-            Status: ${this.statusNow}, 
-            Star: ${this.hasStar}`);
-
+            this.print();
         }
     }
 
     addCoins() {
         console.log("Got Coins!")
         this.totalCoins++;
+        this.print();
     }
 
-    // print(){
-    //     console.log(`Name: ${this.namePicked}, 
-    //     Total Coins: ${this.totalCoins}, 
-    //     Status: ${this.statusNow}, 
-    //     Star: ${this.hasStar}`);
-    // }
+    print(){
+        console.log(`Name: ${this.namePicked}, 
+        Total Coins: ${this.totalCoins}, 
+        Status: ${this.statusNow}, 
+        Star: ${this.hasStar}`)
+    }
 }
 
 function randomRange() {
@@ -126,11 +108,11 @@ function randomRange() {
 
 
 function stopRandomRange() {
-    clearInterval(interval)
+    clearInterval(intervalID)
 }
 
-let interval = setInterval(randomRange, 500);
-setTimeout(stopRandomRange, 5000)
+let intervalID = setInterval(randomRange, 500);
+setTimeout(stopRandomRange, 3000)
 
 const player = new Player(this.namePicked, this.statusNow, 0, this.hasStar);
 
