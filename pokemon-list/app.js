@@ -21,9 +21,19 @@ function showData(arr) {
     // }
 
     // Showing all the names
+    // for (let i = 0; i < arr.pokemon.length; i++) {
+    //     const p = document.createElement("p")
+    //     p.textContent = arr.pokemon[i].name
+    //     document.body.appendChild(p)
+    // }
+
+    // Extra credit: names and detail
     for (let i = 0; i < arr.pokemon.length; i++) {
+        const h1 = document.createElement("h1")
+        h1.textContent = arr.pokemon[i].name
+        document.body.appendChild(h1)
         const p = document.createElement("p")
-        p.textContent = arr.pokemon[i].name
+        p.textContent = arr.pokemon[i].resource_uri
         document.body.appendChild(p)
     }
 }
