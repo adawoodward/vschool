@@ -7,14 +7,20 @@
     <title>Todo List</title>
 </head>
 <body>
-    <form name="todo-form">
+    <form name="todo-form" style="text-align: center;">
         <input type="text" name="title" placeholder="Add your new todo"/>
-        <button id="submit">+</button>
-    </form>
+        <input type="number" name="price" placeholder="Add price if applicable"/>
+        <input type="text" name="description" placeholder="Add your description"/>
+        <input type="url" name="img" placeholder="Add imgUrl"/>
+        <!-- <input type="image" id="image" placeholder="Add image Url"/> -->
 
-    <div id="todo-list">
+        <button id="submit"> + </button>
+
+    </form>
+    <p></p>
+    <ul id="todo-list" style="margin-left: 450px;">
         <!-- <input type="checkbox" id="myCheck" onclick="checkedFunction()"> -->
-    </div>
+    </ul>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
     <script src="index.js"></script>
