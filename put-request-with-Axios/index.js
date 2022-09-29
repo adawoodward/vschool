@@ -1,7 +1,7 @@
 // PUT request with axios
 
 const updates = {
-    title: "I CHANGED THE TITLE!!!"
+    title: "I CHANGED THE TITLE!!!",
     description: "I CHANGED THE DESCRIPTION!!!"
 }
 

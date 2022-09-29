@@ -1,4 +1,3 @@
-
 function getData() {
     axios.get("https://api.vschool.io/ada/todo/")
         .then(res => listData(res.data))
@@ -43,22 +42,17 @@ function listData(data) {
                 title.contentEditable = false;
                 rest.contentEditable = false;
 
-                // title.textContent = data[i].title;
-                // price.textContent = data[i].price;
-                // description.textContent = data[i].description;
-                // img.textContent = data[i].img
+                    const editedTodo = {
+                        title: title.textContent,
+                        price: price.textContent,
+                        description: description.textContent,
+                        imgUrl: img.textContent
+                    }
+                    const result = Object.assign({}, editedTodo)
 
-                // e.preventDefault();
-                const editedTodo = {
-                    // title: data[i].title.value,
-                    title: title.textContent,
-                    price: price.textContent,
-                    description: description.textContent,
-                    imgUrl: img.textContent
-                }
-                axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, editedTodo)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err.response.data))
+                    axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, result)
+                    .then(res => console.log(res.data))
+                    .catch(err => console.log(err.response.data))
                 }
             )
         })     
@@ -142,10 +136,7 @@ function listData(data) {
                 // urlArea.textContent = "imgUrl: ";
                 const completedFalse = {
                     completed: false,
-                    // title: title.textContent,
-                    // price: price.textContent.valueOf,
-                    // description: description.textContent,
-                    // imgUrl: img.textContent
+
                 }
                 const result2 = Object.assign(completed, completedFalse)
                 axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, result2)
