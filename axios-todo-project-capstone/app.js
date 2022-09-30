@@ -74,16 +74,23 @@ function listData(data) {
         checkBox.setAttribute("type", "checkbox");
         task.appendChild(checkBox);
 
+
+        const priceLabel = document.createElement('div')
         const price = document.createElement('p')
+        priceLabel.textContent = "Price: "
         price.textContent = data[i].price
         price.id = "price"
         price.style.fontSize = "small"
         Number(price);
+        priceLabel.appendChild(price)
 
+        const descriptionLabel = document.createElement('div')
         const description = document.createElement('p')
+        descriptionLabel.textContent = "Description: "
         description.textContent = data[i].description
         description.id = "description"
         description.style.fontSize = "small"
+        descriptionLabel.appendChild(description)
 
         const completed = document.createElement("p");
         completed.id = "completed"
@@ -93,21 +100,26 @@ function listData(data) {
         const img = document.createElement("img");
         img.setAttribute("type", "src")
         img.id = "img"
+        // img.textContent = data[i].img
         
         img.src = data[i].imgUrl
         img.height = "200"
         img.style.display = 'block';
+        // img.textContent = data[i].imgUrl.value
 
+        const urlAreaLabel = document.createElement('div');
         const urlArea = document.createElement("p");
-        urlArea.textContent = "imgUrl: ";
+        urlAreaLabel.textContent = "imgUrl: "
         urlArea.id = "urlArea"
+        urlArea.textContent = img.src
         urlArea.style.fontSize = "small"
         urlArea.appendChild(img);
+        urlAreaLabel.appendChild(urlArea)
 
         const rest = document.createElement('div');
         rest.id = "rest"
         task.appendChild(rest)
-        rest.append(price, description, urlArea)
+        rest.append(priceLabel, descriptionLabel, urlAreaLabel)
     
         checkBox.addEventListener('click', function() {
             // let task = this.parentNode;
@@ -127,7 +139,7 @@ function listData(data) {
                 const result1 = Object.assign(completed, completedTrue)
                 axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, result1)
                     .then(res => console.log(res.response.data))
-                    .catch(err => console.log(err.response.data))
+                    .catch(err => console.log(err.response))
             } else {
                 task.style.textDecoration = "none"
                 completed.textContent = "Completed: false"
