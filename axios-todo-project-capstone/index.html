@@ -8,10 +8,10 @@
 </head>
 <body>
     <form name="todo-form" style="text-align: center;">
-        <input type="text" name="title" placeholder="Add your new todo"/>
-        <input type="text" name="price" placeholder="Add price if applicable"/>
-        <input type="text" name="description" placeholder="Add your description"/>
-        <input type="text" name="img" placeholder="Add imgUrl"/>
+        <input type="text" id="title" name="title" placeholder="Add your new todo"/>
+        <input type="text" id="price" name="price" placeholder="Add price if applicable"/>
+        <input type="text" id="description" name="description" placeholder="Add your description"/>
+        <input type="text" id="img" name="img" placeholder="Add imgUrl"/>
         <!-- <input type="image" id="image" placeholder="Add image Url"/> -->
 
         <button id="submit"> + </button>
@@ -31,6 +31,7 @@
     body {
         margin: 10px;
         padding: 20px;
+        background-color: lightskyblue;
     }
     ul {
         /* Center child horizontally*/
@@ -40,5 +41,6 @@
         align-items: center;
         width: 75%;
         margin-left: 250px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 </style>

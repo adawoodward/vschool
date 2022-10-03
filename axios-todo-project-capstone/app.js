@@ -15,20 +15,20 @@ function listData(data) {
         title.textContent = data[i].title
         task.appendChild(title)
 
-        // task.textContent = data[i].title
         task.id = "task"
         document.getElementById('todo-list').appendChild(task)
 
         let editBtn = document.createElement("button");
         editBtn.innerHTML = "Edit";
         task.appendChild(editBtn);
-        // task.appendChild(saveBtn);
 
         editBtn.addEventListener('click', function() {
             // let titleArea = this.previousSibling;
             // titleArea.contentEditable = true;
             title.contentEditable = true;
-            rest.contentEditable = true;
+            price.contentEditable = true;
+            description.contentEditable = true;
+            img.contentEditable = true;
 
             rest.cursor = "focus"
             
@@ -40,19 +40,20 @@ function listData(data) {
 
             saveBtn.addEventListener('click', function() {
                 title.contentEditable = false;
-                rest.contentEditable = false;
+                price.contentEditable = false;
+                description.contentEditable = false;
+                img.contentEditable = false;
 
-                    const editedTodo = {
-                        title: title.textContent,
-                        price: price.textContent,
-                        description: description.textContent,
-                        imgUrl: img.textContent
-                    }
-                    const result = Object.assign({}, editedTodo)
-
-                    axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, result)
-                    .then(res => console.log(res.data))
-                    .catch(err => console.log(err.response.data))
+                // e.preventDefault();
+                const editedTodo = {
+                    title: title.textContent,
+                    price: price.textContent,
+                    description: description.textContent,
+                    imgUrl: img.textContent
+                }
+                axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, editedTodo)
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err.response.data))
                 }
             )
         })     
@@ -74,52 +75,59 @@ function listData(data) {
         checkBox.setAttribute("type", "checkbox");
         task.appendChild(checkBox);
 
-
-        const priceLabel = document.createElement('div')
         const price = document.createElement('p')
-        priceLabel.textContent = "Price: "
         price.textContent = data[i].price
         price.id = "price"
         price.style.fontSize = "small"
         Number(price);
-        priceLabel.appendChild(price)
 
-        const descriptionLabel = document.createElement('div')
+        const priceArea = document.createElement('div')
+        priceArea.textContent = "- Price:"
+        priceArea.id = "priceArea"
+        priceArea.appendChild(price)
+
         const description = document.createElement('p')
-        descriptionLabel.textContent = "Description: "
         description.textContent = data[i].description
         description.id = "description"
         description.style.fontSize = "small"
-        descriptionLabel.appendChild(description)
+
+        const descriptionArea = document.createElement('div')
+        descriptionArea.textContent = "- Description:"
+        descriptionArea.id = "descriptionArea"
+        descriptionArea.appendChild(description)
 
         const completed = document.createElement("p");
         completed.id = "completed"
         completed.style.fontSize = "small"
         task.appendChild(completed)
 
-        const img = document.createElement("img");
-        img.setAttribute("type", "src")
+        const img = document.createElement("p");
         img.id = "img"
-        // img.textContent = data[i].img
-        
-        img.src = data[i].imgUrl
-        img.height = "200"
-        img.style.display = 'block';
-        // img.textContent = data[i].imgUrl.value
+        img.textContent = data[i].imgUrl
+        img.style.fontSize = "small"
 
-        const urlAreaLabel = document.createElement('div');
+        // img.style.textDecoration = "none";
+        // img.style.display = 'block';
+
+        const imgPreview = document.createElement("img");
+        imgPreview.id = "imgPreview"
+        imgPreview.setAttribute("type", "src")
+        imgPreview.src = data[i].imgUrl
+        imgPreview.height = "300";
+        img.style.display = 'block';
+        img.appendChild(imgPreview);
+
         const urlArea = document.createElement("p");
-        urlAreaLabel.textContent = "imgUrl: "
+        urlArea.textContent = "- imgUrl: ";
         urlArea.id = "urlArea"
-        urlArea.textContent = img.src
-        urlArea.style.fontSize = "small"
         urlArea.appendChild(img);
-        urlAreaLabel.appendChild(urlArea)
+
+
 
         const rest = document.createElement('div');
         rest.id = "rest"
         task.appendChild(rest)
-        rest.append(priceLabel, descriptionLabel, urlAreaLabel)
+        rest.append(priceArea, descriptionArea, urlArea)
     
         checkBox.addEventListener('click', function() {
             // let task = this.parentNode;
@@ -129,26 +137,24 @@ function listData(data) {
             if (checkBox.checked) {
                 task.style.textDecoration = "line-through"
                 completed.textContent = "Completed: true"
-                // price.textContent = "Price: " + data[i].price
-                // description.textContent = "Description: " + data[i].description
-                // urlArea.textContent = "imgUrl: ";
 
                 const completedTrue = {
                     completed: true,
                 }
                 const result1 = Object.assign(completed, completedTrue)
                 axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, result1)
-                    .then(res => console.log(res.response.data))
-                    .catch(err => console.log(err.response))
+                    .then(res => console.log(res.data))
+                    .catch(err => console.log(err.res.data))
             } else {
                 task.style.textDecoration = "none"
                 completed.textContent = "Completed: false"
-                // price.textContent = "Price: " + data[i].price
-                // description.textContent = "Description: " + data[i].description
-                // urlArea.textContent = "imgUrl: ";
+
                 const completedFalse = {
                     completed: false,
-
+                    // title: title.textContent,
+                    // price: price.textContent.valueOf,
+                    // description: description.textContent,
+                    // imgUrl: img.textContent
                 }
                 const result2 = Object.assign(completed, completedFalse)
                 axios.put("https://api.vschool.io/ada/todo/" + data[i]._id, result2)
@@ -192,5 +198,5 @@ todoForm.addEventListener("submit", function(e) {
     axios.post("https://api.vschool.io/ada/todo", newTodo)
         .then(res => getData())
         // .then(res => console.log(res.data))
-        .catch(err => console.log(err.response.data))
+        .catch(err => console.log(err.res.data))
 })
