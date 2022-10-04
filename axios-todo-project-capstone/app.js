@@ -114,6 +114,7 @@ function listData(data) {
         imgPreview.setAttribute("type", "src")
         imgPreview.src = data[i].imgUrl
         imgPreview.height = "300";
+        imgPreview.style.padding = "20px";
         img.style.display = 'block';
         img.appendChild(imgPreview);
 
@@ -130,10 +131,6 @@ function listData(data) {
         rest.append(priceArea, descriptionArea, urlArea)
     
         checkBox.addEventListener('click', function() {
-            // let task = this.parentNode;
-            // let url = "https://api.vschool.io/ada/todo/"
-            // let itemUrl = url + data[i]._id;
-
             if (checkBox.checked) {
                 task.style.textDecoration = "line-through"
                 completed.textContent = "Completed: true"
