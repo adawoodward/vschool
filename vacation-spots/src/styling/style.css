@@ -36,3 +36,9 @@ section {
     top: 50%;
     width: 100%;
 }
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    padding: 40px;
+}
