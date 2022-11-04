@@ -21,6 +21,7 @@
     margin: 10px;
     border-radius: 7px;
     border: solid;
+    border-width: 0.5px;
 }
 
 .pet {
@@ -36,6 +37,7 @@
     margin: 10px;
     border-radius: 7px;
     border: solid;
+    border-width: 0.5px;
 }
 
 .h1 {

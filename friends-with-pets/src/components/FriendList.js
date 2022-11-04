@@ -3,7 +3,7 @@ import data from "../data"
 // import Friend from "./Friend"
 // import Pet from "./Pet"
 
-export default function FriendList(props) {
+export default function FriendList() {
     const friendList = data.map((item, index) => {
         return (
             <div key={index}>
