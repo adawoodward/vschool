@@ -61,7 +61,7 @@ export default function App() {
   // <Box color={color[3]}/>
 
   
-  // const box = color.map((box) => <Box color={color} />)
+  // const box = color.map((color) => <Box color={color} />)
 
 
 
