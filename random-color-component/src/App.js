@@ -6,8 +6,8 @@ export default function App() {
 
   React.useEffect(function() {
     fetch(`https://www.colr.org/json/color/random?timestamp=${new Date().getTime()}`)
-      .then(res => res.json())
-      .then(data => setColorData(data))
+        .then(res => res.json())
+        .then(data => setColorData(data))
   }, [color])
 
   console.log(colorData.new_color)

@@ -1,6 +1,11 @@
 import React from "react"
+// import Form from './Form'
 
 export default function App() {
+//   return (
+//     <Form/ >
+//   )
+// }
   const [formData, setFormData] = React.useState(
     {
       firstName: "",
@@ -15,6 +20,14 @@ export default function App() {
 
   const [badges, setBadges] = React.useState("")
   // const badges = formData.map((badge)=> <div key={badge}>{badge}</div>)
+
+  const [color, setColor] = React.useState("#000")
+  const getRgb = () => Math.floor(Math.random() * 256)
+  const rgbToHex = (r, g, b) => "#" + [r, g, b].map(x => {
+    const hex = x.toString(16);
+    return hex.length === 1 ? '0' + hex : hex
+  }).join('');
+
 
   function handleChange(event) {
     const {name, value, type, checked} = event.target
@@ -33,7 +46,7 @@ export default function App() {
     setBadges(prevBadges => {
       return [
         ...prevBadges,
-        <div className="badges">Badge:
+        <div className="badges" style={{backgroundColor: color}} >Badge
           <p> Name: {formData.firstName} {formData.lastName}</p>
           <p> Phone: {formData.phone}</p>
           <p> Place of birth: {formData.placeOfBirth}</p>
@@ -44,7 +57,6 @@ export default function App() {
         </div>
       ]
     })
-
     
     setFormData(
       {
@@ -58,7 +70,14 @@ export default function App() {
       }
     )
   }
-
+  const handleGenerate = () => {
+    const color = {
+      r: getRgb(),
+      g: getRgb(),
+      b: getRgb()
+    }
+    setColor(rgbToHex(color.r, color.g, color.b))
+  }
 
   return (
     <div className="form-container">
@@ -88,7 +107,7 @@ export default function App() {
         />
         <br></br>
         <input 
-          minLength="3"
+          minLength={3}
           type="email"
           placeholder="Email"
           onChange={handleChange}
@@ -134,12 +153,13 @@ export default function App() {
           required={true}
         />
         <br></br>
-        <button type="submit" className="form--submit" onClick={handleSubmit}>
+        <button type="submit" className="form--submit" onClick={handleGenerate}>
           Submit
         </button>      
       </form>
       <div>
           {badges}
+          <br></br>
       </div>
     </div>
   )
