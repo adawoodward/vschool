@@ -25,13 +25,16 @@ export default function Meme() {
         getMemes()
     }, [])
 
-    function fetchRandomMeme() {
+    function fetchRandomImg() {
         const randomNum = Math.floor(Math.random() * allMemes.length)
         const randomUrl = allMemes[randomNum].url
-        setRandomImg(randomUrl)
 
-        console.log(randomImg)
+        setRandomImg({
+            image: randomUrl
+        })
+
         console.log(randomUrl)
+
         // setRandomImg(randomUrl)
         // console.log(randomUrl)
 
@@ -116,10 +119,11 @@ export default function Meme() {
                 <button 
                     className="form--button"
                     type="submit"
-                    onClick={fetchRandomMeme}
+                    onClick={fetchRandomImg}
                 >Submit
                 </button>
-                <img src={randomImg} />
+                {/* <img src="http://i.imgflip.com/1bij.jpg"/> */}
+                {/* <img src={randomImg} /> */}
                 {/* <img src={generatedMemes.image} /> */}
             </form>
             <h2>List of Memes</h2>
