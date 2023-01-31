@@ -29,19 +29,13 @@ export default function Meme() {
         const randomNum = Math.floor(Math.random() * allMemes.length)
         const randomUrl = allMemes[randomNum].url
 
-        setRandomImg({
-            image: randomUrl
-        })
+        // setRandomImg({
+        //     image: randomUrl
+        // })
+
+        setRandomImg(randomUrl)
 
         console.log(randomUrl)
-
-        // setRandomImg(randomUrl)
-        // console.log(randomUrl)
-
-        // setMeme(prevMeme => ({
-        //     ...prevMeme,
-        //     randomImage: url
-        // }))
     }
 
     function handleChange(event) {
@@ -72,14 +66,12 @@ export default function Meme() {
                     <h2>{userInput.topText}</h2>
                     <h2>{userInput.bottomText}</h2>
                     <img src={randomImg} />
-                    {/* <img src={userInput.image}></img> */}
                 </div>
             ]
             // topText: userInput.topText,
             // bottomText: userInput.bottomText,
             // image: userInput.image
         })
-        // setList(prevList => [...prevList, {meme}])
     }
 
     console.log(generatedMemes)
@@ -91,8 +83,6 @@ export default function Meme() {
     //         <img src={generatedMemes.image}></img>
     //     </div>
     // )
-    
-
     // console.log(userMeme)
 
 
@@ -128,12 +118,6 @@ export default function Meme() {
             </form>
             <h2>List of Memes</h2>
             <div>{generatedMemes}</div>
-            {/* <div>{userMeme}</div> */}
-            {/* <div className="meme">
-                    <img src={meme.randomImage} className="memeImg" />
-                    <h2 className="meme--top">{meme.topText}</h2>
-                    <h2 className="meme--bottom">{meme.bottomText}</h2>
-            </div> */}
         </main>
     )
 
