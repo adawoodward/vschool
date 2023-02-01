@@ -26,14 +26,10 @@ export default function Meme() {
             image: randomUrl
         })
 
-        console.log(randomUrl)
-        // setRandomImg({
-        //     image: randomUrl
-        // })
-
         // setRandomImg(randomUrl)
-        // console.log(randomUrl)
-        setRandomImg(randomUrl)
+
+        console.log(randomUrl)
+        console.log(randomImg.image)
 
         // setMeme(prevMeme => ({
         //     ...prevMeme,
@@ -62,10 +58,10 @@ export default function Meme() {
         setGeneratedMemes(prevGeneratedMemes=> {
             return [
                 ...prevGeneratedMemes,
-                <div className="memeImage">
+                <div className="memeGenarated">
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
-                    <img src={randomImg.image} />
+                    <img src={randomImg.image}/>Image
                     {/* <img src={userInput.image}></img> */}
                 </div>
             ]
