@@ -18,6 +18,7 @@ export default function Meme() {
         }
         getMemes()
     }, [])
+
     function fetchRandomImg() {
         const randomNum = Math.floor(Math.random() * allMemes.length)
         const randomUrl = allMemes[randomNum].url
@@ -57,9 +58,18 @@ export default function Meme() {
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
                     <img src={userInput.image ? userInput.image : randomImg.image} />
-                    {/* <img src={randomImg.image}/>Image */}
+                    {/* <button onClick={()=>this.onDelete(generatedMemes.index)}
+                    >Delete</button> */}
+                    <button onClick={() => deleteMeme(generatedMemes.index)} className="delete--button">DELETE</button>
                 </div>
             ]
+
+            // function deleteTodo(id){
+            //     setTodos([...todos].filter(todo => todo.id !== id));
+            // }
+
+            // <button onClick={() => deleteTodo(todo.id)} className="x-button">
+
             // topText: userInput.topText,
             // bottomText: userInput.bottomText,
             // image: userInput.image
@@ -77,6 +87,16 @@ export default function Meme() {
         //     }
         // })
         // setList(prevList => [...prevList, {meme}])
+    }
+
+    const index = generatedMemes.indexOf()
+    if (index !== -1) {
+        generatedMemes.splice(index, 1);
+        this.setGeneratedMemes({memes: generatedMemes})
+    }
+
+    function deleteMeme(index){
+        setGeneratedMemes([...generatedMemes].filter(meme => meme.indexOf !== index));
     }
 
     console.log(generatedMemes)
@@ -126,7 +146,9 @@ export default function Meme() {
                 <h2 className="meme--bottom">{userInput.bottomText}</h2>
             </div>
             <h2>List of Memes</h2>
-            <div>{generatedMemes}</div>
+            <div>{generatedMemes}
+
+            </div>
             {/* <div>{userMeme}</div> */}
         </main>
     )
