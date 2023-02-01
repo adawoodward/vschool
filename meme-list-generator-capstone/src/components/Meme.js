@@ -39,7 +39,6 @@ export default function Meme() {
         //     ...prevMeme,
         //     randomImage: url
         // }))
-        console.log(randomUrl)
     }
 
     function handleChange(event) {
@@ -66,7 +65,7 @@ export default function Meme() {
                 <div className="memeImage">
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
-                    <img src={randomImg.valueOf} />
+                    <img src={randomImg.image} />
                     {/* <img src={userInput.image}></img> */}
                 </div>
             ]
