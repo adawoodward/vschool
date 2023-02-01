@@ -1,0 +1,13 @@
+.meme--top {
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    color: white;
+}
+
+.meme--bottom {
+    position: absolute;
+    top: 420px;
+    left: 30px;
+    color: white;
+}
