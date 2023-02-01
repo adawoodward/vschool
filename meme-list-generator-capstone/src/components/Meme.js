@@ -27,14 +27,9 @@ export default function Meme() {
         })
 
         // setRandomImg(randomUrl)
-
         console.log(randomUrl)
         console.log(randomImg.image)
-
-        // setMeme(prevMeme => ({
-        //     ...prevMeme,
-        //     randomImage: url
-        // }))
+        return (<img src={randomImg.image}/>)
     }
 
     function handleChange(event) {
@@ -61,14 +56,26 @@ export default function Meme() {
                 <div className="memeGenarated">
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
-                    <img src={randomImg.image}/>Image
-                    {/* <img src={userInput.image}></img> */}
+                    <img src={userInput.image ? userInput.image : randomImg.image} />
+                    {/* <img src={randomImg.image}/>Image */}
                 </div>
             ]
             // topText: userInput.topText,
             // bottomText: userInput.bottomText,
             // image: userInput.image
         })
+        setUserInput(
+            {
+                topText: "",
+                bottomText: ""
+            }
+        )
+        // setUserInput(prevUserInput => {
+        //     return {
+        //     topText: "",
+        //     bottomText: "",
+        //     }
+        // })
         // setList(prevList => [...prevList, {meme}])
     }
 
@@ -80,10 +87,6 @@ export default function Meme() {
     //         <img src={generatedMemes.image}></img>
     //     </div>
     // )
-
-
-    // console.log(userMeme)
-
 
     return (
         <main>
@@ -105,23 +108,22 @@ export default function Meme() {
                     onChange={handleChange}
                 />
                 <button  
-                    type="submit"
-                    onSubmit={fetchRandomImg}>Get image</button>
+                    type="button"
+                    onClick={fetchRandomImg}>Get image</button>
                 <button 
                     className="form--button"
-                    // type="submit"
-                    // onSubmit={fetchRandomImg}
-                    onClick={fetchRandomImg}
-                >Submit
-                </button>
-                {/* <img src="http://i.imgflip.com/1bij.jpg"></img> */}
-                {/* <img src={randomImg} /> */}
-                {/* <img src={generatedMemes.image} /> */}
+                    // onClick={fetchRandomImg}
+                >Submit</button>
             </form>
+            <div>
+                <img src={randomImg.image} />
+                <h2 className="meme--top">{userInput.topText}</h2>
+                <h2 className="meme--bottom">{userInput.bottomText}</h2>
+            </div>
             <div className="meme">
-                    <img src={userInput.image} className="memeImg" />
-                        <h2 className="meme--top">{userInput.topText}</h2>
-                        <h2 className="meme--bottom">{userInput.bottomText}</h2>
+                <img src={userInput.image} className="meme--img" />
+                <h2 className="meme--top">{userInput.topText}</h2>
+                <h2 className="meme--bottom">{userInput.bottomText}</h2>
             </div>
             <h2>List of Memes</h2>
             <div>{generatedMemes}</div>
