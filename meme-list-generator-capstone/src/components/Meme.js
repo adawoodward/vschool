@@ -40,6 +40,14 @@ export default function Meme() {
         }))
     }
 
+    // function handleDelete(event) {
+    //     const index = generatedMemes.indexOf(event.target.value)
+    //     if (index !== -1) {
+    //         generatedMemes.splice(index, 1);
+    //         setGeneratedMemes()
+    //     }
+    // }
+
     // function handleSubmit(event) {
     //     event.preventDefault()
     //     setGeneratedMemes((prevGeneratedMemes) => {
@@ -61,7 +69,9 @@ export default function Meme() {
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
                     <img src={randomImg.image ? randomImg.image : userInput.image} />
-                    <button type="button" className="delete" onClick={onDelete}>Delete</button>
+                    <button type="button" onClick={removeItem}>delete</button>
+                    {/* <button type="button" className="delete" onClick={handleDelete}>Delete</button> */}
+                    {/* <button type="button" className="delete" onClick={onDelete}>Delete</button> */}
                     {/* <button onClick={()=> this.removeItem(i)}>delete</button> */}
                     {/* <button onClick={()=>this.onDelete(generatedMemes.index)}
                     >Delete</button> */}
@@ -82,22 +92,37 @@ export default function Meme() {
 
         console.log(generatedMemes)
 
-        const onDelete = (index) => {
-            console.log(index)
-            // console.log('index to remove at: ', index)
-            // const newMemesArray = generatedMemes.slice()
-            // newMemesArray.splice(index, 1)
-            // setGeneratedMemes(
-            //    newMemesArray
-            // )
-            setGeneratedMemes([
-                ...generatedMemes.slice(0, index),
-                ...generatedMemes.slice(index + 1, generatedMemes.length),
-                // generatedMemes
-                // ...generatedMemes.splice(index, 1)
-            ])
-           
+        function removeItem(index) {
+            const list = generatedMemes.splice(index, 1)
+            setGeneratedMemes(list)
+            console.log(list)
         }
+
+        // function removeItem(index) {
+        //     const list = this.state.generatedMemes
+        //     list.splice(index, 1)
+        //     setGeneratedMemes(list)
+        // }
+
+        // const onDelete = (index) => {
+        //     console.log(index)
+        //     // console.log('index to remove at: ', index)
+        //     const slicedArray = generatedMemes.slice()
+        //     const newMemesArray = slicedArray.splice(index, 1)
+        //     setGeneratedMemes(newMemesArray)
+        //     // [1, 2, 3]
+        //     // setGeneratedMemes([
+        //     //     ...generatedMemes.slice(0, index),
+        //     //     ...generatedMemes.splice(index + 1, generatedMemes.length)
+        //     //     // generatedMemes
+        //     //     // ...generatedMemes.splice(index, 1)
+        //     // ])
+        // //    setGeneratedMemes([
+        // //         ...generatedMemes.slice(0, index),
+        // //         ...generatedMemes.slice(index + 1)
+        // //     ]
+        // //    )
+        // }
 
         // setUserInput({
         //         topText: "",
