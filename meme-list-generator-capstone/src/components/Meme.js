@@ -8,6 +8,7 @@ export default function Meme() {
     })
     const [randomImg, setRandomImg] = React.useState("")
     const [allMemes, setAllMemes] = React.useState([])
+    // const [generatedMemes, setGeneratedMemes] = React.useState("")
     const [generatedMemes, setGeneratedMemes] = React.useState([])
     React.useEffect(() => {
         async function getMemes() {
@@ -16,7 +17,8 @@ export default function Meme() {
             setAllMemes(data.data.memes)
         }
         getMemes()
-    }, [])
+    }, [userInput, generatedMemes])
+
 
     function fetchRandomImg() {
         const randomNum = Math.floor(Math.random() * allMemes.length)
@@ -29,7 +31,7 @@ export default function Meme() {
         console.log(randomImg.image)
         return (<img src={randomImg.image}/>)
     }
-
+    console.log(generatedMemes)
     function handleChange(event) {
         const {name, value} = event.target
         setUserInput(prevUserInput => ({
@@ -51,10 +53,11 @@ export default function Meme() {
     function handleSubmit(event) {
         event.preventDefault()
 
-        setGeneratedMemes(prevGeneratedMemes=> {
-            return [
+        // setList(prevList => [...prevList, {meme}])
+
+        setGeneratedMemes(prevGeneratedMemes=> [
                 ...prevGeneratedMemes,
-                <div className="memeGenarated">
+                <div className="memeGenarated" >
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
                     <img src={randomImg.image ? randomImg.image : userInput.image} />
@@ -64,7 +67,7 @@ export default function Meme() {
                     >Delete</button> */}
                     {/* <button onClick={() => deleteMeme(generatedMemes.index)} className="delete--button">DELETE</button> */}
                 </div>
-            ]
+            ])
 
             // function deleteTodo(id){
             //     setTodos([...todos].filter(todo => todo.id !== id));
@@ -75,16 +78,25 @@ export default function Meme() {
             // topText: userInput.topText,
             // bottomText: userInput.bottomText,
             // image: userInput.image
-        })
+        // })
 
         console.log(generatedMemes)
 
-        const onDelete = index => {
+        const onDelete = (index) => {
+            console.log(index)
+            // console.log('index to remove at: ', index)
+            // const newMemesArray = generatedMemes.slice()
+            // newMemesArray.splice(index, 1)
+            // setGeneratedMemes(
+            //    newMemesArray
+            // )
             setGeneratedMemes([
-                // ...generatedMemes.slice(0, index),
-                // ...generatedMemes.slice(index + 1)
-                ...generatedMemes.splice(index, 1)
+                ...generatedMemes.slice(0, index),
+                ...generatedMemes.slice(index + 1, generatedMemes.length),
+                // generatedMemes
+                // ...generatedMemes.splice(index, 1)
             ])
+           
         }
 
         // setUserInput({
@@ -100,7 +112,6 @@ export default function Meme() {
         //     bottomText: "",
         //     }
         // })
-        // setList(prevList => [...prevList, {meme}])
     }
 
     // removeItem(index) {
@@ -149,27 +160,19 @@ export default function Meme() {
                 <button  
                     type="button"
                     onClick={fetchRandomImg}>Get image</button>
-                <button 
+                <button
+                    type="submit"
                     className="form--button"
                     // onClick={fetchRandomImg}
                 >Submit</button>
             </form>
-            {/* <div>
-                <img src={randomImg.image} />
-                <h2 className="meme--top">{userInput.topText}</h2>
-                <h2 className="meme--bottom">{userInput.bottomText}</h2>
-            </div> */}
             <div className="meme">
                 <img src={randomImg.image ? randomImg.image : userInput.image} />
-                {/* <img src={userInput.image} className="meme--img" /> */}
                 <h2 className="meme--top">{userInput.topText}</h2>
                 <h2 className="meme--bottom">{userInput.bottomText}</h2>
             </div>
             <h2>List of Memes</h2>
-            <div>{generatedMemes}
-
-            </div>
-            {/* <div>{userMeme}</div> */}
+            <div>{generatedMemes}</div>
         </main>
     )
 }
