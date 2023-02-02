@@ -4,7 +4,6 @@ export default function Meme() {
     const [userInput, setUserInput] = React.useState({
         topText: "",
         bottomText: "",
-        // image: ""
         image: "http://i.imgflip.com/1bij.jpg"
     })
     const [randomImg, setRandomImg] = React.useState("")
@@ -22,11 +21,9 @@ export default function Meme() {
     function fetchRandomImg() {
         const randomNum = Math.floor(Math.random() * allMemes.length)
         const randomUrl = allMemes[randomNum].url
-
         setRandomImg({
             image: randomUrl
         })
-
         // setRandomImg(randomUrl)
         console.log(randomUrl)
         console.log(randomImg.image)
@@ -40,6 +37,7 @@ export default function Meme() {
             [name]: value
         }))
     }
+
     // function handleSubmit(event) {
     //     event.preventDefault()
     //     setGeneratedMemes((prevGeneratedMemes) => {
@@ -49,18 +47,22 @@ export default function Meme() {
     //         image: meme.image
     //     })
     // }
+
     function handleSubmit(event) {
         event.preventDefault()
+
         setGeneratedMemes(prevGeneratedMemes=> {
             return [
                 ...prevGeneratedMemes,
                 <div className="memeGenarated">
                     <h2 className="memeTopText">{userInput.topText}</h2>
                     <h2 className="memeBottomText">{userInput.bottomText}</h2>
-                    <img src={userInput.image ? userInput.image : randomImg.image} />
+                    <img src={randomImg.image ? randomImg.image : userInput.image} />
+                    <button type="button" className="delete" onClick={onDelete}>Delete</button>
+                    {/* <button onClick={()=> this.removeItem(i)}>delete</button> */}
                     {/* <button onClick={()=>this.onDelete(generatedMemes.index)}
                     >Delete</button> */}
-                    <button onClick={() => deleteMeme(generatedMemes.index)} className="delete--button">DELETE</button>
+                    {/* <button onClick={() => deleteMeme(generatedMemes.index)} className="delete--button">DELETE</button> */}
                 </div>
             ]
 
@@ -74,12 +76,24 @@ export default function Meme() {
             // bottomText: userInput.bottomText,
             // image: userInput.image
         })
-        setUserInput(
-            {
-                topText: "",
-                bottomText: ""
-            }
-        )
+
+        console.log(generatedMemes)
+
+        const onDelete = index => {
+            setGeneratedMemes([
+                // ...generatedMemes.slice(0, index),
+                // ...generatedMemes.slice(index + 1)
+                ...generatedMemes.splice(index, 1)
+            ])
+        }
+
+        // setUserInput({
+        //         topText: "",
+        //         bottomText: "",
+        //         image: ""
+        //     }
+        // )
+
         // setUserInput(prevUserInput => {
         //     return {
         //     topText: "",
@@ -89,17 +103,22 @@ export default function Meme() {
         // setList(prevList => [...prevList, {meme}])
     }
 
-    const index = generatedMemes.indexOf()
-    if (index !== -1) {
-        generatedMemes.splice(index, 1);
-        this.setGeneratedMemes({memes: generatedMemes})
-    }
+    // removeItem(index) {
+    //     const list = this.state.generatedMemes
+    //     list.splice(index, 1)
+    //     this.setGeneratedMemes({list})
+    // }
+    
+    // const index = generatedMemes.indexOf()
+    // if (index !== -1) {
+    //     generatedMemes.splice(index, 1);
+    //     this.setGeneratedMemes({memes: generatedMemes})
+    // }
 
-    function deleteMeme(index){
-        setGeneratedMemes([...generatedMemes].filter(meme => meme.indexOf !== index));
-    }
+    // function deleteMeme(index){
+    //     setGeneratedMemes([...generatedMemes].filter(meme => meme.indexOf !== index));
+    // }
 
-    console.log(generatedMemes)
     // const userMeme = generatedMemes.map(meme => 
     //     <div>
     //         <h2>{generatedMemes.topText}</h2>
@@ -135,13 +154,14 @@ export default function Meme() {
                     // onClick={fetchRandomImg}
                 >Submit</button>
             </form>
-            <div>
+            {/* <div>
                 <img src={randomImg.image} />
                 <h2 className="meme--top">{userInput.topText}</h2>
                 <h2 className="meme--bottom">{userInput.bottomText}</h2>
-            </div>
+            </div> */}
             <div className="meme">
-                <img src={userInput.image} className="meme--img" />
+                <img src={randomImg.image ? randomImg.image : userInput.image} />
+                {/* <img src={userInput.image} className="meme--img" /> */}
                 <h2 className="meme--top">{userInput.topText}</h2>
                 <h2 className="meme--bottom">{userInput.bottomText}</h2>
             </div>
