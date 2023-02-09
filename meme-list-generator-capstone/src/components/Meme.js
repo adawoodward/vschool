@@ -162,8 +162,9 @@ export default function Meme() {
                 <h2 className="meme--top">{userInput.topText}</h2>
                 <h2 className="meme--bottom">{userInput.bottomText}</h2>
             </div>
-
+            <div className="list">
             <h2>List of Memes</h2>
+            <br></br>
             { editing ? (
             <form onSubmit={handleEditSubmit} className="form--edit">
                 <h3 style={{color: "blue"}}>Edit Mode On</h3>
@@ -200,6 +201,7 @@ export default function Meme() {
                     </li>
                 )
             })}</ul>
+            </div>
         </main>
     )
 }

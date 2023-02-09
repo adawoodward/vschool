@@ -1,3 +1,15 @@
+body {
+    background-color: #E3EEF7;
+}
+
+.list {
+    margin: 50px;
+    background-color: #F3CCEC;
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+}
+
 h1, h2, h3, h4 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -17,18 +29,44 @@ form {
     padding: 30px;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+input {
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid purple;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 30px;
+    border: 3px solid green;
+    border-radius: 5px;
+}
+
 .meme--top {
     position: absolute;
-    top: 200px;
-    left: 30px;
+    top: 250px;
+    /* top: 35%; */
+    left: 45%;
     color: white;
+    text-align: center;
 }
 
 .meme--bottom {
     position: absolute;
-    top: 420px;
-    left: 30px;
+    top: 500px;
+    /* top: 70%; */
+    left: 45%;
     color: white;
+    text-align: center;
 }
 
 /* .form--edit {
