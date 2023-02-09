@@ -1,6 +1,6 @@
 .meme--top {
     position: absolute;
-    top: 150px;
+    top: 200px;
     left: 30px;
     color: white;
 }
@@ -11,3 +11,8 @@
     left: 30px;
     color: white;
 }
+
+/* .form--edit {
+    position: absolute;
+    top: 500px;
+} */
