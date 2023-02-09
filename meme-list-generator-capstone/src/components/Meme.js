@@ -62,16 +62,13 @@ export default function Meme() {
     }
 
     function handleEditChange(e) {
-        const {topText, bottomText} = e.target
+        const name = e.target.name
+        const value = e.target.value
 
         setCurrentMeme({
             ...currentMeme,
-            topText: e.target.value,
-            bottomText: e.target.value
+            [name]: value
         })
-        // setCurrentMeme({[e.target.name]: e.target.value})
-        // setCurrentMeme({...currentMeme, [name]: value})
-        // setCurrentMeme({...currentMeme, topText: value, bottomText: value})
 
         console.log(currentMeme)
     }
