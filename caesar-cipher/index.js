@@ -4,6 +4,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+
 // CAESAR
 function ceasarCipher(plaintext, key){
 	 if(key < 0){
