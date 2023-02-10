@@ -211,7 +211,7 @@ export default function Meme() {
             ) : "" }
             <ul>{generatedMemes.map((meme) => {
                 return (
-                    <li>
+                    <li key={meme.id}>
                         <h2>{meme.topText}</h2>
                         <h2>{meme.bottomText}</h2>
                         <img src={meme.image} />
