@@ -19,8 +19,8 @@ export default function Meme() {
     const [generatedMemes, setGeneratedMemes] = React.useState([])
     const [editing, setEditing] = React.useState(false)
     const [currentMeme, setCurrentMeme] = React.useState({})
+    // object state to set so we know which todo item we are editing
 
-    // const [showInputTop, setShowInputTop] = React.useState(false)
     
     React.useEffect(() => {
         async function getMemes() {
@@ -61,10 +61,11 @@ export default function Meme() {
         console.log('new array:', removeItem)
     }
 
+    // function to get the value of the edit input and set the new state
     function handleEditChange(e) {
         const name = e.target.name
         const value = e.target.value
-
+        // set the new state value to what's currently in the edit input box
         setCurrentMeme({
             ...currentMeme,
             [name]: value
@@ -73,22 +74,37 @@ export default function Meme() {
         console.log(currentMeme)
     }
 
+    // when a user clicks on the "Edit" button. I want the "Update" button and "Cancel" button, 
+    // and change from the previous input to the editing input.
+    // function to handle when the "Edit" button is clicked
     function handleEditClick(userInput) {
         setEditing(true)
+        // set the currentMeme to the userInput's topText/bottomText that was clicked
         setCurrentMeme({...userInput})
     }
 
+
+    // a function that we will call when the form is submitted.
     function handleUpdate(id, updatedMeme) {
+        // here we are mapping over the generatedMemes array - 
+        // the idea is check if the meme.id matches the id we pass into the function
+        // if the id's match, use the second parameter to pass in the updated meme object
+        // otherwise just use old meme
         const updatedItem = generatedMemes.map((meme) => {
             return meme.id === id ? updatedMeme : meme
         })
+        // set editing to false because this function will be used inside a onSubmit function - 
+        // which means the data was submited and we are no longer editing
         setEditing(false)
+        // update the todos state with the updated todo
         setGeneratedMemes(updatedItem)
         console.log(generatedMemes)
     }
 
+    // a function actually update the meme item when the form is submitted.
     function handleEditSubmit(e) {
         e.preventDefault()
+        // call the handleUpdate function - passing the currentMeme.id and the currentMeme object as arguments
         handleUpdate(currentMeme.id, currentMeme)
         console.log(currentMeme)
         alert("Edited!")
@@ -165,7 +181,10 @@ export default function Meme() {
             <div className="list">
             <h2>List of Memes</h2>
             <br></br>
+            {/* We need to conditionally render different inputs based on if we are in editing mode */}
             { editing ? (
+            // if we are editing - display the edit todo input
+            // add the handleEditFormSubmit function in the "onSubmit" prop
             <form onSubmit={handleEditSubmit} className="form--edit">
                 <h3 style={{color: "blue"}}>Edit Mode On</h3>
                 <input
@@ -196,6 +215,7 @@ export default function Meme() {
                         <h2>{meme.topText}</h2>
                         <h2>{meme.bottomText}</h2>
                         <img src={meme.image} />
+                        {/* we are passing the entire meme object to the handleEditClick function*/}
                         <button onClick={()=>removeImage(meme.id)}>Delete</button>
                         <button onClick={() =>handleEditClick(meme)}>Edit</button>
                     </li>
