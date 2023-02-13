@@ -83,8 +83,7 @@ export default function Meme() {
         setCurrentMeme({...userInput})
     }
 
-
-    // a function that we will call when the form is submitted.
+    // a function actually update the meme item when the form is submitted.
     function handleUpdate(id, updatedMeme) {
         // here we are mapping over the generatedMemes array - 
         // the idea is check if the meme.id matches the id we pass into the function
@@ -101,7 +100,7 @@ export default function Meme() {
         console.log(generatedMemes)
     }
 
-    // a function actually update the meme item when the form is submitted.
+    // a function that we will call when the form is submitted.
     function handleEditSubmit(e) {
         e.preventDefault()
         // call the handleUpdate function - passing the currentMeme.id and the currentMeme object as arguments
@@ -184,7 +183,7 @@ export default function Meme() {
             {/* We need to conditionally render different inputs based on if we are in editing mode */}
             { editing ? (
             // if we are editing - display the edit todo input
-            // add the handleEditFormSubmit function in the "onSubmit" prop
+            // add the handleEditSubmit function in the "onSubmit" prop
             <form onSubmit={handleEditSubmit} className="form--edit">
                 <h3 style={{color: "blue"}}>Edit Mode On</h3>
                 <input
