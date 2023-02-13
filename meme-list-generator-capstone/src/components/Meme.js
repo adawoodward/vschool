@@ -126,24 +126,22 @@ export default function Meme() {
         }])
 
         console.log(generatedMemes)
+
+        // setUserInput({
+        //     topText: '',
+        //     bottomText: ''
+        // })
+        event.target.reset()
+        // handleReset()
+    }
+
+    const handleReset = () => {
         setUserInput({
-            topText: "",
-            bottomText: ""
+            topText: '',
+            bottomText: ''
         })
     }
 
-
-    // // working wrong but closeset
-    // const memesArr = Array.from(generatedMemes)
-    // console.log(memesArr)
-    // const mapped = memesArr.map((meme, id) => (
-    //     <div key={id}>
-    //         <h3>{userInput.topText}</h3>
-    //         <h3>{userInput.bottomText}</h3>
-    //         <img src={randomImg.image ? randomImg.image : userInput.image} />
-    //         <button onClick={()=>removeImage(generatedMemes.id)}>Delete</button>
-    //     </div>
-    // ))
 
     return (
         <main>
@@ -169,7 +167,9 @@ export default function Meme() {
                     onClick={fetchRandomImg}>Get image</button>
                 <button
                     type="submit"
-                    className="form--button">Submit</button>
+                    className="form--button"
+                    // onClick={handleReset}
+                    >Submit</button>
             </form>
 
             <div className="meme">
