@@ -1,0 +1,29 @@
+.callout {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 20px;
+    background-color: #C0FFFE;
+    margin: 10px;
+}
+
+.rectangle {
+    height: 100px;
+    width: 200px;
+    border-style: solid;
+    border-color: black;
+    /* background-image: linear-gradient(#ff8a00, #e52e71); */
+    /* background-color: linear-gradient(45deg, pink, blue); */
+    /* background-color: linear-gradient(90deg, red, blue); */
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input {
+    margin: 10px;
+}
+
+.angle {
+    width: 50px;
+}

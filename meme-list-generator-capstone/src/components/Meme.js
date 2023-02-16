@@ -211,9 +211,10 @@ export default function Meme() {
             <ul>{generatedMemes.map((meme) => {
                 return (
                     <li key={meme.id}>
-                        <h2>{meme.topText}</h2>
-                        <h2>{meme.bottomText}</h2>
-                        <img src={meme.image} />
+                        <h2 className="meme--toptext" >{meme.topText}</h2>
+                        <h2 className="meme--bottomtext">{meme.bottomText}</h2>
+                        <img src={meme.image} 
+                        />
                         {/* we are passing the entire meme object to the handleEditClick function*/}
                         <button onClick={()=>removeImage(meme.id)}>Delete</button>
                         <button onClick={() =>handleEditClick(meme)}>Edit</button>
