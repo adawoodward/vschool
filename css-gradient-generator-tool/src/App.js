@@ -1,3 +1,5 @@
+
+
 import React from "react"
 import Callout from './components/Callout'
 
@@ -6,6 +8,10 @@ export default function App() {
     color1: '#0cc08a',
     color2: '#852692',
     angle: '0'
+  })
+
+  const [color3, setColor3] = React.useState({
+    color3: '#ffffff'
   })
 
   function handleChange(event) {
@@ -17,17 +23,32 @@ export default function App() {
     console.log(gradient)
   }
 
+  // const addColor = (color) => {
+    // const newInputFields = {...gradient, color3: '#ffffff'}
+    // newInputFields[color.id] = color
+    // setGradient(newInputFields)
+  
+
+  // const addColor = () => {
+  //   // const values = [...gradient]
+  //   // values.push({color3: '#ffffff'})
+  //   const color1=gradient.color1
+  //   const color2=gradient.color2
+  //   const angle=gradient.angle
+  //   const newInput={}
+  //   newInput={
+  //     color3: '#ffffff'
+  //   }
+
   const addColor = () => {
-    // setGradient([...gradient, {
-    //   // color1: '#ffffff',
-    //   // color2: '#000000',
-    //   color3: '#000000'
-    //   // angle: '0'
-    // }])
-    setGradient(...gradient, {color3: '#000000'})
+    // setGradient(prevGradient => ({...prevGradient, ...newInput}))
+    setGradient({...gradient, ...color3})
+    console.log(setGradient)
     console.log(gradient)
-    return (<div><input className="color3" type="color" name="color3" id="color3" onChange={handleChange} /><span></span></div>)
+    // return (<div><input className="color" type="color" name="color" id="color" onChange={handleChange} value={gradient.color1} /><span></span></div>)
   }
+
+
 
   const cssColor = `background: linear-gradient(${gradient.angle}deg, ${gradient.color1} , ${gradient.color2}); 
   -moz-background: linear-gradient(${gradient.angle}deg, ${gradient.color2}, ${gradient.color2}); 
@@ -56,4 +77,3 @@ export default function App() {
     </main>
   )
 }
-

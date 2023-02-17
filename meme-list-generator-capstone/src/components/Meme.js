@@ -39,6 +39,8 @@ export default function Meme() {
         })
         console.log(randomUrl)
         console.log(randomImg.image)
+        userInput.topText = ""
+        userInput.bottomText = ""
         return (<img src={randomImg.image}/>)
     }
     console.log(generatedMemes)
@@ -127,21 +129,10 @@ export default function Meme() {
 
         console.log(generatedMemes)
 
-        // setUserInput({
-        //     topText: '',
-        //     bottomText: ''
-        // })
         event.target.reset()
-        // handleReset()
+        // userInput.topText = ""
+        // userInput.bottomText = ""
     }
-
-    const handleReset = () => {
-        setUserInput({
-            topText: '',
-            bottomText: ''
-        })
-    }
-
 
     return (
         <main>
@@ -171,20 +162,21 @@ export default function Meme() {
                     // onClick={handleReset}
                     >Submit</button>
             </form>
-
             <div className="meme">
                 <img src={randomImg.image ? randomImg.image : userInput.image} />
-                <h2 className="meme--top">{userInput.topText}</h2>
-                <h2 className="meme--bottom">{userInput.bottomText}</h2>
+                <h2 className="meme--top"><mark>{userInput.topText}</mark></h2>
+                <h2 className="meme--bottom"><mark>{userInput.bottomText}</mark></h2>
             </div>
-            <div className="list">
+            <div className="list">                        
             <h2>List of Memes</h2>
+            <br></br>
+            <br></br>
             <br></br>
             {/* We need to conditionally render different inputs based on if we are in editing mode */}
             { editing ? (
             // if we are editing - display the edit todo input
             // add the handleEditSubmit function in the "onSubmit" prop
-            <form onSubmit={handleEditSubmit} className="form--edit">
+            <form onSubmit={handleEditSubmit} className="form--edit" style={{position: 'absolute', top: '630px', left: '32%', padding: '30px', zIndex: '2', backgroundColor: 'lightcyan', borderRadius: '15px'}}>
                 <h3 style={{color: "blue"}}>Edit Mode On</h3>
                 <input
                     autoFocus
@@ -211,9 +203,9 @@ export default function Meme() {
             <ul>{generatedMemes.map((meme) => {
                 return (
                     <li key={meme.id}>
-                        <h2 className="meme--toptext" >{meme.topText}</h2>
-                        <h2 className="meme--bottomtext">{meme.bottomText}</h2>
-                        <img src={meme.image} 
+                        <h2 className="meme--toptext"><mark>{meme.topText}</mark></h2>
+                        <h2 className="meme--bottomtext"><mark>{meme.bottomText}</mark></h2>
+                        <img src={meme.image} style={{width: '400px'}}
                         />
                         {/* we are passing the entire meme object to the handleEditClick function*/}
                         <button onClick={()=>removeImage(meme.id)}>Delete</button>

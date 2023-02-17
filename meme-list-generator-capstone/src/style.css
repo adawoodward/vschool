@@ -1,4 +1,15 @@
+.meme--toptext {
+    position: absolute;
+    top: 830px;
+    /* padding-left: 200px; */
+    margin-left: 100px;
+}
 
+.meme--bottomtext {
+    position: absolute;
+    top: 1150px;
+    margin-left: 100px;
+}
 
 body {
     background-color: #E3EEF7;
@@ -6,10 +17,9 @@ body {
 
 .list {
     margin: 50px;
-    background-color: #F3CCEC;
+    /* background-color: #F3CCEC; */
     padding-top: 10px;
     padding-bottom: 30px;
-
 }
 
 h1, h2, h3, h4 {
@@ -21,10 +31,10 @@ div {
 }
 
 img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
 }
 
 form {
@@ -33,9 +43,24 @@ form {
 
 ul {
     list-style-type: none;
-    margin: 0;
+    /* margin-left: 50px; */
+    /* margin-right: 50px; */
     padding: 0;
-  }
+    display: flex;
+    flex-direction: row;
+    /* flex-basis: auto; */
+    align-self: center;
+    width: 1000px;
+    /* flex-wrap: wrap; */
+}
+
+li {
+    margin-right: 20px;
+    margin-left: 20px;
+    /* align-items: center;
+    align-content: center; */
+    /* overflow-y: hidden; */
+}
 
 input {
     padding: 5px;
@@ -55,7 +80,7 @@ button {
 
 .meme--top {
     position: absolute;
-    top: 250px;
+    top: 225px;
     /* top: 35%; */
     left: 45%;
     color: white;
@@ -64,7 +89,7 @@ button {
 
 .meme--bottom {
     position: absolute;
-    top: 500px;
+    top: 550px;
     /* top: 70%; */
     left: 45%;
     color: white;
