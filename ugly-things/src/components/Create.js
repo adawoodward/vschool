@@ -10,11 +10,11 @@ export default function Create() {
             title,
             description,
             imgUrl
-        })
-        console.log(title)
-        console.log(description)
-        console.log(imgUrl)
+        }).then()
     }
+        // console.log(title)
+        // console.log(description)
+        // console.log(imgUrl)
 
     return (
         <div>
