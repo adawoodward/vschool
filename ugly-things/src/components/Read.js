@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 
 export default function Read() {
     const [ApiData, setApiData] = useState([])
-    React.useEffect(()=> {
+    useEffect(()=> {
         axios.get(`https://api.vschool.io/ada/thing/`)
             .then((response)=>{
                 console.log(response.data)
@@ -27,35 +27,45 @@ export default function Read() {
         })
     }
 
-    const deleteOne = (id) => {
+    function deleteOne(id) {
         axios.delete(`https://api.vschool.io/ada/thing/${id}`)
-            .then(response => console.log(response))
-            .then(()=> {
-                getData()
-            })
-            .catch(err=> console.log(err))
-            const removed = ApiData.filter((item)=> {
-                return item._id !== id
-            })
-            setApiData(removed)
-            console.log('new array: ', removed)
-            // setApiData(ApiData.filter(item => (item._id !== id)))
+            .then(()=> setApiData(prevData => {
+                return prevData.filter(item => item._id !== id)
+            }))
     }
 
-    return (
-        <div>
-            {ApiData.map((data)=> {
-                return (
-                    <div key={data.id}>
-                        <div>Title: {data.title}</div>
-                        <div>Description: {data.description}</div>
-                        <div>Img URL: {data.imgUrl}</div>
-                        <button onClick={() => setData(data)}>Update</button>
-                        <button onClick={() => deleteOne(data._id)}>Delete</button>
+    // const deleteOne = (id) => {
+    //     axios.delete(`https://api.vschool.io/ada/thing/${id}`)
+    //         .then(response => console.log(response))
+    //         .then(()=> {
+    //             getData()
+    //         })
+    //         .catch(err=> console.log(err))
+    //         const removed = ApiData.filter((item)=> {
+    //             return item._id !== id
+    //         })
+    //         // setApiData(prevApiData => ({
+    //         //     ...prevApiData, removed
+    //         // }))
+    //         setApiData(removed)
+    //         console.log('new array: ', removed)
 
-                    </div>
-                )
-            })}
-        </div>
+    //         // setApiData(ApiData.filter(item => (item._id !== id)))
+    // }
+
+    return (
+        <ul>
+            {
+                ApiData && ApiData.map(data=> (
+                <li key={data.id}>
+                    <div>Title: {data.title}</div>
+                    <div>Description: {data.description}</div>
+                    <div>Img URL: {data.imgUrl}</div>
+                    <button onClick={() => setData(data)}>Update</button>
+                    <button onClick={() => deleteOne(data._id)}>Delete</button>
+                </li>
+                ))
+            }
+        </ul>
     )
 }

@@ -6,9 +6,14 @@ export default function Update() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [imgUrl, setImgUrl] = useState('')
+    const [newTitleInput, setNewTitleInput] = useState('')
+    const [newDescriptionInput, setNewDescriptionInput] = useState('')
+    const [newImgUrl, setNewImgUrl] = useState('')
+    const [ApiData, setApiData] = useState([])
+
 
     useEffect(()=> {
-        setId(localStorage.getItem('_id'))
+        setId(localStorage.getItem('id'))
         setTitle(localStorage.getItem('title'))
         setDescription(localStorage.getItem('description'))
         setImgUrl(localStorage.getItem('img URL'))
@@ -20,6 +25,11 @@ export default function Update() {
             description,
             imgUrl
         })
+        .then(()=> setApiData(prevData => {
+            return prevData.map(item => item._id === id ? {
+                ...item, title: newTitleInput, description: newDescriptionInput, imgUrl: newImgUrl
+            } : item)
+        }))
     }
 
     return (
