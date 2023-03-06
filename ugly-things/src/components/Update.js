@@ -19,7 +19,7 @@ export default function Update() {
         setImgUrl(localStorage.getItem('img URL'))
     }, [])
 
-    const updateApiData = () => {
+    const updateApiData = (id, title, description, imgUrl) => {
         axios.put(`https://api.vschool.io/ada/thing/${id}`, {
             title,
             description,

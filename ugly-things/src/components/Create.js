@@ -15,7 +15,7 @@ export default function Create() {
         // console.log(title)
         // console.log(description)
         // console.log(imgUrl)
-
+        
     return (
         <div>
             <form className="create-form">
