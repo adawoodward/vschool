@@ -1,9 +1,11 @@
 import React, {useContext} from "react"
 import {Context} from '../Context'
-import Edit from "../components/Edit"
+import Edit from "./Edit"
+import axios from "axios"
 
-export default function List() {
-    const {list, deleteItem, handleEdit} = useContext(Context)
+
+function List() {
+    const {list, deleteItem, handleEdit, flexDirection} = useContext(Context)
 
     const element = list.map(item =>
         <Edit
@@ -11,13 +13,16 @@ export default function List() {
             description={item.description}
             imgUrl={item.imgUrl}
             key={item._id}
-            // id={item._id}
+            id={item._id}
         />
     )
 
     return (
-        <div>
+        // <div className="container" style={{flexDirection: `${flexDirection}`}}>
+        <div className="container" style={{display: "flex", flexWrap: "wrap", flexDirection: `${flexDirection}`}}>
             {element}
         </div>
     )
 }
+
+export default List

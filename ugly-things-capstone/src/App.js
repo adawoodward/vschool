@@ -1,14 +1,16 @@
 import React from "react"
-import Form from './components/Form'
+import FormUglyThings from './components/FormUglyThings'
 import List from './components/List'
 import { ContextProvider } from "./Context"
+import axios from "axios"
+
 
 function App(props) {
   return (
     <div>
       <ContextProvider>
-      <h2>Ugly Things</h2>
-      <Form />
+      <h2 style={{textAlign: "center"}}>Grogu Things</h2>
+      <FormUglyThings />
       <List />
       </ContextProvider>
     </div>

@@ -5,6 +5,9 @@ import axios from "axios"
 const Context = React.createContext()
 
 function ContextProvider(props) {
+    const [flexDirection, setFlexDirection] = useState('row')
+    const [width, setWidth] = useState('33.3%')
+
     const [newInput, setNewInput] = useState({
         title: "",
         description: "",
@@ -53,6 +56,7 @@ function ContextProvider(props) {
     // }
 
     function deleteItem(id) {
+        console.log(list)
         axios.delete(`https://api.vschool.io/ada/thing/${id}`)
             .then(()=> setList(prevList => {
                 return prevList.filter(item => item._id !== id)
@@ -85,20 +89,24 @@ function ContextProvider(props) {
     }
 
     return (
-        <Context.Provider value={{
-            list,
-            setList,
-            // isEditing,
-            newInput, 
-            setNewInput,
-            // handleChange,
-            // handleSubmit,
-            // toggleEdit,
-            deleteItem,
-            handleEdit,
-            postUglyThing
-            // setIsEditing
-        }}>
+        <Context.Provider
+            label="flexDirection" 
+            value={{
+                list,
+                setList,
+                newInput, 
+                setNewInput,
+                deleteItem,
+                handleEdit,
+                postUglyThing,
+                flexDirection: flexDirection,
+                setFlexDirection
+            }}
+            // selectedValue={flexDirection}
+            // setSelectedValue={setFlexDirection}
+            // className={className}
+            // style={{display: 'flex', flexDirection: 'row'}}
+        >
             {props.children}
         </Context.Provider>
     )

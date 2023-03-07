@@ -1,8 +1,10 @@
 import React, {useContext, useState} from "react"
 import {Context} from '../Context'
+import axios from "axios"
 
-export default function Edit(props) {
-    const {deleteItem, handleEdit, newInput, setNewInput} = useContext(Context)
+
+function Edit(props) {
+    const {deleteItem, handleEdit, newInput, setNewInput, flexDirection, width} = useContext(Context)
     const {title, description, imgUrl} = props
 
     function handleEditChange(event) {
@@ -27,22 +29,31 @@ export default function Edit(props) {
     };
 
     return (
-        <div>
-            {!isEditing && <div id={props.id} className="ugly--things--list">
-                <h2>{props.title}</h2>    
-                <h3>{props.description}</h3>
-                <img src={props.imgUrl} />
-                <button onClick={() => deleteItem(props.id)}>Delete</button>
-                <button onClick={toggleEdit}>Edit</button>
+        // <div className="card" style={{display: "flex", flexDirection, width: "33%"}}>
+        <div className="card" style={{width: "33%"}}>
+            {!isEditing && <div id={props.id} className="ugly--things--list" >
+                <h3>{props.title}</h3>    
+                <h4>{props.description}</h4>
+                <img src={props.imgUrl} height="200px" />
+                <button className="delete" onClick={() => deleteItem(props.id)}>Delete</button>
+                <br></br>
+                <button className="edit" onClick={toggleEdit}>Edit</button>
             </div>}
+            <br></br>
             {isEditing && <div className="edited--ugly--things--list">
-            <input placeholder="new title here" onChange={handleEditChange} name="title" value={newInput.title} required/>
-            <img src={newInput.imgUrl} height="200px" />
-            {/* <img src={props.imgUrl} height="200px" /> */}
-            <input placeholder="new description here" onChange={handleEditChange} name="description" value={newInput.description} required/>
-            <button onClick={handleEditSubmit}>Save</button>
+            <img src={props.imgUrl} height="200px" />
+            <br></br>
+            <input placeholder="new title here" onChange={handleEditChange} name="title" value={newInput.title} required />
+            <br></br>
+            <input placeholder="new description here" onChange={handleEditChange} name="description" value={newInput.description} required />
+            <br></br>
+            <input placeholder="new img URL here" onChange={handleEditChange} name="imgUrl" value={newInput.imgUrl} height="200px" required />
+            <br></br>
+            <button className="save" onClick={handleEditSubmit}>Save</button>
             </div>}
         </div>
     )
 
 }
+
+export default Edit
