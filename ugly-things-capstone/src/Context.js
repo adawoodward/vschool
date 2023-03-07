@@ -18,7 +18,6 @@ function ContextProvider(props) {
 
     // const [isEditing, setIsEditing] = useState(false)
 
-
     useEffect(()=> {
         getData()
     }, [])
@@ -30,14 +29,6 @@ function ContextProvider(props) {
             setList(response.data)
         })
     }
-
-    // const [uglyThing, setUglyThing] = useState({
-    //     title: "",
-    //     description: "",
-    //     imgUrl: ""
-    // })
-
-
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()
@@ -100,7 +91,8 @@ function ContextProvider(props) {
                 handleEdit,
                 postUglyThing,
                 flexDirection: flexDirection,
-                setFlexDirection
+                setFlexDirection,
+                width: width
             }}
             // selectedValue={flexDirection}
             // setSelectedValue={setFlexDirection}

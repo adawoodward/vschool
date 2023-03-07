@@ -30,7 +30,7 @@ function Edit(props) {
 
     return (
         // <div className="card" style={{display: "flex", flexDirection, width: "33%"}}>
-        <div className="card" style={{width: "33%"}}>
+        <div className="card" style={{width}}>
             {!isEditing && <div id={props.id} className="ugly--things--list" >
                 <h3>{props.title}</h3>    
                 <h4>{props.description}</h4>
