@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Update() {
+export default function Update(props) {
     const [id, setId] = useState(null)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -11,6 +11,7 @@ export default function Update() {
     const [newImgUrl, setNewImgUrl] = useState('')
     const [ApiData, setApiData] = useState([])
 
+    // let {newTitleInput, newDescriptionInput, newImgUrl} = newInput
 
     useEffect(()=> {
         setId(localStorage.getItem('id'))
@@ -18,6 +19,33 @@ export default function Update() {
         setDescription(localStorage.getItem('description'))
         setImgUrl(localStorage.getItem('img URL'))
     }, [])
+
+    function handleEditChange(event) {
+        const {name, value} = event.target
+        setNewTitleInput(prevItem => ({...prevItem, [name]: value}))
+        setDescription(prevItem => ({...prevItem, [name]: value}))
+    }
+
+    const handleEdit = (id) => {
+        let update = {
+            title: newInput.title,
+            description: newInput.description,
+            imgUrl: newInput.imgUrl
+        }
+        axios.put(`https://api.vschool.io/ada/thing/${id}`, update)
+            .then(res => console.log(res.data))
+        setList(prevList => prevList.map(item => (item._id === id ? {...item, title: newInput.title, description: newInput.description, imgUrl: newInput.imgUrl} : item)))
+    }
+
+    function handleEditSubmit(e) {
+        handleEdit(props.id, newInput)
+        setNewInput({
+            title: "",
+            description: "",
+            imgUrl: ""
+        })
+        setIsEditing(false)
+    }
 
     const updateApiData = (id, title, description, imgUrl) => {
         axios.put(`https://api.vschool.io/ada/thing/${id}`, {
@@ -41,7 +69,8 @@ export default function Update() {
                 placeholder='title' 
                 name='title'
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onClick={(e) => setTitle(e.target.value)} 
+                onChange={handleEditChange}
             />
 
             <input 
@@ -50,7 +79,8 @@ export default function Update() {
                 placeholder='description'
                 name='description' 
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onClick={(e) => setDescription(e.target.value)}
+                onChange
             />
 
             <input
@@ -61,7 +91,8 @@ export default function Update() {
                 onChange={(e) => setImgUrl(e.target.value)}
             />
 
-            <button type='submit' onClick={updateApiData}>Update</button>
+            <button type='submit' onClick={updateApiData}>Save</button>
         </form>
+        <div>{elements}</div>
     </div>)
 }

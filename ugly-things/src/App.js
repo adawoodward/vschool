@@ -9,7 +9,7 @@ function App() {
     <div className="main">
       <Create />
       <Read />
-      <Update />
+      {/* <Update /> */}
     </div>
   );
 }

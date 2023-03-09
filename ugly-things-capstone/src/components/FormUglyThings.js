@@ -15,7 +15,7 @@ function Form(props) {
     //     setList(prevList => prevList.map(item => (item._id === id ? {...item, title: newInput.title, description: newInput.description, imgUrl: newInput.imgUrl} : item)))
     // }
 
-    const {postUglyThing, column} = useContext(Context)
+    const {postUglyThing} = useContext(Context)
 
     const [formData, setFormData] = useState({
         title: "",

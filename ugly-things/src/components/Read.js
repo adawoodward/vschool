@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
+import Update from './Update'
 
 export default function Read() {
     const [ApiData, setApiData] = useState([])
@@ -34,6 +35,16 @@ export default function Read() {
             }))
     }
 
+    const elements = ApiData.map(item => {
+        return (
+            <Update
+                title={item.title}
+                description={item.description}
+                imgUrl={item.imgUrl}
+            />
+        )
+    })
+
     // const deleteOne = (id) => {
     //     axios.delete(`https://api.vschool.io/ada/thing/${id}`)
     //         .then(response => console.log(response))
@@ -61,7 +72,7 @@ export default function Read() {
                     <div>Title: {data.title}</div>
                     <div>Description: {data.description}</div>
                     <div>Img URL: {data.imgUrl}</div>
-                    <button onClick={() => setData(data)}>Update</button>
+                    <button onSubmit={() => setData(data)} onClick={handleEditSubmit} >Update</button>
                     <button onClick={() => deleteOne(data._id)}>Delete</button>
                 </li>
                 ))
