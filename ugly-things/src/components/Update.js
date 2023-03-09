@@ -26,26 +26,16 @@ export default function Update(props) {
         setDescription(prevItem => ({...prevItem, [name]: value}))
     }
 
-    const handleEdit = (id) => {
-        let update = {
-            title: newInput.title,
-            description: newInput.description,
-            imgUrl: newInput.imgUrl
-        }
-        axios.put(`https://api.vschool.io/ada/thing/${id}`, update)
-            .then(res => console.log(res.data))
-        setList(prevList => prevList.map(item => (item._id === id ? {...item, title: newInput.title, description: newInput.description, imgUrl: newInput.imgUrl} : item)))
-    }
-
-    function handleEditSubmit(e) {
-        handleEdit(props.id, newInput)
-        setNewInput({
-            title: "",
-            description: "",
-            imgUrl: ""
-        })
-        setIsEditing(false)
-    }
+    // const handleEdit = (id) => {
+    //     let update = {
+    //         title: newInput.title,
+    //         description: newInput.description,
+    //         imgUrl: newInput.imgUrl
+    //     }
+    //     axios.put(`https://api.vschool.io/ada/thing/${id}`, update)
+    //         .then(res => console.log(res.data))
+    //     setList(prevList => prevList.map(item => (item._id === id ? {...item, title: newInput.title, description: newInput.description, imgUrl: newInput.imgUrl} : item)))
+    // }
 
     const updateApiData = (id, title, description, imgUrl) => {
         axios.put(`https://api.vschool.io/ada/thing/${id}`, {
@@ -93,6 +83,5 @@ export default function Update(props) {
 
             <button type='submit' onClick={updateApiData}>Save</button>
         </form>
-        <div>{elements}</div>
     </div>)
 }

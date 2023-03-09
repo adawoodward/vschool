@@ -35,16 +35,6 @@ export default function Read() {
             }))
     }
 
-    const elements = ApiData.map(item => {
-        return (
-            <Update
-                title={item.title}
-                description={item.description}
-                imgUrl={item.imgUrl}
-            />
-        )
-    })
-
     // const deleteOne = (id) => {
     //     axios.delete(`https://api.vschool.io/ada/thing/${id}`)
     //         .then(response => console.log(response))
@@ -68,11 +58,11 @@ export default function Read() {
         <ul>
             {
                 ApiData && ApiData.map(data=> (
-                <li key={data.id}>
+                <li key={data._id}>
                     <div>Title: {data.title}</div>
                     <div>Description: {data.description}</div>
                     <div>Img URL: {data.imgUrl}</div>
-                    <button onSubmit={() => setData(data)} onClick={handleEditSubmit} >Update</button>
+                    <button onSubmit={() => setData(data)} >Update</button>
                     <button onClick={() => deleteOne(data._id)}>Delete</button>
                 </li>
                 ))
