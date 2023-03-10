@@ -1,4 +1,4 @@
-const serviceData = [
+const servicesData = [
     {
         "name": "Drain Cleaning",
         "price": 200,
@@ -25,4 +25,4 @@ const serviceData = [
     }
 ]
 
-export default serviceData
+export default servicesData
