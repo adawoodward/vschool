@@ -5,7 +5,7 @@ export default function Home() {
     const navigate = useNavigate()
 
     return (
-        <div>
+        <div className='middle'>
             <h2>Home View</h2>
             <p>Plumbing Service and Repair in Utah.
             What lurks in your pipes? Let Superior clean your pipes for maximum efficiency.</p>
