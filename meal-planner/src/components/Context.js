@@ -8,7 +8,6 @@ export const ContextProvider = ({ children }) => {
     const [meals, setMeals] = useState([])
     const [categories, setCategories] = useState([])
     const [randomMeal, setRandomMeal] = useState([])
-    const [singleMeal, setSingleMeal] = useState([])
 
     // useEffect(()=> {
     //     getData()

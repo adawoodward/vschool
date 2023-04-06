@@ -5,7 +5,10 @@ import Home from './components/Home/Home';
 import Categories from './components/Categories/Categories';
 import RandomMeal from './components/RandomMeal/RandomMeal';
 import MealDetail from './components/MealDetail/MealDetail';
+import CategoriesDetail from './components/CategoriesDetail/CategoriesDetail';
+import ThreeMeals from './components/ThreeMeals/ThreeMeals';
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
+import SavedMeals from './components/SavedMeals/SavedMeals';
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
         <Route exact path='/categories' element={<Categories />} />
         <Route exact path='/random' element={<RandomMeal />} />
         <Route path="/:idMeal" element={<MealDetail />} />
+        <Route path='/categories/:strCategory' element={<CategoriesDetail/>} />
+        <Route path='/randomThree' element={<ThreeMeals />} />
+        <Route path='/savedMeals' element={<SavedMeals />} />
+
       </Routes>
       <Footer />
     </div>

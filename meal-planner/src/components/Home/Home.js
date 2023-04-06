@@ -2,14 +2,13 @@ import React, { useState, useEffect, useCallback, useContext } from 'react'
 import './Home.css'
 import { Context } from '../Context'
 import { Link } from 'react-router-dom'
-import MealDetail from '../MealDetail/MealDetail'
 
 const Home = (props) => {
 
   const [search, setSearch] = useState("")
   console.log(search)
 
-  const { fetchMeals, meals, fetchSingleMeal } = useContext(Context)
+  const { fetchMeals, meals } = useContext(Context)
 
   const handleFetchMeals = useCallback(()=>{
     fetchMeals(search)

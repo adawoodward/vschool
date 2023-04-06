@@ -21,7 +21,11 @@ const RandomMeal = () => {
             <h4>Instructions</h4>
             <p>{meal.strInstructions}</p>
           </div>
-        </div>
+        {/* <div className='random--three'>
+          <img src={meal.strMealThumb} alt="#" />
+          <button onClick={fetchRandomMeal}>Generate Another Meal</button>
+        </div> */}
+      </div>
       ))}        
     </div>
   )

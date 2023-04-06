@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Context } from '../Context'
+import { Link } from 'react-router-dom'
 import './Categories.css'
 
 const Categories = () => {
@@ -13,7 +14,9 @@ const Categories = () => {
     <div className='categories'>
       {categories.map(category=>(
         <div key={category.idCategory}>
+          <Link to={`/categories/${category.strCategory}`}>
           <img src={category.strCategoryThumb} />
+          </Link>
           <h4>{category.strCategory}</h4>
         </div>
       ))}
