@@ -8,37 +8,34 @@ import RandomMeal from '../RandomMeal/RandomMeal'
 const ThreeMeals = () => {
     const { idMeal } = useParams()
 
+    const [singleMeal, setSingleMeal] = useState({single: {}})
+
     const fetchDetails = () => {
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
             .then(res => res.json())
-            .then(data => this.setState(data))
+            .then(data => setSingleMeal(data))
     }
 
     useEffect(()=> {
         fetchDetails()
     }, [])
 
-    // const [ threeMeals, setThreeMeals ] = useState([])
-
-    // const { fetchRandomMeal, randomMeal } = useContext(Context)
-
-    // useEffect(()=> {
-    //     fetchRandomMeal()
-    // }, [fetchRandomMeal])
+    console.log(singleMeal.meals)
+    console.log(singleMeal)
 
     const [randomBreakfast, setRandomBreakfast] = useState({
         strMeal: 'Salmon Eggs Eggs Benedict',
-        // idMeal: '52962',
+        idMeal: '52962',
         strMealThumb: 'https://www.themealdb.com/images/media/meals/1550440197.jpg'
     })
     const [randomLunch, setRandomLunch] = useState({
         strMeal: 'Lasagna Sandwiches',
-        // idMeal: '52987',
+        idMeal: '52987',
         strMealThumb: 'https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg'
     })
     const [randomDinner, setRandomDinner] = useState({
         strMeal: 'Beef Bourguignon',
-        // idMeal: '52904',
+        idMeal: '52904',
         strMealThumb: 'https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg'
     })
     const [allBreakfast, setAllBreakfast] = useState([])
@@ -58,48 +55,15 @@ const ThreeMeals = () => {
         const randomNum = Math.floor(Math.random() * allBreakfast.length)
         const randomBreakfastImage = allBreakfast[randomNum].strMealThumb
         const randomBreakfastTitle = allBreakfast[randomNum].strMeal
-        // console.log(randomBreakfastTitle)
-        // setRandomBreakfast(randomBreakfastImage)
+        const randomBreakfastId = allBreakfast[randomNum].idMeal
         setRandomBreakfast({
             strMealThumb: randomBreakfastImage,
-            strMeal: randomBreakfastTitle
+            strMeal: randomBreakfastTitle,
+            idMeal: randomBreakfastId
         })
 
         console.log(randomBreakfast)
-        // return (<h4>{randomBreakfast.idMeal}</h4>)
-        // return (<img src={randomBreakfast.randomBreakfastIdMeal}/>)
     }
-
-    // useEffect(()=> {
-    //     async function getPlans() {
-    //         const res = await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast")
-    //         const data = await res.json()
-    //         setAllBreakfast(data.meals)
-    //     }
-    //     getPlans()
-    // }, [])
-
-    // useEffect(()=> {
-    //     Promise.all([
-    //         fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta"),
-    //         fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Italian")
-    //     ])
-    //     .then(res => res.json())
-    //     .then(data=> setAllLunch(data.meals))
-          
-    //     // .then(res => res.json())
-    //     // .then(data => setSingleMeal(data))
-    //     // setAllLunch(meals)        
-    // }, [])
-
-    // useEffect(()=> {
-    //     async function getPlans() {
-    //         const res = await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast")
-    //         const data = await res.json()
-    //         setAllBreakfast(data.meals)
-    //     }
-    //     getPlans()
-    // }, [])
 
     useEffect(() => {
         async function getData() {
@@ -124,28 +88,17 @@ const ThreeMeals = () => {
         getData()
     }, [])
 
-    // async function getData() {
-    //     const url1 = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta'
-    //     const url2= '"https://www.themealdb.com/api/json/v1/1/filter.php?a=Italian'
-    //     const responses = await Promise.all([fetch(url1), fetch(url2)])
-    //     const data1 = await responses[0].json()
-    //     const data2 = await responses[1].json()
-    // }
-
     function fetchRandomLunch() {
         const randomNum = Math.floor(Math.random() * allLunch.length)
-        // const randomBreakfastId = allBreakfast[randomNum].idMeal
+        const randomLunchId = allLunch[randomNum].idMeal
         const randomLunchImage = allLunch[randomNum].strMealThumb
         const randomLunchTitle = allLunch[randomNum].strMeal
         setRandomLunch({            
             strMealThumb: randomLunchImage,
-            strMeal: randomLunchTitle
+            strMeal: randomLunchTitle,
+            idMeal: randomLunchId
         })
-        // console.log(randomLunchTitle)
-        // console.log(randomBreakfastId)
         console.log(randomLunch)
-        // return (<h4>{randomBreakfast.idMeal}</h4>)
-        // return (<img src={randomBreakfast.randomBreakfastIdMeal}/>)
     }
 
 
@@ -180,58 +133,45 @@ const ThreeMeals = () => {
 
     function fetchRandomDinner() {
         const randomNum = Math.floor(Math.random() * allDinner.length)
-        // const randomBreakfastId = allBreakfast[randomNum].idMeal
         const randomDinnerImage = allDinner[randomNum].strMealThumb
         const randomDinnerTitle = allDinner[randomNum].strMeal
+        const randomDinnerId = allDinner[randomNum].idMeal
         setRandomDinner({
             strMeal: randomDinnerTitle,
-            strMealThumb: randomDinnerImage
+            strMealThumb: randomDinnerImage,
+            idMeal: randomDinnerId
         })
-        // console.log(randomDinnerTitle)
         console.log(randomDinner)
-        // return (<h4>{randomBreakfast.idMeal}</h4>)
-        // return (<img src={randomBreakfast.randomBreakfastIdMeal}/>)
     }
-
 
     return (
         <>
         <div className='three--meals'>
-            {/* <img src='https://www.themealdb.com/images/media/meals/1550440197.jpg' onClick={fetchRandomBreakfast}/> */}
-            {/* {data?.map((item) => {
-                return (
-                    <div>{item.idMeal}</div>
-                )
-            })} */}
-            {/* <button onClick={fetchRandomBreakfast}>Get Breakfast</button> */}
-            {/* <h4>{randomBreakfastTitle}</h4> */}
-            {/* <h2>{randomBreakfast.strMeal}</h2> */}
-            {/* <RandomMeal /> */}
             <div>
                 <h2>Breakfast</h2>
             <img src={randomBreakfast.strMealThumb} onClick={fetchRandomBreakfast}/>
             <div>{randomBreakfast.strMeal}</div>
+            <Link to={`/${randomBreakfast.idMeal}`}>
             <button>More</button>
+            </Link>
             </div>
         </div>
         <div className='three--meals'>
-            {/* <img src='https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg' /> */}
-            {/* <button onClick={fetchRandomLunch}>Get Lunch</button> */}
             <div>
                 <h2>Lunch</h2>
             <img src={randomLunch.strMealThumb} onClick={fetchRandomLunch}/>
             <div>{randomLunch.strMeal}</div>
-            <button>More</button>
+            <Link to={`/${randomLunch.idMeal}`}>
+            <button onClick={fetchDetails}>More</button>
+            </Link>
             </div>
         </div>
         <div className='three--meals'>
-            {/* <img src='https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg' /> */}
-            {/* <button onClick={fetchRandomDinner}>Get Dinner</button> */}
             <div>
                 <h2>Dinner</h2>
             <img src={randomDinner.strMealThumb} onClick={fetchRandomDinner}/>
             <div>{randomDinner.strMeal}</div>
-            <Link to={`/${idMeal}`}>
+            <Link to={`/${randomDinner.idMeal}`}>
             <button>More</button>
             </Link>
             </div>
