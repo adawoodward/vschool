@@ -32,8 +32,10 @@ function Edit(props) {
         // <div className="card" style={{display: "flex", flexDirection, width: "33%"}}>
         <div className="card" style={{width}}>
             {!isEditing && <div id={props.id} className="ugly--things--list" >
-                <h3>{props.title}</h3>    
-                <h4>{props.description}</h4>
+                <h3>{props.title.length < 10 ? `${props.title}` : `${props.title.substring(0, 10)}...`}</h3>    
+                {/* <h4>{meal.strMeal.length < 20 ? `${meal.strMeal}` : `${meal.strMeal.substring(0, 25)}...`}</h4> */}
+
+                <h6 style={{padding:'5px', marginRight:'15px'}}>{props.description}</h6>
                 <img src={props.imgUrl} height="200px" />
                 <button className="delete" onClick={() => deleteItem(props.id)}>Delete</button>
                 <br></br>

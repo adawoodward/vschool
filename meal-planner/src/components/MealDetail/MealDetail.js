@@ -31,6 +31,7 @@ function MealDetail() {
 
     // let item = singleMeal.meals
 
+ 
     const handleSaveButtonClick = () => {
         if (localStorage.getItem('savedMeals') === null) {
             localStorage.setItem('savedMeals', JSON.stringify([singleMeal.meals]))
@@ -38,13 +39,11 @@ function MealDetail() {
             setIsSaved(true)
         } else {
             const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+            // const idExists = savedMeals.some(obj => obj.idMeal === singleMeal.meals.idMeal)
             if (!isSaved) {
                 // savedMeals.push(singleMeal.meals)
                 savedMeals.push(singleMeal.meals)
                 localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
-
-                // localStorage.setItem('savedMeals', JSON.stringify(savedMeals.idMeal))
-                // localStorage.setItem('savedMeals', JSON.stringify([singleMeal.meals.idMeal]))
                 alert('Meal Saved Successfully')
                 setIsSaved(true)
                 console.log(savedMeals)
