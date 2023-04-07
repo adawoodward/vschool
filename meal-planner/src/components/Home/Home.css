@@ -1,5 +1,5 @@
 .home {
-    min-height: 100vh;
+    min-height: 80vh;
     height: auto;
     width: 100%;
     display: flex;
@@ -61,4 +61,9 @@ img:hover {
 h4 {
     align-self: center;
     font-size: smaller;
+}
+
+.logo {
+    border: #fff 5px;
+    margin-top: 60px;
 }

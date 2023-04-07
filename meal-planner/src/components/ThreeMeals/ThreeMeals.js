@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Context } from "../Context"
-import RandomMeal from '../RandomMeal/RandomMeal'
+import './ThreeMeals.css'
 
 const ThreeMeals = () => {
     const { idMeal } = useParams()
@@ -145,14 +145,14 @@ const ThreeMeals = () => {
     }
 
     return (
-        <>
+        <div className='oneDay'>
         <div className='three--meals'>
             <div>
                 <h2>Breakfast</h2>
             <img src={randomBreakfast.strMealThumb} onClick={fetchRandomBreakfast}/>
-            <div>{randomBreakfast.strMeal}</div>
+            <div className='title'>{randomBreakfast.strMeal}</div>
             <Link to={`/${randomBreakfast.idMeal}`}>
-            <button>More</button>
+            <button className='more'>More</button>
             </Link>
             </div>
         </div>
@@ -160,9 +160,9 @@ const ThreeMeals = () => {
             <div>
                 <h2>Lunch</h2>
             <img src={randomLunch.strMealThumb} onClick={fetchRandomLunch}/>
-            <div>{randomLunch.strMeal}</div>
+            <div className='title'>{randomLunch.strMeal}</div>
             <Link to={`/${randomLunch.idMeal}`}>
-            <button onClick={fetchDetails}>More</button>
+            <button className='more'>More</button>
             </Link>
             </div>
         </div>
@@ -170,13 +170,13 @@ const ThreeMeals = () => {
             <div>
                 <h2>Dinner</h2>
             <img src={randomDinner.strMealThumb} onClick={fetchRandomDinner}/>
-            <div>{randomDinner.strMeal}</div>
+            <div className='title'>{randomDinner.strMeal}</div>
             <Link to={`/${randomDinner.idMeal}`}>
-            <button>More</button>
+            <button className='more'>More</button>
             </Link>
             </div>
         </div>
-        </>
+        </div>
     )
 
 }

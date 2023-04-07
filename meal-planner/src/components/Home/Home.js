@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from 'react'
 import './Home.css'
 import { Context } from '../Context'
 import { Link } from 'react-router-dom'
+import logo from '../../assets/logo.png'
 
 const Home = (props) => {
 
@@ -21,6 +22,7 @@ const Home = (props) => {
 
   return (
     <div className='home'>
+      <img src={logo} className='logo'/>
       <div className='home--search' >
         <input 
           type='text' 
@@ -28,8 +30,10 @@ const Home = (props) => {
           placeholder='Type a meal name...' 
           value={search} 
           onChange={(e)=>setSearch(e.target.value)}
-          />
+        />
         <button onClick={handleFetchMeals}>Search Meal</button>
+        <br></br>
+        {/* <img src={('/assets/logo.png')} /> */}
         <br></br>
       </div>
       <div className='home--grid'>
@@ -37,14 +41,10 @@ const Home = (props) => {
           meals.map((meal)=> {
             const {idMeal, strArea, strCategory, strMeal, strMealThumb, strYoutube} = meal
             return (
-            <div className='home--meal' key={meal.idMeal}>
-              {/* <button onClick={handleFetchSingleMeal}>Click */}
-             
+            <div className='home--meal' key={meal.idMeal}>             
                 <Link to={`/${meal.idMeal}`}>
                   <button>Click</button>
                 </Link>
-         
-       
               <img src={meal.strMealThumb} />                
               {/* <h4>{meal.strMeal}</h4> */}
               <h4>{meal.strMeal.length < 20 ? `${meal.strMeal}` : `${meal.strMeal.substring(0, 25)}...`}</h4>

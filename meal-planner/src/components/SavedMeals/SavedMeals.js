@@ -21,7 +21,7 @@ function SavedMeals() {
         <div>
             <h3>Saved Meals</h3>
             {items.idMeal}
-            {items.length <= 0 && <p>You have no saved meals.</p>}
+            {items.length <= 0 && <div style={{height: '71vh'}}>You have no saved meals.</div>}
             {items && items.map((item, index) => {
                 return (
                     <div key={items[index]}>
