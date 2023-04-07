@@ -14,7 +14,8 @@ const ThreeMeals = () => {
     //     fetchRandomMeal()
     // }, [fetchRandomMeal])
 
-    const [randomBreakfast, setRandomBreakfast] = useState({})
+    const [randomBreakfast, setRandomBreakfast] = useState({
+    })
     const [randomLunch, setRandomLunch] = useState({})
     const [randomDinner, setRandomDinner] = useState({})
     const [allBreakfast, setAllBreakfast] = useState([])
@@ -162,24 +163,33 @@ const ThreeMeals = () => {
     return (
         <>
         <div className='three--meals'>
-        <img src={randomBreakfast} />
+            {/* <img src='https://www.themealdb.com/images/media/meals/1550440197.jpg' onClick={fetchRandomBreakfast}/> */}
             {/* {data?.map((item) => {
                 return (
                     <div>{item.idMeal}</div>
                 )
             })} */}
-            <button onClick={fetchRandomBreakfast}>Get Breakfast</button>
+            {/* <button onClick={fetchRandomBreakfast}>Get Breakfast</button> */}
+            {/* <h4>{randomBreakfastTitle}</h4> */}
             {/* <h2>{randomBreakfast.strMeal}</h2> */}
             {/* <RandomMeal /> */}
-            {/* <img src={randomBreakfast} /> */}
+            <div>Breakfast
+            <img src={randomBreakfast} onClick={fetchRandomBreakfast}/>
+            </div>
         </div>
         <div className='three--meals'>
-            <button onClick={fetchRandomLunch}>Get Lunch</button>
-            <img src={randomLunch} />
+            {/* <img src='https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg' /> */}
+            {/* <button onClick={fetchRandomLunch}>Get Lunch</button> */}
+            <div>Lunch
+            <img src={randomLunch} onClick={fetchRandomLunch}/>
+            </div>
         </div>
         <div className='three--meals'>
-            <button onClick={fetchRandomDinner}>Get Dinner</button>
-            <img src={randomDinner} />
+            {/* <img src='https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg' /> */}
+            {/* <button onClick={fetchRandomDinner}>Get Dinner</button> */}
+            <div>Dinner
+            <img src={randomDinner} onClick={fetchRandomDinner}/>
+            </div>
         </div>
         </>
     )
