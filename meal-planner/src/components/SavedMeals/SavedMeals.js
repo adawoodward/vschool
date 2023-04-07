@@ -26,7 +26,6 @@ function SavedMeals() {
                 return (
                     <div key={items[index]}>
                         <h3>{item[0].strMeal}</h3>
-                        {/* <a href={`/${item[0].idMeal}`} /> */}
                         <Link to={`/${item[0].idMeal}`}>
                         <img src={item[0].strMealThumb} />
                         </Link>
