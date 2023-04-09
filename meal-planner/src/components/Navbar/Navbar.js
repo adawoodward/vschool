@@ -13,7 +13,7 @@ function Navbar() {
                     <Link to="/"> <li>Home</li> </Link>
                     <Link to="/categories"> <li>Categories</li> </Link>
                     <Link to="/random"> <li>Random Meal</li> </Link>
-                    <Link to="/randomThree"> <li>Today's Meal Plans</li> </Link>
+                    <Link to="/randomThree"> <li>Today's Meal Plan</li> </Link>
                     <Link to="/savedMeals"> <li>Saved List</li> </Link>
 
                 </ul>
