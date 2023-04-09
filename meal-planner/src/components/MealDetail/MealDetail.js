@@ -21,6 +21,17 @@ function MealDetail() {
         fetchDetails()
     }, [])
 
+    // const { fetchDetails } = useContext(Context)
+
+    // const handleFetchDetails = useCallback(()=>{
+    //   fetchDetais(idMeal)
+    // }, [idMeal, fetchDetais])
+
+    // useEffect(()=>{ // when the component is mounted, we will run the function fetchCategories
+    //     fetchDetails()
+    //   }, [fetchDetails]) // fetchCategories function as dependency
+    
+
     // useEffect(()=> {
     //     fetchSingleMeal()
     // }, [fetchSingleMeal])
@@ -28,9 +39,7 @@ function MealDetail() {
     console.log(singleMeal.meals)
     console.log(singleMeal)
 
-
     // let item = singleMeal.meals
-
  
     const handleSaveButtonClick = () => {
         if (localStorage.getItem('savedMeals') === null) {
@@ -91,6 +100,7 @@ function MealDetail() {
                             )}
                         </button>
                         <img src={item.strMealThumb} />
+                        <p>{item.strIngredient1}, {item.strIngredient2}, {item.strIngredient3}, {item.strIngredient4}, {item.strIngredient5}, {item.strIngredient6}, {item.strIngredient7}, {item.strIngredient8}, {item.strIngredient9}</p>
                         <p>{item.strArea}</p>
                         <p>{item.strInstructions}</p>
                         <iframe width="420" height="315" src={item.strYoutube.replace('watch?v=', 'embed/')}></iframe>

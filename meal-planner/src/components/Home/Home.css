@@ -24,6 +24,8 @@ input {
     width: 300px;
     font-size: 18px;
     border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
 button {
@@ -35,6 +37,8 @@ button {
     margin-left: 10px;
     border-radius: 5px;
     outline: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
 .home--grid {
@@ -44,6 +48,7 @@ button {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
+    padding: 50px;
 }
 
 img {
@@ -60,7 +65,6 @@ img:hover {
 
 h4 {
     align-self: center;
-    font-size: smaller;
 }
 
 .logo {

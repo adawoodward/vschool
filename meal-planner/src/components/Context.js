@@ -8,6 +8,8 @@ export const ContextProvider = ({ children }) => {
     const [meals, setMeals] = useState([])
     const [categories, setCategories] = useState([])
     const [randomMeal, setRandomMeal] = useState([])
+    const [singleMeal, setSingleMeal] = useState([])
+
 
     // useEffect(()=> {
     //     getData()
@@ -31,6 +33,20 @@ export const ContextProvider = ({ children }) => {
             })
     }, [])
 
+    // const fetchDetails = useCallback((idMeal) => {
+    //     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+    //         .then(res => res.json())
+    //         .then(data => setSingleMeal(data))
+    // }, [])
+
+    // const fetchDetails = useCallback((idMeal) => {
+    //     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+    //         .then(response=>{
+    //             console.log(response.data)
+    //             response.json()})
+    //         .then(data => setSingleMeal(data))
+    // }, [])
+    
     // const fetchSingleMeal = useCallback((idMeal) => {
     //     axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
     //         .then(response=>{

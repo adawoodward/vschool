@@ -32,8 +32,10 @@
     background-color: lightslategrey;
     border-radius: 5px;
     transition: all 0.4s ease;
+    font-weight: bold !important;
 }
 
 .navbar--links a:hover {
     color: orange;
+    font-weight: bold !important;
 }

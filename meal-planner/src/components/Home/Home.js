@@ -42,17 +42,18 @@ const Home = (props) => {
             const {idMeal, strArea, strCategory, strMeal, strMealThumb, strYoutube} = meal
             return (
             <div className='home--meal' key={meal.idMeal}>             
-                <Link to={`/${meal.idMeal}`}>
-                  <button>Click</button>
-                </Link>
-              <img src={meal.strMealThumb} />                
+              <img src={meal.strMealThumb} />
+              <br></br>    
+              <Link to={`/${meal.idMeal}`}>
+                <button>Click</button>
+              </Link>            
               {/* <h4>{meal.strMeal}</h4> */}
               <h4>{meal.strMeal.length < 20 ? `${meal.strMeal}` : `${meal.strMeal.substring(0, 25)}...`}</h4>
               <p>{meal.strArea}</p>
               <p>{meal.strCategory}</p>
               {/* <p>{meal.strInstructions}</p> */}
-              <p>{meal.strYoutube}</p>
-              <iframe width="420" height="315" src={meal.strYoutube.replace('watch?v=', 'embed/')}></iframe>
+              {/* <p>{meal.strYoutube}</p> */}
+              {/* <iframe width="420" height="315" src={meal.strYoutube.replace('watch?v=', 'embed/')}></iframe> */}
             </div>
             )
           })
