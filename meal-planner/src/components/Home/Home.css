@@ -6,6 +6,7 @@
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    background-color: #fff;
 }
 
 .home--search {
@@ -41,7 +42,7 @@ button {
     font-weight: bold;
 }
 
-.home--grid {
+/* .home--grid {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -49,6 +50,27 @@ button {
     flex-wrap: wrap;
     text-align: center;
     padding: 50px;
+    column-gap: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+} */
+
+.home--grid {
+display: flex;
+align-items: center;
+justify-content: space-evenly;
+flex-direction: row;
+flex-wrap: wrap;
+text-align: center;
+column-gap: 50px;
+margin-top: 50px;
+margin-bottom: 50px;
+margin-left: 50px;
+margin-right: 50px;
+}
+
+.home--meal {
+    margin-bottom: 20px;
 }
 
 img {

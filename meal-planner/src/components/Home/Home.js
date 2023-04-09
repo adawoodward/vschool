@@ -48,7 +48,7 @@ const Home = (props) => {
                 <button>Click</button>
               </Link>            
               {/* <h4>{meal.strMeal}</h4> */}
-              <h4>{meal.strMeal.length < 20 ? `${meal.strMeal}` : `${meal.strMeal.substring(0, 25)}...`}</h4>
+              <h4>{meal.strMeal.length < 15 ? `${meal.strMeal}` : `${meal.strMeal.substring(0, 15)}...`}</h4>
               <p>{meal.strArea}</p>
               <p>{meal.strCategory}</p>
               {/* <p>{meal.strInstructions}</p> */}

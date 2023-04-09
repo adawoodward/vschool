@@ -24,6 +24,7 @@ const RandomMeal = () => {
             <h4 style={{textAlign: 'center'}}>Instructions</h4>
             <p>{meal.strInstructions}</p>
           </div>
+          <iframe width="420" height="315" src={meal.strYoutube.replace('watch?v=', 'embed/')}></iframe>
         {/* <div className='random--three'>
           <img src={meal.strMealThumb} alt="#" />
           <button onClick={fetchRandomMeal}>Generate Another Meal</button>

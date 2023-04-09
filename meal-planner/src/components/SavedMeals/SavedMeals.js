@@ -87,12 +87,15 @@ function SavedMeals() {
             {items && items.map((item, index) => {
                 return (
                     // <div key={items[index]}>
-                    <div key={item[0].idMeal}>
-                        <h3>{item[0].strMeal}</h3>
+                    <div key={item[0].idMeal} className='card'>
+                        {/* <h5>{item[0].strMeal}</h5> */}
+                        <h5>{item[0].strMeal.length < 20 ? `${item[0].strMeal}` : `${item[0].strMeal.substring(0, 20)}...`}</h5>
+                        <br></br>
                         <Link to={`/${item[0].idMeal}`}>
                         <img src={item[0].strMealThumb} />
                         </Link>
                         <br></br>
+                        <p>{item[0].strArea}, {item[0].strCategory}</p>
                         <button onClick={handleRemove}>Remove</button>
                         {/* // <Link href={`/savedMeals/${item[0].idMeal}`} key={item[0].idMeal}>More
                         // </Link> */}

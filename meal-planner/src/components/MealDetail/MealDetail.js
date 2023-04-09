@@ -103,8 +103,10 @@ function MealDetail() {
                                 </div>
                             )}
                         </button>
+                        <h4>Ingredients</h4>
                         <p>{item.strIngredient1}, {item.strIngredient2}, {item.strIngredient3}, {item.strIngredient4}, {item.strIngredient5}, {item.strIngredient6}, {item.strIngredient7}, {item.strIngredient8}, {item.strIngredient9}</p>
                         <p>{item.strArea}</p>
+                        <h4>Instructions</h4>
                         <div className='instructions'>{item.strInstructions}</div>
                         <iframe width="420" height="315" src={item.strYoutube.replace('watch?v=', 'embed/')}></iframe>
                         <br></br>

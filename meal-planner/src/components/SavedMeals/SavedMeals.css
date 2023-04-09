@@ -1,4 +1,4 @@
-.savedMeals {
+/* .savedMeals {
     background: black;
     color: white;
     display: flex;
@@ -10,4 +10,26 @@
     cursor: pointer;
     column-gap: 50px;
     height: 80vh;
+} */
+
+.savedMeals {
+    background-color: blanchedalmond;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-evenly; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 50px;
+    min-height: 60vh;
+    column-gap: 50px;
 }
+
+img {
+    margin-bottom: 30px;
+}
+
+/* .card {
+    margin-left: 10px;
+} */

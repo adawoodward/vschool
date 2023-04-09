@@ -1,4 +1,4 @@
-.singleCategory {
+/* .singleCategory {
     background-color: blanchedalmond;
     display: flex;
     flex-direction: row;
@@ -8,9 +8,20 @@
     text-align: center;
     width: 100%;
     cursor: pointer;
+} */
+
+.singleCategory {
+    background-color: blanchedalmond;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 50px;
 }
 
 .category {
-
+    /* column-gap: 50px; */
 }
 

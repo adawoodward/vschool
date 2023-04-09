@@ -30,7 +30,9 @@ function CategoriesDetail() {
             {singleCategory.meals?.map((category)=>{
                 return (
                     <div key={category.idMeal} className='category'>
-                        <h4>{category.strMeal}</h4>
+                        {/* <h4>{category.strMeal}</h4> */}
+                        <h5>{category.strMeal.length < 20 ? `${category.strMeal}` : `${category.strMeal.substring(0, 18)}...`}</h5>
+
                         <Link to={`/${category.idMeal}`}>
                         <img src={category.strMealThumb} />
                         </Link>
