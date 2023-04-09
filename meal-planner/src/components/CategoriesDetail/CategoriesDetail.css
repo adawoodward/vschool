@@ -1,3 +1,16 @@
-.singleCategories {
+.singleCategory {
     background-color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
 }
+
+.category {
+
+}
+

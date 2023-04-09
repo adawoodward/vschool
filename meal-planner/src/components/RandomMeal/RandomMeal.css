@@ -1,6 +1,11 @@
+body {
+    background-color: black;
+}
+
 .random {
-    width: 100%;
-    height: 100vh;
+    /* width: 100%; */
+    /* height: 80vh; */
+    min-height: 80vh;
     background: black;
     color: white;
     display: flex;
@@ -8,6 +13,10 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .random > img {
@@ -21,12 +30,13 @@
 }
 
 .random--control > button {
-    margin-top: 15px;
     padding: 5px;
     border: 1px solid #ccc;
     outline: none;
     font-size: 15px;
     cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .random--control {
@@ -38,7 +48,7 @@
 }
 
 .random--instructions {
-    text-align: center;
+    text-align: justify;
 }
 
 .random--instructions > p {

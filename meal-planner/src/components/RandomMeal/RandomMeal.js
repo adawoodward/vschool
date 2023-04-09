@@ -17,8 +17,11 @@ const RandomMeal = () => {
             <img src={meal.strMealThumb} alt="#" />
             <button onClick={fetchRandomMeal}>Generate Another Meal</button>
           </div>
+          <h4>Ingredients</h4>
+          <div className='ingredients'>{meal.strIngredient1}, {meal.strIngredient2}, {meal.strIngredient3}, {meal.strIngredient4}, {meal.strIngredient5}, {meal.strIngredient6}, {meal.strIngredient7}, {meal.strIngredient8}, {meal.strIngredient9}</div>
+          <br></br>
           <div className='random--instructions'>
-            <h4>Instructions</h4>
+            <h4 style={{textAlign: 'center'}}>Instructions</h4>
             <p>{meal.strInstructions}</p>
           </div>
         {/* <div className='random--three'>

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState, useContext, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Context } from "../Context"
+import './MealDetail.css'
 
 function MealDetail() {
     const [isSaved, setIsSaved] = useState(false)
@@ -78,17 +79,20 @@ function MealDetail() {
     }, [idMeal])
 
     return (
-        <div>
-            <p>{idMeal}</p>
+        <div className='recipe--container'>
+            {/* <p>{idMeal}</p> */}
             {singleMeal.meals?.map((item) => {
                 // const {idMeal, strArea, strCategory, strMeal, strMealThumb, strYoutube} = item
                 return (
-                    <div key={item.idMeal}>
+                    <div key={item.idMeal} className='recipe'>
                         <h4>{item.strMeal}</h4>
                         {isSaved && (
                             <p>You already saved the meal.</p>
                         )}
-                        <button onClick={handleSaveButtonClick}>
+                        <img src={item.strMealThumb} />
+                        <br></br>
+
+                        <button onClick={handleSaveButtonClick} className='switchingButton'>
                             {isSaved ? (
                                 <div>
                                     Remove
@@ -99,12 +103,11 @@ function MealDetail() {
                                 </div>
                             )}
                         </button>
-                        <img src={item.strMealThumb} />
                         <p>{item.strIngredient1}, {item.strIngredient2}, {item.strIngredient3}, {item.strIngredient4}, {item.strIngredient5}, {item.strIngredient6}, {item.strIngredient7}, {item.strIngredient8}, {item.strIngredient9}</p>
                         <p>{item.strArea}</p>
-                        <p>{item.strInstructions}</p>
+                        <div className='instructions'>{item.strInstructions}</div>
                         <iframe width="420" height="315" src={item.strYoutube.replace('watch?v=', 'embed/')}></iframe>
-
+                        <br></br>
                     </div>
                 )
             })}

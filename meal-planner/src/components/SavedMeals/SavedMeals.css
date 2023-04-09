@@ -1,0 +1,13 @@
+.savedMeals {
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    column-gap: 50px;
+    height: 80vh;
+}

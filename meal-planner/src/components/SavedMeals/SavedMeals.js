@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext} from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Context } from '../Context' 
 import axios from 'axios'
+import MealDetail from '../MealDetail/MealDetail'
+import './SavedMeals.css'
 
 function SavedMeals() {
     const { idMeal } = useParams()
@@ -48,7 +50,25 @@ function SavedMeals() {
     //     console.log('new list:', removeItem)
     // }
 
-    function handleRemove
+    // const handleRemove = () => {
+    //     // const deleteIndex = 1
+    //     const retrieved = localStorage.getItem('savedMeals')
+    //     const items = JSON.parse(retrieved)
+    //     const filtered = items.filter(item => item.idMeal !== idMeal)
+    //     localStorage.setItem('savedMeals', JSON.stringify(filtered))
+    //     // itmes.map((item, index) => {
+    //     //     if (item[0].idMeal === idMeal)
+    //     // })
+    // }
+
+    const handleRemove = () => {
+        const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+        savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
+        // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+
+        localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+        // setIsSaved(false)
+    }
 
     // function deleteItem(id) {
     //     console.log(list)
@@ -59,8 +79,9 @@ function SavedMeals() {
     // }
 
     return (
-        <div>
-            <h3>Saved Meals</h3>
+        <div className='savedMeals'>
+            {/* <h3>Saved Meals</h3> */}
+            
             {items.idMeal}
             {items.length <= 0 && <div style={{height: '71vh'}}>You have no saved meals.</div>}
             {items && items.map((item, index) => {
@@ -71,6 +92,7 @@ function SavedMeals() {
                         <Link to={`/${item[0].idMeal}`}>
                         <img src={item[0].strMealThumb} />
                         </Link>
+                        <br></br>
                         <button onClick={handleRemove}>Remove</button>
                         {/* // <Link href={`/savedMeals/${item[0].idMeal}`} key={item[0].idMeal}>More
                         // </Link> */}

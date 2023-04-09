@@ -24,11 +24,12 @@ function CategoriesDetail() {
     console.log(singleCategory.meals)
 
     return (
-        <div className='singleCategories'>
-            <p>{strCategory}</p>
+        <div className='singleCategory'>
+            {/* <h3>{strCategory}</h3> */}
+            <br></br>
             {singleCategory.meals?.map((category)=>{
                 return (
-                    <div key={category.idMeal}>
+                    <div key={category.idMeal} className='category'>
                         <h4>{category.strMeal}</h4>
                         <Link to={`/${category.idMeal}`}>
                         <img src={category.strMealThumb} />
