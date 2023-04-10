@@ -42,7 +42,7 @@ function SavedMeals() {
     // }
 
     // function handleRemove(idMeal) {
-    //     const items = JSON.parse(localStorage.getItem('savedMeals'))
+    //     // const items = JSON.parse(localStorage.getItem('savedMeals'))
     //     const removeItem = items.filter((item) => {
     //         return item.idMeal !== idMeal
     //     })
@@ -61,14 +61,24 @@ function SavedMeals() {
     //     // })
     // }
 
-    // const handleRemove = () => {
-    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
-    //     savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
-    //     // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
 
-    //     localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
-    //     // setIsSaved(false)
-    // }
+    // savedMeals.splice(savedMeals.indexOf(singleMeal.meals.idMeal), 1)
+    // localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+    // setIsSaved(false)
+    // alert('Meal Removed Successfully')
+    // console.log(savedMeals)
+
+    const handleRemove = () => {
+        // const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+        // savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
+        // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+
+        items.splice(items.indexOf(idMeal), 1)
+        console.log(items.indexOf(idMeal))
+
+        localStorage.setItem('savedMeals', JSON.stringify(items))
+        // setIsSaved(false)
+    }
 
     return (
         <div className='savedMeals'>
@@ -89,7 +99,7 @@ function SavedMeals() {
                         <br></br>
                         <p>{item[0].strArea}, {item[0].strCategory}</p>
                         {/* <button onClick={handleRemove}>Remove</button> */}
-                        <button onClick>Remove</button>
+                        <button onClick={handleRemove}>Remove</button>
 
                         {/* // <Link href={`/savedMeals/${item[0].idMeal}`} key={item[0].idMeal}>More
                         // </Link> */}
