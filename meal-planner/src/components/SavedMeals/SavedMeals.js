@@ -10,8 +10,19 @@ function SavedMeals() {
 
     const [items, setItems] = useState([])
 
-    const { singleMeal } = useContext(Context)
+    // const { singleMeal } = useContext(Context)
 
+    const [singleMeal, setSingleMeal] = useState({single: {}})
+
+    const fetchDetails = () => {
+        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+            .then(res => res.json())
+            .then(data => setSingleMeal(data))
+    }
+
+    useEffect(()=> {
+        fetchDetails()
+    }, [])
 
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem('savedMeals'))
@@ -21,6 +32,10 @@ function SavedMeals() {
         }
         console.log(items)
     }, [])
+
+    console.log(items[0]?.[0].idMeal)
+    console.log(items[1]?.[0].idMeal)
+    console.log(items[2]?.[0].idMeal)
 
     // const handleRemove = () => {
     //     // localStorage.removeItem('savedMeals')
@@ -68,17 +83,62 @@ function SavedMeals() {
     // alert('Meal Removed Successfully')
     // console.log(savedMeals)
 
-    const handleRemove = () => {
-        // const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
-        // savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
+    // const handleRemove = (idMeal) => {
+    //     let i
+    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+    //     // savedMeals.splice(savedMeals[0][indexOf(idMeal)].indexOf(idMeal), 1)
+    //     savedMeals.splice(savedMeals.indexOf(idMeal), 1)
+
+    //     // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+
+    //     localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+    //     // setIsSaved(false)
+    // }
+
+    // const handleRemove = (idMeal) => {
+    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+    //     // savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
+    //     // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+
+    //     // items.splice(items.indexOf(idMeal), 1)
+    //     console.log(items.indexOf(idMeal))
+    //     console.log(items?.[1]?.indexOf(idMeal))
+    //     console.log(savedMeals?.[0]?.[0])
+    //     console.log(savedMeals?.[1]?.[0])
+
+    //     let index = items?.findIndex(item => item.idMeal === idMeal)
+    //     console.log(index)
+    //     let realIndex = items[1]?.findIndex(card => card.idMeal === idMeal)
+    //     console.log(realIndex) 
+
+    //     setItems((current) => current.filter(item=> item.idMeal !== idMeal))
+
+    //     localStorage.setItem('savedMeals', JSON.stringify(items))
+    //     // setIsSaved(false)
+    // }
+
+    const handleRemove = (idMeal) => {
+        const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+        savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
         // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
 
-        items.splice(items.indexOf(idMeal), 1)
-        console.log(items.indexOf(idMeal))
-
-        localStorage.setItem('savedMeals', JSON.stringify(items))
+        localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
         // setIsSaved(false)
     }
+
+    // const handleRemove = (idMeal, index) => {
+    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+    //     savedMeals[0].splice(savedMeals[0].valueOf({idMeal}), 1)
+
+    //     // items[index]?.splice(items[index].indexOf({idMeal}), 1)
+    //     // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+
+    //     localStorage.setItem('savedMeals', JSON.stringify(items))
+    //     // setIsSaved(false)
+    // }
+    // console.log(items[0]?.[0].idMeal)
+    // console.log(items[1]?.[0].idMeal)
+    // console.log(items[2]?.[0].idMeal)
 
     return (
         <div className='savedMeals'>

@@ -52,7 +52,9 @@ function MealDetail() {
             // const idExists = savedMeals.some(obj => obj.idMeal === singleMeal.meals.idMeal)
             if (!isSaved) {
                 // savedMeals.push(singleMeal.meals)
+                // savedMeals.push(singleMeal.meals)
                 savedMeals.push(singleMeal.meals)
+
                 localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
                 alert('Meal Saved Successfully')
                 setIsSaved(true)
