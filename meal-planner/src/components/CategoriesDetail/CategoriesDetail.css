@@ -14,14 +14,20 @@
     background-color: blanchedalmond;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-between; */
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
-    padding: 50px;
+    /* padding: 50px; */
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .category {
     /* column-gap: 50px; */
+    /* margin-left: 10px;
+    margin-right: 10px; */
 }
 
