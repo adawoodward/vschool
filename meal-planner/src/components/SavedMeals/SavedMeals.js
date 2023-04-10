@@ -61,21 +61,13 @@ function SavedMeals() {
     //     // })
     // }
 
-    const handleRemove = () => {
-        const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
-        savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
-        // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+    // const handleRemove = () => {
+    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+    //     savedMeals.splice(savedMeals[0].indexOf({idMeal}), 1)
+    //     // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
 
-        localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
-        // setIsSaved(false)
-    }
-
-    // function deleteItem(id) {
-    //     console.log(list)
-    //     axios.delete(`https://api.vschool.io/ada/thing/${id}`)
-    //         .then(()=> setList(prevList => {
-    //             return prevList.filter(item => item._id !== id)
-    //         }))
+    //     localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+    //     // setIsSaved(false)
     // }
 
     return (
@@ -96,7 +88,9 @@ function SavedMeals() {
                         </Link>
                         <br></br>
                         <p>{item[0].strArea}, {item[0].strCategory}</p>
-                        <button onClick={handleRemove}>Remove</button>
+                        {/* <button onClick={handleRemove}>Remove</button> */}
+                        <button onClick>Remove</button>
+
                         {/* // <Link href={`/savedMeals/${item[0].idMeal}`} key={item[0].idMeal}>More
                         // </Link> */}
 
