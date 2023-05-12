@@ -44,7 +44,10 @@ function MealDetail() {
  
     const handleSaveButtonClick = () => {
         if (localStorage.getItem('savedMeals') === null) {
-            localStorage.setItem('savedMeals', JSON.stringify([singleMeal.meals]))
+            // localStorage.setItem('savedMeals', JSON.stringify([singleMeal.meals]))
+            // localStorage.setItem('savedMeals', JSON.stringify([singleMeal.meals[0].idMeal]))
+            localStorage.setItem('savedMeals', JSON.stringify([singleMeal.meals[0]]))
+
             alert('Meal Saved Successfully')
             setIsSaved(true)
         } else {
@@ -52,7 +55,10 @@ function MealDetail() {
             // const idExists = savedMeals.some(obj => obj.idMeal === singleMeal.meals.idMeal)
             if (!isSaved) {
                 // savedMeals.push(singleMeal.meals)
-                savedMeals.push(singleMeal.meals)
+                // savedMeals.push(singleMeal.meals[0].idMeal)
+                savedMeals.push(singleMeal.meals[0])
+
+                // savedMeals.splice(savedMeals.indexOf(savedMeals[i]?.[0].idMeal), 1)
                 // savedMeals.push(singleMeal.meals.idMeal)
 
                 localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
