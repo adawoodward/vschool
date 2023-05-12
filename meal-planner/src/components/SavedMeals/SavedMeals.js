@@ -10,19 +10,22 @@ function SavedMeals() {
 
     const [items, setItems] = useState([])
 
+    const [isSaved, setIsSaved] = useState(false)
+
+
     // const { singleMeal } = useContext(Context)
 
     const [singleMeal, setSingleMeal] = useState({single: {}})
 
-    const fetchDetails = () => {
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
-            .then(res => res.json())
-            .then(data => setSingleMeal(data))
-    }
+    // const fetchDetails = () => {
+    //     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+    //         .then(res => res.json())
+    //         .then(data => setSingleMeal(data))
+    // }
 
-    useEffect(()=> {
-        fetchDetails()
-    }, [])
+    // useEffect(()=> {
+    //     fetchDetails()
+    // }, [])
 
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem('savedMeals'))
@@ -31,11 +34,23 @@ function SavedMeals() {
             setItems(items)
         }
         console.log(items)
+        // console.log(items[0]?.[0].idMeal)
     }, [])
 
-    console.log(items[0]?.[0].idMeal)
-    console.log(items[1]?.[0].idMeal)
-    console.log(items[2]?.[0].idMeal)
+    useEffect(()=> {
+        if (localStorage.getItem('savedMeals')){
+            const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+            if (savedMeals.toString().includes(idMeal)) {
+                setIsSaved(true)
+            } else {
+                setIsSaved(false)
+            }
+        }
+    }, [idMeal])
+    
+    // console.log(items[0]?.[0].idMeal)
+    // console.log(items[1]?.[0].idMeal)
+    // console.log(items[2]?.[0].idMeal)
 
     // const handleRemove = () => {
     //     // localStorage.removeItem('savedMeals')
@@ -126,6 +141,21 @@ function SavedMeals() {
         // setIsSaved(false)
     }
 
+
+    const handleRemoveClick = () => {
+        const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+        // const idExists = savedMeals.some(obj => obj.idMeal === singleMeal.meals.idMeal)
+        let i
+        savedMeals.splice(savedMeals.indexOf(savedMeals[i]?.[0].idMeal), 1)
+        localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+        setIsSaved(false)
+        alert('Meal Removed Successfully')
+        console.log(savedMeals)
+        window.location.reload()
+    }
+        
+    
+
     // const handleRemove = (idMeal, index) => {
     //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
     //     savedMeals[0].splice(savedMeals[0].valueOf({idMeal}), 1)
@@ -159,7 +189,8 @@ function SavedMeals() {
                         <br></br>
                         <p>{item[0].strArea}, {item[0].strCategory}</p>
                         {/* <button onClick={handleRemove}>Remove</button> */}
-                        <button onClick={handleRemove}>Remove</button>
+                        {/* <button onClick={handleRemove}>Remove</button> */}
+                        <button onClick={handleRemoveClick}>Remove</button>
 
                         {/* // <Link href={`/savedMeals/${item[0].idMeal}`} key={item[0].idMeal}>More
                         // </Link> */}

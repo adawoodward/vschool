@@ -22,12 +22,16 @@
     flex-wrap: wrap;
     text-align: center;
     padding: 50px;
-    min-height: 60vh;
+    min-height: 65vh;
     column-gap: 50px;
 }
 
 img {
-    margin-bottom: 30px;
+    margin-bottom: 0px;
+}
+
+.card {
+    padding-bottom: 50px;
 }
 
 /* .card {
