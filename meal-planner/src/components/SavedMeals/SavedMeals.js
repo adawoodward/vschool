@@ -36,42 +36,63 @@ function SavedMeal() {
             }
         }
     }, [idMeal])
-    
-    function handleRemoveClick(idMeal) {
-        const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
-        const filtered = savedMeals.filter((item) => item.idMeal !== idMeal)
-        localStorage.setItem('savedMeals', JSON.stringify(filtered))
-        setIsSaved(false)
-        alert('Meal deleted!')
-        window.location.reload()
-        console.log(savedMeals)
-    }
 
-    // const handleRemoveClick = (idMeal) => {
+
+    
+    // function handleRemoveClick() {
     //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
-    //     let index = savedMeals.findIndex(element => element.idMeal === idMeal)
-    //     console.log(savedMeals)
-    //     console.log(items)
-    //     console.log(index)
-    //     savedMeals.splice(index, 1)
-    //     savedMeals.splice(savedMeals.valueOf({idMeal}), 1)
-    //     // savedMeals.splice(savedMeals.indexOf(savedMeals?.idMeal), 1)
-    //     localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+    //     const filtered = savedMeals.filter((item) => item.idMeal !== idMeal)
+    //     localStorage.setItem('savedMeals', JSON.stringify(filtered))
     //     setIsSaved(false)
     //     alert('Meal deleted!')
     //     window.location.reload()
     //     console.log(savedMeals)
     // }
 
-    // const handleRemove = (idMeal, index) => {
+    // function handleRemoveClick() {
     //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
-    //     savedMeals[0].splice(savedMeals[0].valueOf({idMeal}), 1)
+    //     let index = savedMeals.findIndex(element => element.idMeal === idMeal)
+    //     console.log(index)
+    //     console.log(savedMeals.length)
+    //     // savedMeals.splice(index, 1)
+    //     savedMeals.splice(savedMeals.indexOf(savedMeals?.idMeal), 1)
+    //     localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+    //     // localStorage.setItem('savedMeals', JSON.stringify(savedMeals.filter(item => item.idMeal !== idMeal)))
+    //     setIsSaved(false)
+    //     alert('Meal deleted!')
+    //     window.location.reload()
+    //     console.log(savedMeals)
+    // }
 
-    //     // items[index]?.splice(items[index].indexOf({idMeal}), 1)
-    //     // const filtered = savedMeals.filter(item => item.idMeal !== idMeal)
+    function handleRemoveClick(idMeal) {
+        const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+        const removeItem = savedMeals.filter((item) => {
+            return item.idMeal !== idMeal
+        })
+        // savedMeals.splice(savedMeals.indexOf(savedMeals?.idMeal), 1)
+        localStorage.setItem('savedMeals', JSON.stringify(removeItem))
+        // localStorage.setItem('savedMeals', JSON.stringify(savedMeals.filter(item => item.idMeal !== idMeal)))
+        setIsSaved(false)
+        alert('Meal deleted!')
+        window.location.reload()
+        console.log(savedMeals)
+    }
 
-    //     localStorage.setItem('savedMeals', JSON.stringify(items))
-    //     // setIsSaved(false)
+    // keep deleting the first one
+    // const handleRemoveClick = (idMeal) => {
+    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+    //     let index = savedMeals.findIndex(element => element.idMeal === idMeal)
+    //     console.log(savedMeals)
+    //     console.log(items)
+    //     console.log(index)
+    //     // savedMeals.splice(index, 1)
+    //     // savedMeals.splice(savedMeals.valueOf({idMeal}), 1)
+    //     savedMeals.splice(savedMeals.indexOf(savedMeals?.idMeal), 1)
+    //     localStorage.setItem('savedMeals', JSON.stringify(savedMeals))
+    //     setIsSaved(false)
+    //     alert('Meal deleted!')
+    //     window.location.reload()
+    //     console.log(savedMeals)
     // }
 
     // const handleRemoveClick = () => {
@@ -115,18 +136,21 @@ function SavedMeal() {
                     // <div key={items[index]}>
                     <div key={item.idMeal} className='card'>
                         {/* <h5>{item.idMeal}</h5> */}
-                        <h5>{item.strMeal}</h5>
+                        {/* <h5>{item.strMeal}</h5> */}
+                        <h5>{item.strMeal.length < 20 ? `${item.strMeal}` : `${item.strMeal.substring(0, 20)}...`}</h5>
                         {/* <h5>{item[0].strMeal.length < 20 ? `${item[0].strMeal}` : `${item[0].strMeal.substring(0, 20)}...`}</h5> */}
                         <br></br>
                         <Link to={`/${item.idMeal}`}>
                         <img src={item.strMealThumb} />
                         </Link>
                         <br></br>
-                        <p>{item.strArea}, {item.strCategory}</p>
+                        <p>Category: {item.strArea}, {item.strCategory}</p>
                         {/* <button onClick={handleRemove}>Remove</button> */}
                         {/* <button onClick={handleRemove}>Remove</button> */}
-                        <button onClick={() => handleRemoveClick(idMeal)}>Remove</button>
+                        {/* <button onClick={() => handleRemoveClick}>Remove</button> */}
                         {/* <button onClick={handleRemoveClick}>Remove</button> */}
+                        {/* <button onClick={handleRemoveClick}>Delete</button> */}
+                        <button onClick={()=>handleRemoveClick(item.idMeal)}>Delete</button>
 
                         {/* // <Link href={`/savedMeals/${item[0].idMeal}`} key={item[0].idMeal}>More
                         // </Link> */}
