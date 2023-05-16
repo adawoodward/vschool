@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Context } from "../Context"
-import './ThreeMeals.css'
+// import './ThreeMeals.css'
 
 const ThreeMeals = () => {
     const { idMeal } = useParams()
@@ -150,7 +150,9 @@ const ThreeMeals = () => {
             <div>
                 <h2>Breakfast</h2>
             <img src={randomBreakfast.strMealThumb} onClick={fetchRandomBreakfast}/>
-            <div className='title'>{randomBreakfast.strMeal}</div>
+            <div className='title'>{randomBreakfast.strMeal.length < 20 ? `${randomBreakfast.strMeal}` : `${randomBreakfast.strMeal.substring(0, 20)}...`}</div>
+            {/* <h5>{item.strMeal.length < 20 ? `${item.strMeal}` : `${item.strMeal.substring(0, 20)}...`}</h5> */}
+
             <Link to={`/${randomBreakfast.idMeal}`}>
             <button className='more'>More</button>
             </Link>
@@ -160,7 +162,7 @@ const ThreeMeals = () => {
             <div>
                 <h2>Lunch</h2>
             <img src={randomLunch.strMealThumb} onClick={fetchRandomLunch}/>
-            <div className='title'>{randomLunch.strMeal}</div>
+            <div className='title'>{randomLunch.strMeal.length < 20 ? `${randomLunch.strMeal}` : `${randomLunch.strMeal.substring(0, 20)}...`}</div>
             <Link to={`/${randomLunch.idMeal}`}>
             <button className='more'>More</button>
             </Link>
@@ -170,7 +172,7 @@ const ThreeMeals = () => {
             <div>
                 <h2>Dinner</h2>
             <img src={randomDinner.strMealThumb} onClick={fetchRandomDinner}/>
-            <div className='title'>{randomDinner.strMeal}</div>
+            <div className='title'>{randomDinner.strMeal.length < 20 ? `${randomDinner.strMeal}` : `${randomDinner.strMeal.substring(0, 20)}...`}</div>
             <Link to={`/${randomDinner.idMeal}`}>
             <button className='more'>More</button>
             </Link>

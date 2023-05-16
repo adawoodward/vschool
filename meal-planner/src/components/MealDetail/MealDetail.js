@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState, useContext, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Context } from "../Context"
-import './MealDetail.css'
+// import './MealDetail.css'
 
 function MealDetail() {
     const [isSaved, setIsSaved] = useState(false)
@@ -53,7 +53,7 @@ function MealDetail() {
         } else {
             const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
             // const idExists = savedMeals.some(obj => obj.idMeal === singleMeal.meals.idMeal)
-            if (!isSaved) {
+            if (!isSaved && savedMeals.some(item => item.idMeal !== singleMeal.meals.idMeal)) {
                 // savedMeals.push(singleMeal.meals)
                 // savedMeals.push(singleMeal.meals[0].idMeal)
                 savedMeals.push(singleMeal.meals[0])
@@ -78,6 +78,7 @@ function MealDetail() {
     useEffect(()=> {
         if (localStorage.getItem('savedMeals')){
             const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+
             if (savedMeals.toString().includes(idMeal)) {
                 setIsSaved(true)
             } else {
@@ -85,6 +86,21 @@ function MealDetail() {
             }
         }
     }, [idMeal])
+
+
+    // function handleRemoveClick(idMeal) {
+    //     const savedMeals = JSON.parse(localStorage.getItem('savedMeals'))
+    //     const removeItem = savedMeals.filter((item) => {
+    //         return item.idMeal !== idMeal
+    //     })
+    //     // savedMeals.splice(savedMeals.indexOf(savedMeals?.idMeal), 1)
+    //     localStorage.setItem('savedMeals', JSON.stringify(removeItem))
+    //     // localStorage.setItem('savedMeals', JSON.stringify(savedMeals.filter(item => item.idMeal !== idMeal)))
+    //     setIsSaved(false)
+    //     alert('Meal deleted!')
+    //     window.location.reload()
+    //     console.log(savedMeals)
+    // }
 
     return (
         <div className='recipe--container'>
@@ -101,7 +117,7 @@ function MealDetail() {
                         <br></br>
 
                         <button onClick={handleSaveButtonClick} className='switchingButton'>
-                            {isSaved ? (
+                            {isSaved && item.idMeal === singleMeal.meals.idMeal ? (
                                 <div>
                                     Remove
                                 </div>

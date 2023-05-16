@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react'
-import './Home.css'
+// import './Home.css'
 import { Context } from '../Context'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'

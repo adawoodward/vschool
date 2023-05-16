@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { Context } from '../Context'
-import './RandomMeal.css'
+// import './RandomMeal.css'
 
 const RandomMeal = () => {
   const { fetchRandomMeal, randomMeal } = useContext(Context)

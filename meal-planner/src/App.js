@@ -9,6 +9,7 @@ import CategoriesDetail from './components/CategoriesDetail/CategoriesDetail';
 import ThreeMeals from './components/ThreeMeals/ThreeMeals';
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import SavedMeals from './components/SavedMeals/SavedMeals';
+import './styling/style.css'
 // import SavedMeal from './components/SavedMeals/SavedMeals';
 
 

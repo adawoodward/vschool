@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Context } from '../Context' 
 import axios from 'axios'
 import MealDetail from '../MealDetail/MealDetail'
-import './SavedMeals.css'
+// import './SavedMeals.css'
 
 function SavedMeal() {
     const { idMeal } = useParams()
