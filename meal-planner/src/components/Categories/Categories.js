@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Context } from '../Context'
 import { Link } from 'react-router-dom'
-import './Categories.css'
+// import './Categories.css'
 
 const Categories = () => {
   const { fetchCategories, categories } = useContext(Context)

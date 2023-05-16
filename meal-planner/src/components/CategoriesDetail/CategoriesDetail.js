@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Context } from "../Context"
-import '../CategoriesDetail/CategoriesDetail.css'
+// import '../CategoriesDetail/CategoriesDetail.css'
 // import '../MealDetail/MealDetail.css'
 
 function CategoriesDetail() {
