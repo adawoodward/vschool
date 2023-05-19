@@ -133,7 +133,10 @@ function MealDetail() {
                         <p>{item.strArea}</p>
                         <h4>Instructions</h4>
                         <div className='instructions'>{item.strInstructions}</div>
-                        <iframe width="420" height="315" src={item.strYoutube.replace('watch?v=', 'embed/')}></iframe>
+                        {/* <iframe width="420" height="315" src={item.strYoutube?.replace('watch?v=', 'embed/')}></iframe> */}
+                        <div>
+                            {item.strYoutube ? <iframe width="420" height="315" src={item.strYoutube.replace('watch?v=', 'embed/')} /> : <div style={{marginBottom: "30px"}}></div>}
+                        </div>
                         <br></br>
                     </div>
                 )
