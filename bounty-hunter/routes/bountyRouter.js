@@ -10,15 +10,40 @@ const bounty = [
     { firstName: "Jango", lastName: "Fett", living: false, bountyAmount: 200, type: "Jedi", _id: uuidv4() }
 ]
 
+// Get All
 bountyRouter.get("/", (req, res) => {
     res.send(bounty)
 })
 
+// Post One
 bountyRouter.post("/", (req, res) => {
     const newBounty = req.body
     newBounty._id = uuidv4()
     bounty.push(newBounty)
     res.send(`Successfully added ${newBounty.firstName} ${newBounty.lastName} to the database!`)
+})
+
+// Get One
+bountyRouter.get("/:bountyId", (req, res) => {
+    const bountyId = req.params.bountyId
+    const foundBounty = bounty.find(item => item._id === bountyId)
+    res.send(foundBounty)
+})
+
+// Delete One
+bountyRouter.delete("/:bountyId", (req, res) => {
+    const bountyId = req.params.bountyId
+    const bountyIndex = bounty.findIndex(item => item._id === bountyId)
+    const updatedBounty = Object.assign(bounty[bountyIndex]. req.body)
+    res.send(updatedBounty)
+})
+
+// Update One
+bountyRouter.put("/:bountyId", (req, res) => {
+    const bountyId = req.params.bountyId
+    const bountyIndex = bounty.findIndex(item => item._id === bountyId)
+    const updatedBounty = Object.assign(bounty[bountyIndex], req.body)
+    res.send(updatedBounty)
 })
 
 // bountyRouter.get("/all", (req, res) => {

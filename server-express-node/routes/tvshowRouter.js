@@ -13,6 +13,12 @@ tvshowRouter.get("/", (req, res) => {
     res.send(tvShows)
 })
 
+tvshowRouter.get("/:tvshowId", (req, res) => {
+    const tvshowId = req.params.tvshowId
+    const foundShow = tvShows.find(show => show._id === tvshowId)
+    res.send(foundShow)
+})
+
 tvshowRouter.post("/", (req ,res) => {
     const newShow = req.body
     newShow._id = uuidv4()
