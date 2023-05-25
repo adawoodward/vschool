@@ -1,12 +1,14 @@
 // First Express Server
 const express = require("express")
 const app = express()
+const morgan = require('morgan')
 const {v4: uuidv4} = require('uuid')
 // const uuid = require("uuid/v4")
 
 // Middleware (for every request)
 // app.use("/", express.json()) // Anytime a request comes to forward slash, it will fire this express JSON. 
-app.use(express.json()) 
+app.use(express.json()) // Looks for a request body, and turns it into 'req.body'
+app.use(morgan('dev')) // Logs requests to the console
 
 app.use("/items", (req, res, next) => {
     console.log("THE ITEMS MIDDLEWARE WAS EXECUTED")

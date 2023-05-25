@@ -34,8 +34,8 @@ bountyRouter.get("/:bountyId", (req, res) => {
 bountyRouter.delete("/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
     const bountyIndex = bounty.findIndex(item => item._id === bountyId)
-    const updatedBounty = Object.assign(bounty[bountyIndex]. req.body)
-    res.send(updatedBounty)
+    bounty.splice(bountyIndex, 1)
+    res.send("Successfully deleted movie")
 })
 
 // Update One
