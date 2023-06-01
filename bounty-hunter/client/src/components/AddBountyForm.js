@@ -6,13 +6,20 @@ export default function AddBountyForm(props) {
         lastName: props.lastName || "",
         bountyAmount: props.bountyAmount || "",
         type: props.type || "",
-        living: props.living 
+        living: true
+        // checked: props.checked 
     }
     const [inputs, setInputs] = useState(initInputs)
 
+    // const [checked, setChecked] = useState(false)
+
+    // const handleCheckedChange = () => {
+    //     setChecked(!checked)
+    // }
+
     function handleChange(e) {
-        const { name, value } = e.target
-        setInputs(prevInputs => ({...prevInputs, [name]: value}))
+        const { name, value, type, checked } = e.target
+        setInputs(prevInputs => ({...prevInputs, [name]: type === "checkbox" ? checked : value}))
     }
 
     function handleSubmit(e) {
@@ -52,7 +59,26 @@ export default function AddBountyForm(props) {
                 onChange={handleChange}
                 placeholder="Bounty Amount"
             />
-            <label> Living:
+
+            <label> Living?:
+                <input 
+                    type="checkbox"
+                    checked={inputs.living}
+                    onChange={handleChange}
+                    // value="true"
+                    name="living"
+                />
+                Alive
+            </label>
+
+
+            {/* <Checkbox 
+                label="My Value"
+                value={checked}
+                onChange={handleCheckedChange}
+            /> */}
+
+            {/* <label> Living:
             <input 
                 type="radio" 
                 name="myRadio" 
@@ -72,7 +98,7 @@ export default function AddBountyForm(props) {
                 // defaultChecked={true} 
             />
                 False
-            </label>
+            </label> */}
             <br></br>
             <button>{props.btnText}</button>
         </form>

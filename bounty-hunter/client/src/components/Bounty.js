@@ -10,13 +10,15 @@ export default function Bounty(props) {
             <>
                 <h1>First Name: {firstName}</h1>
                 <h1>Last Name: {lastName}</h1>
-                <p>Living: {living}</p>
+                <p>Living: {living.toString()}</p>
+                {/* <p>Living: {living}</p> */}
+                {/* <p>Living: {checked.toString()}</p> */}
                 <p>Bounty Amount: {bountyAmount}</p>
                 <p>Type: {type}</p>
                 <button className="delete-btn"
                 onClick={() => props.deleteBounty(_id)}>Delete</button>
                  <button className="edit-btn"
-                onClick={() => props.editBounty(_id)}>Edit</button>
+                onClick={() => setEditToggle(prevToggle => !prevToggle)}>Edit</button>
             </>
             :
             <>
@@ -26,9 +28,12 @@ export default function Bounty(props) {
                 _id={_id}
                 type={type}
                 living={living}
+
+                // living={checked}
+                // checked="true"
                 bountyAmount={bountyAmount}
                 btnText="Submit Edit"
-                submit={props.editMovie}
+                submit={props.editBounty}
             />
             <button onClick={() => setEditToggle(prevToggle => !prevToggle)}>Close</button>
             </>
