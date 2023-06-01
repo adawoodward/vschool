@@ -3,7 +3,7 @@ const express = require('express')
 const bountyRouter = express.Router()
 const {v4: uuidv4} = require('uuid')
 
-const bounty = [
+const bounties = [
     { firstName: "Boba", lastName: "Fett", living: true, bountyAmount: 350, type: "Sith", _id: uuidv4() },
     { firstName: "Bo-Katan", lastName: "Kryze", living: true, bountyAmount: 250, type: "Jedi", _id: uuidv4() },
     { firstName: "Ahsoka", lastName: "Tano", living: false, bountyAmount: 100, type: "Sith", _id: uuidv4() },
@@ -12,37 +12,38 @@ const bounty = [
 
 // Get All
 bountyRouter.get("/", (req, res) => {
-    res.send(bounty)
+    res.send(bounties)
 })
 
 // Post One
 bountyRouter.post("/", (req, res) => {
     const newBounty = req.body
     newBounty._id = uuidv4()
-    bounty.push(newBounty)
-    res.send(`Successfully added ${newBounty.firstName} ${newBounty.lastName} to the database!`)
+    bounties.push(newBounty)
+    res.send(newBounty)
+    // res.send(`Successfully added ${newBounty.firstName} ${newBounty.lastName} to the database!`)
 })
 
 // Get One
 bountyRouter.get("/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
-    const foundBounty = bounty.find(item => item._id === bountyId)
+    const foundBounty = bounties.find(item => item._id === bountyId)
     res.send(foundBounty)
 })
 
 // Delete One
 bountyRouter.delete("/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
-    const bountyIndex = bounty.findIndex(item => item._id === bountyId)
-    bounty.splice(bountyIndex, 1)
+    const bountyIndex = bounties.findIndex(item => item._id === bountyId)
+    bounties.splice(bountyIndex, 1)
     res.send("Successfully deleted movie")
 })
 
 // Update One
 bountyRouter.put("/:bountyId", (req, res) => {
     const bountyId = req.params.bountyId
-    const bountyIndex = bounty.findIndex(item => item._id === bountyId)
-    const updatedBounty = Object.assign(bounty[bountyIndex], req.body)
+    const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId)
+    const updatedBounty = Object.assign(bounties[bountyIndex], req.body)
     res.send(updatedBounty)
 })
 
