@@ -44,23 +44,39 @@ const movies = [
 
 // Get All
 movieRouter.get("/", (req, res) => {
+    res.status(200)
     res.send(movies)
 })
 
 // Get One
-movieRouter.get("/:movieId", (req, res) => {
+movieRouter.get("/:movieId", (req, res, next) => {
     // console.log(req.params.movieId)
     const movieId = req.params.movieId
     const foundMovie = movies.find(movie => movie._id === movieId)
-    res.send(foundMovie)
+    // console.log(foundMovie)
+    if (!foundMovie) {
+        const error = new Error(`The item with id ${movieId} was not found.`)
+        // res.send(error)
+        res.status(500)
+        return next(error) // call the next middleware in line and since we're passing an error it won't correspond to any other routes
+    }
+    // res.status(200)
+    // res.send(foundMovie)
+    res.status(200).send(foundMovie)
 })
 
 // Get by genre
 movieRouter.get("/search/genre", (req, res) => {
     // console.log(req)
     const genre = req.query.genre
+    if (!genre) {
+        const error = new Error("You must provide a genre.")
+        res.status(500)
+        return next(error)
+    }
     const filteredMovies = movies.filter(movie => movie.genre === genre)
-    res.send(filteredMovies)
+    // res.send(filteredMovies)
+    res.status(200).send(filteredMovies)
 })
 
 // Post One
@@ -69,7 +85,8 @@ movieRouter.post("/", (req, res) => {
     newMovie._id = uuidv4()
     movies.push(newMovie)
     // res.send(`Successfully added ${newMovie.title} to the database!`)
-    res.send(newMovie) // so that we can send this newMovie in state and make it appear up on the DOM immediately
+    // res.send(newMovie) // so that we can send this newMovie in state and make it appear up on the DOM immediately
+    res.status(201).send(newMovie)
 })
 
 // Delete One
@@ -85,7 +102,8 @@ movieRouter.put("/:movieId", (req, res) => {
     const movieId = req.params.movieId
     const movieIndex = movies.findIndex(movie => movie._id === movieId)
     const updatedMovie = Object.assign(movies[movieIndex], req.body)
-    res.send(updatedMovie)
+    // res.send(updatedMovie)
+    res.status(201).send(updatedMovie)
 })
 
 

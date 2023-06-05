@@ -10,7 +10,8 @@ export default function App() {
         axios.get("/movies")
         // .then(res => console.log(res))
         .then(res => setMovies(res.data))
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
+        .catch(err => console.log(err.response.data.errMsg))
     }
 
     // this is the function we need to have fired when submit happens

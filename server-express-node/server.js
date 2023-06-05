@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const {v4: uuidv4} = require('uuid')
 // const uuid = require("uuid/v4")
 
-// Middleware (for every request)
+// Middleware (for every request) //
 // app.use("/", express.json()) // Anytime a request comes to forward slash, it will fire this express JSON. 
 app.use(express.json()) // Looks for a request body, and turns it into 'req.body'
 app.use(morgan('dev')) // Logs requests to the console
@@ -37,9 +37,20 @@ app.get("/items", (req, res, next) => {
 //     { name: "mike", age: 20 }
 // ]
 
+
+// Routes //
 app.use("/movies", require("./routes/movieRouter.js"))
 app.use("/tvshows", require("./routes/tvshowRouter.js"))
 
+
+// Our Own Custon Error Handling Middleware that handles errors regardless of where they occur in our routs
+// Error Handler //
+app.use((err, req, res, next) => {
+    console.log(err)
+    return res.send({errMsg: err.message})
+})
+
+// Server Listen //
     // 1: PORT 2: CB (CALLBACK FUNCTION)
 app.listen(9000, () => {
     console.log("The server is running on Port 9000")
