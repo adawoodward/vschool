@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const morgan = require('morgan')
 const {v4: uuidv4} = require('uuid')
-// const uuid = require("uuid/v4")
+const mongoose = require('mongoose')
 
 // Middleware (for every request) //
 // app.use("/", express.json()) // Anytime a request comes to forward slash, it will fire this express JSON. 
@@ -36,6 +36,24 @@ app.get("/items", (req, res, next) => {
 //     { name: "sarah", age: 20 },
 //     { name: "mike", age: 20 }
 // ]
+
+// Connect to DB //                          // name of the databse you want to name it
+// mongoose.connect('mongodb://localhoset:27017/moviesdb', 
+//     {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useCreateIndex: true,
+//         useFindAndModify: false
+//     },
+//     () => console.log("Connected to the DB")
+// )
+
+// mongoose.connect("mongodb://localhost:27017/test-db", () => console.log('connected to database'))
+//         .catch(error => console.log(error))
+
+mongoose.connect('mongodb://127.0.0.1:27017/moviesdb',{useNewUrlParser: true})
+.then(()=> console.log("Connected to MongoDB"))
+.catch(err => console.error(err));
 
 
 // Routes //
