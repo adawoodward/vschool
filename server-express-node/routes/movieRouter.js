@@ -1,14 +1,15 @@
 const express = require('express')
 const movieRouter = express.Router()
-const {v4: uuidv4} = require('uuid')
+const Movie = require('../models/movie.js')
+// const {v4: uuidv4} = require('uuid')
 
-// Fake Data
-const movies = [
-    { title: "die hard", genre: "action", _id: uuidv4() },
-    { title: "star wars IV", genre: "fantasy", _id: uuidv4() },
-    { title: "lion king", genre: "fantasy", _id: uuidv4() },
-    { title: "friday the 13th", genre: "horor", _id: uuidv4() }
-]
+// Fake Data 
+// const movies = [
+//     { title: "die hard", genre: "action", _id: uuidv4() },
+//     { title: "star wars IV", genre: "fantasy", _id: uuidv4() },
+//     { title: "lion king", genre: "fantasy", _id: uuidv4() },
+//     { title: "friday the 13th", genre: "horor", _id: uuidv4() }
+// ]
 
 //     // 1. Endpoing (mount path)
 //     // 2. CallBack function
@@ -43,9 +44,29 @@ const movies = [
 //     })
 
 // Get All
-movieRouter.get("/", (req, res) => {
-    res.status(200)
-    res.send(movies)
+// movieRouter.get("/", (req, res) => {
+//     res.status(200)
+//     res.send(movies)
+// })
+
+// Old deprecated way //
+// movieRouter.get("/", (req, res, next) => {
+//     Movie.find((err, movies) => {
+//         if(err) {
+//             res.status(500)
+//             return next(err)
+//         }
+//         return res.status(200).send(movies)
+//     })
+// })
+
+movieRouter.get("/", (req, res, next) => {
+    Movie.find()
+        .then((movies) => res.status(200).send(movies))
+        .catch((err) => {
+            res.status(500)
+            return next(err)
+        })
 })
 
 // Get One
