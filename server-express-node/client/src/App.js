@@ -38,6 +38,10 @@ export default function App() {
     // to use useEffect as componentdidmount is to keep the dependency array in the second argument
     // if we keep second argument in an empty array, this will only fire the first time because it'll only refire if we have data in the array and it sees its change
 
+    function handleFilter(e) {
+        console.log(e.target.value)
+    }
+
     function deleteMovie(movieId) {
         axios.delete(`/movies/${movieId}`)
             // .then(res => console.log(res))
@@ -67,6 +71,13 @@ export default function App() {
                 submit={addMovie}
                 btnText="Add Movie"
             />
+            <h4>Filter by Genre</h4>
+            <select onChange={handleFilter} className="filter-form">
+                <option>- Select a Genre -</option>
+                <option value="action">Action</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="horror"></option>
+            </select>
             { movies.map(movie => 
                 <Movie 
                     {...movie} 

@@ -55,3 +55,7 @@ button {
     padding: 10px;
     margin: 5px;
 }
+
+.filter-form {
+    width: 200px;
+}
