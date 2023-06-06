@@ -39,7 +39,10 @@ export default function App() {
     // if we keep second argument in an empty array, this will only fire the first time because it'll only refire if we have data in the array and it sees its change
 
     function handleFilter(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
+        axios.get(`/movies/search/genre?genre=${e.target.value}`)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 
     function deleteMovie(movieId) {
