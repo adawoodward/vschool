@@ -40,9 +40,13 @@ export default function App() {
 
     function handleFilter(e) {
         // console.log(e.target.value)
+        if (e.target.value === "reset") {
+            getMovies()
+        } else {
         axios.get(`/movies/search/genre?genre=${e.target.value}`)
-        .then(res => console.log(res))
+        .then(res => setMovies(res.data))
         .catch(err => console.log(err))
+        }
     }
 
     function deleteMovie(movieId) {
@@ -76,10 +80,10 @@ export default function App() {
             />
             <h4>Filter by Genre</h4>
             <select onChange={handleFilter} className="filter-form">
-                <option>- Select a Genre -</option>
+                <option value="reset">All Movies</option>
                 <option value="action">Action</option>
                 <option value="fantasy">Fantasy</option>
-                <option value="horror"></option>
+                <option value="horror">Horror</option>
             </select>
             { movies.map(movie => 
                 <Movie 
