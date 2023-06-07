@@ -50,7 +50,7 @@ export default function AddBountyForm(props) {
                 name="type"
                 value={inputs.type}
                 onChange={handleChange}
-                placeholder="Sith or Jedi"
+                placeholder="sith or jedi"
             />
             <input 
                 type="number"

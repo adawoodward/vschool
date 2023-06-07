@@ -11,8 +11,6 @@ export default function Bounty(props) {
                 <h1>First Name: {firstName}</h1>
                 <h1>Last Name: {lastName}</h1>
                 <p>Living: {living.toString()}</p>
-                {/* <p>Living: {living}</p> */}
-                {/* <p>Living: {checked.toString()}</p> */}
                 <p>Bounty Amount: {bountyAmount}</p>
                 <p>Type: {type}</p>
                 <button className="delete-btn"
