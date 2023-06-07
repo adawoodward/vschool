@@ -9,7 +9,7 @@ export default function App() {
     function getBounties() {
         axios.get("/bounty")
             .then(res => setBounties(res.data))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response.data.errMsg))
     }
 
     function addBounty(newBounty) {
@@ -29,11 +29,11 @@ export default function App() {
         if (e.target.value === "reset") {
             getBounties()
         } else {
-            axios.get(`/bounty/search/type?type=${e.target.value}`)
-            .then(res => setBounties(res.data))
-            .catch(err => console.log(err))
+        axios.get(`/bounty/search/type?type=${e.target.value}`)
+        .then(res => setBounties(res.data))
+        .catch(err => console.log(err))
         }
-    }
+    } 
 
     function deleteBounty(bountyId) { 
         axios.delete(`/bounty/${bountyId}`)
@@ -58,7 +58,7 @@ export default function App() {
                 submit={addBounty}
                 btnText="Add Bounty"
               />
-              <h4>Filter by </h4>
+              <h4>Filter by Type</h4>
               <select onChange={handleFilter} className="filter-form">
                 <option value="reset">All Bounties</option>
                 <option value="sith">Sith</option>
