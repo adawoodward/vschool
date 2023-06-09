@@ -58,11 +58,11 @@ export default function App() {
                 submit={addBounty}
                 btnText="Add Bounty"
               />
-              <h4>Filter by Type</h4>
+              <h4>Filter by Type</h4> 
               <select onChange={handleFilter} className="filter-form">
                 <option value="reset">All Bounties</option>
-                <option value="sith">Sith</option>
-                <option value="jedi">Jedi</option>
+                <option value="Sith">Sith</option>
+                <option value="Jedi">Jedi</option>
               </select>
              { bounties.map(bounty =>  
                 <Bounty
