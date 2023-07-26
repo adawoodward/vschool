@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+
 const makeupSchema = new Schema({
     title: {
         type: String,
@@ -12,8 +13,17 @@ const makeupSchema = new Schema({
     },
     category: {
         type: String,
-        enum: ['eye', 'lip', 'face', 'cheeks', 'tools'],
-        require: true 
+        require: true,
+        enum: ['Eyes', 'Lips', 'Cheeks', 'Makeup-tools']
+    },
+    bountyAmount: {
+        type: Number,
+        require: true
+    },
+    type: {
+        type: String,
+        enum: ['Sith', 'Jedi'],
+        require: true
     }
 })
 
