@@ -30,9 +30,9 @@ makeupRouter.get("/search/category", (req, res, next) => {
 })
 
 makeupRouter.post("/", (req, res, next) => {
-    const newBounty = new Bounty(req.body)
-    newBounty.save()
-    .then((savedBounty) => res.status(201).send(savedBounty))
+    const newMakeup = new Makeup(req.body)
+    newMakeup.save()
+    .then((savedMakeup) => res.status(201).send(savedMakeup))
     .catch((err) => {
         res.status(500)
         return next(err)
