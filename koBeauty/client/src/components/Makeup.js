@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function Makeup(props) {
-    const { title, brand, category, _id } = props
+    const { title, brand, category } = props
 
     return (
         <div>
