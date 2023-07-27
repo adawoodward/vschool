@@ -22,7 +22,7 @@ app.get("/items", (req, res, next) => {
     res.send(req.body)
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/kobeautydb',{useNewUrlParser: true})
+mongoose.connect('mongodb://127.0.0.1:27017/makeupdb',{useNewUrlParser: true})
 .then(()=> console.log("Connected to MongoDB"))
 .catch(err => console.error(err));
 
