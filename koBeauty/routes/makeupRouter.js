@@ -39,4 +39,26 @@ makeupRouter.post("/", (req, res, next) => {
     })
 })
 
+makeupRouter.delete("/:makeupId", (req, res) => {
+    Makeup.findOneAndDelete({_id: req.params.makeupId})
+    .then((deletedItem) => res.status(200).send(`Successfully deleted ${deletedItem.title} from the database!`))
+    .catch((err) => {
+        res.status(500)
+        return next(err)
+    })
+})
+
+makeupRouter.put("/:makeupId", (req, res, next) => {
+    Makeup.findOneAndUpdate(
+        {_id: req.params.makeupId},
+        req.body,
+        {new: true}
+    )
+    .then((updatedMakeup) => res.status(201).send(updatedMakeup))
+    .catch((err) => {
+        res.status(500)
+        return next(err)
+    })
+})
+
 module.exports = makeupRouter

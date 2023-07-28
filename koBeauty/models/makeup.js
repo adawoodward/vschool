@@ -14,7 +14,7 @@ const makeupSchema = new Schema({
     category: {
         type: String,
         require: true,
-        enum: ['Eyes', 'Lips', 'Cheeks', 'Makeup-tools']
+        enum: ['Face', 'Eyes', 'Lips', 'Cheeks', 'Makeup-tools']
     },
     bountyAmount: {
         type: Number,

@@ -28,12 +28,41 @@ function App() {
     getMakeups()
   }, [])
 
+  function handleFilter(e) {
+    if (e.target.value === "reset") {
+      getMakeups()
+    } else {
+      axios.get(`/makeup/search/category?category=${e.target.value}`)
+      .then(res => setMakeups(res.data))
+      .catch(err => console.log(err))
+    }
+  }
+
+  function deleteMakeup(makeupId) {
+    axios.delete(`/makeup/${makeupId}`)
+    .then(res => {
+      setMakeups(prevMakeups => prevMakeups.filter(makeup => makeup._id !== makeupId))
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <>
+      <h4>Filter by Category</h4>
+        <select onChange={handleFilter} className="filter-form">
+          <option value="reset">All Makeup items</option>
+          <option value="Eyes">Eyes</option>
+          <option value="Lips">lips</option>
+          <option value="Cheeks">Cheeks</option>
+          <option value="Face">Face</option>
+          <option value="Makeup-tools">Makeup-tools</option>
+        </select>
       { makeups?.map(makeup => 
       <Makeup 
         {...makeup}
         key={makeup.title}
+        deleteMakeup={deleteMakeup}
+        // editMakeup={editMakeup}
       />) }
     </>
   );
