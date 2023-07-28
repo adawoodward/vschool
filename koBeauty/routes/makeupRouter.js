@@ -1,6 +1,6 @@
 const express = require('express')
 const makeupRouter = express.Router()
-const Makeup = require('../models/makeup.js')
+const Makeup = require('../models/makeup')
 
 makeupRouter.get("/", (req, res, next) => {
     Makeup.find()
