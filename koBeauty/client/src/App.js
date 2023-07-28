@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Home from './components/Home'
 import Cart from './components/Cart'
+import ItemDetail from './components/ItemDetail'
+import Footer from './components/Footer'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Makeup from './components/Makeup.js'
 import axios from 'axios'
@@ -47,27 +49,33 @@ function App() {
   }
 
   return (
-    <>
       <BrowserRouter>
-      <Header />
-      <h4>Filter by Category</h4>
-        <select onChange={handleFilter} className="filter-form">
-          <option value="reset">All Makeup items</option>
-          <option value="Eyes">Eyes</option>
-          <option value="Lips">lips</option>
-          <option value="Cheeks">Cheeks</option>
-          <option value="Face">Face</option>
-          <option value="Makeup-tools">Makeup-tools</option>
-        </select>
-      { makeups?.map(makeup => 
-      <Makeup 
-        {...makeup}
-        key={makeup.title}
-        deleteMakeup={deleteMakeup}
+      <div className='App'>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/:makeupId' element={<ItemDetail />} />
+          <Route exact path='/cart' element={<Cart />} />
+        </Routes>
+        <Header />
+        <h4>Filter by Category</h4>
+          <select onChange={handleFilter} className="filter-form">
+            <option value="reset">All Makeup items</option>
+            <option value="Eyes">Eyes</option>
+            <option value="Lips">lips</option>
+            <option value="Cheeks">Cheeks</option>
+            <option value="Face">Face</option>
+            <option value="Makeup-tools">Makeup-tools</option>
+          </select>
+        { makeups?.map(makeup => 
+          <Makeup 
+          {...makeup}
+          key={makeup.title}
+          deleteMakeup={deleteMakeup}
         // editMakeup={editMakeup}
-      />) }
+        />) }
+        <Footer />
+      </div>
       </BrowserRouter>
-    </>
   );
 }
 
