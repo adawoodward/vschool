@@ -48,6 +48,8 @@ function App() {
 
   return (
     <>
+      <BrowserRouter>
+      <Header />
       <h4>Filter by Category</h4>
         <select onChange={handleFilter} className="filter-form">
           <option value="reset">All Makeup items</option>
@@ -64,6 +66,7 @@ function App() {
         deleteMakeup={deleteMakeup}
         // editMakeup={editMakeup}
       />) }
+      </BrowserRouter>
     </>
   );
 }
