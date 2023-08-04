@@ -11,6 +11,15 @@ makeupRouter.get("/", (req, res, next) => {
     })
 })
 
+// makeupRouter.get("/makeup", (req, res, next) => {
+//     Makeup.findById()
+//     .then((makeups) => res.status(200).send(makeups))
+//     .catch((err) => {
+//         res.status(500)
+//         return next(err)
+//     })
+// })
+
 makeupRouter.get("/search/brand", (req, res, next) => {
     Makeup.find({brand: req.query.brand})
     .then((makeups) => res.status(200).send(makeups))
