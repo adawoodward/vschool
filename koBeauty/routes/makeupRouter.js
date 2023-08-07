@@ -57,6 +57,15 @@ makeupRouter.delete("/:makeupId", (req, res) => {
     })
 })
 
+makeupRouter.get("/:makeupId", (req, res, next) => {
+    Makeup.findById({_id})
+    .then((item) => res.status(200).send(item))
+    .catch((err) => {
+        res.status(500)
+        return next(err)
+    })
+})
+
 makeupRouter.put("/:makeupId", (req, res, next) => {
     Makeup.findOneAndUpdate(
         {_id: req.params.makeupId},

@@ -6,13 +6,11 @@ import { useParams, useNavigate } from 'react-router-dom'
 const ItemDetail = () => {
     const { makeupId } = useParams()
 
-    const [singleMakeup, setSingleMakeup] = useState()
+    const [singleMakeup, setSingleMakeup] = useState([])
 
     const fetchDetails = () => {
-        axios.get(`https://127.0.0.1:27017/makeupdb/makeups/${makeupId}`)
-        .then(res => res.json())
-        .then(data => setSingleMakeup(data))
-        // .then(res => setSingleMakeup(res.data))
+        axios.get(`makeup/${makeupId}`)
+        .then(res => setSingleMakeup(res.data))
         .catch(err => console.log(err.response))
     }
 
@@ -22,7 +20,7 @@ const ItemDetail = () => {
 
   return (
     <>
-        <div>Item Detail</div>
+        <div>Item Detail????</div>
         {singleMakeup?.map(item => {
             return (
                 <div key={item.makeupId}>
