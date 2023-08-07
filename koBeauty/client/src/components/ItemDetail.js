@@ -1,33 +1,45 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 // import Makeup from './Makeup'
 
 const ItemDetail = () => {
     const { makeupId } = useParams()
+    // const { _id } = useParams()
 
+    // const [singleMakeup, setSingleMakeup] = useState({})
     const [singleMakeup, setSingleMakeup] = useState([])
 
-    const fetchDetails = () => {
-        axios.get(`makeup/${makeupId}`)
+    console.log(singleMakeup)
+
+    const fetchMakeup = () => {
+        // axios.get(`makeup/${makeupId}`)
+        axios.get("makeup/")
         .then(res => setSingleMakeup(res.data))
         .catch(err => console.log(err.response))
     }
 
     useEffect(() => {
-        fetchDetails()
+        fetchMakeup()
     }, [])
 
   return (
     <>
-        <div>Item Detail????</div>
-        {singleMakeup?.map(item => {
+        <div>Make-up items????</div>
+        { singleMakeup?.map(item => {
             return (
-                <div key={item.makeupId}>
-                    <h1>{item.title}</h1>
-                </div>
+                <Link path={`/makeup/${item._id}`} >
+                    <div key={item._id}>
+                        <h1>{item.title}</h1>
+                        <p>{item._id}</p>
+                    </div>
+                </Link>
+                // <div key={item._id}>
+                //     <h1>{item.title}</h1>
+                // </div>
             )
-        })}
+        }) 
+        }
     </>
   )
 }
