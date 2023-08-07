@@ -7,15 +7,21 @@ const ItemDetail = () => {
     const { makeupId } = useParams()
     // const { _id } = useParams()
 
-    // const [singleMakeup, setSingleMakeup] = useState({})
     const [singleMakeup, setSingleMakeup] = useState([])
+
+    const [detail, setDetail] = useState({})
+
 
     console.log(singleMakeup)
 
-    const fetchMakeup = () => {
-        axios.get(`/${makeupId}`)
-        // axios.get("/makeup")
-        .then(res => setSingleMakeup(res.data))
+
+    const fetchMakeup = (makeupId) => {
+        // axios.get(`/${makeupId}`)
+        axios.get("/makeup")
+        .then(res => {
+            console.log(res)
+            setSingleMakeup(res.data)
+        })
         .catch(err => console.log(err.response))
     }
 
@@ -23,33 +29,28 @@ const ItemDetail = () => {
         fetchMakeup()
     }, [])
 
+    const handleClick = (makeupId) => {
+        axios.get(`/${makeupId}`)
+        .then((res) => {
+            console.log(res.data)
+            setDetail(res.data);
+        })
+        .catch(err => console.log(err.response))
+    };
+
+    useEffect(() => {
+        handleClick()
+    }, [])
+
+
   return (
     <>
         <div>Make-up items????</div>
-        { singleMakeup?.map(item => {
-            return (
-                <div key={item._id}>
-                <h1>{item.title}</h1>
-               
-                {/* <Link path={`/makeup/${item._id}`} key={item._id} >
-                    <div>
-                        <h1>{item.title}</h1>
-                        <p>{item._id}</p>
-                    </div>
-                </Link> */}
+                <div key={singleMakeup._id}>
+                    <h1>{singleMakeup.title}</h1>
+                <Link to={`/makeup/${singleMakeup._id}`}><button >link??</button></Link>
+            </div>
 
-                    {/* <button>click<Link path={`/${item._id}`} key={item._id}  /></button> */}
-                    {/* <button>click<Link to={`/${item._id}`} key={item._id}  /></button> */}
-                    <Link to={`/makeup/${item._id}`}><button>link??</button></Link>
-        
-                </div>
-
-                // <div key={item._id}>
-                //     <h1>{item.title}</h1>
-                // </div>
-            )
-        }) 
-        }
     </>
   )
 }

@@ -53,8 +53,10 @@ function App() {
       <div className='App'>
         <Routes>
           <Route exact path='/' element={<Home />} />
-          {/* <Route exact path='/makeup' element={<Makeup/>} /> */}
-          <Route path='/:makeupId' element={<ItemDetail />} />
+          <Route exact path='/makeup' element={<Makeup/>} />
+          {/* <Route path='/:makeupId' element={<ItemDetail />} /> */}
+          <Route path='/makeup/:makeupId' element={<ItemDetail />} />
+
           <Route exact path='/cart' element={<Cart />} />
         </Routes>
         <Header />
