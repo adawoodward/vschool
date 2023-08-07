@@ -38,9 +38,10 @@ const ItemDetail = () => {
                     </div>
                 </Link> */}
 
-                    <button>click<Link path={`/makeup/${item._id}`} key={item._id}  /></button>
-              
-           
+                    {/* <button>click<Link path={`/${item._id}`} key={item._id}  /></button> */}
+                    {/* <button>click<Link to={`/${item._id}`} key={item._id}  /></button> */}
+                    <Link to={`/makeup/${item._id}`}><button>link??</button></Link>
+        
                 </div>
 
                 // <div key={item._id}>

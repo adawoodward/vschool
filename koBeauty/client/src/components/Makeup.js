@@ -12,7 +12,7 @@ export default function Makeup(props) {
                 <h2>{brand}</h2>
                 <h3>{category}</h3>
                 
-                {/* <Link to={`/makeup/${_id}`}><button>CLICK</button></Link> */}
+                <Link to={`/makeup/${_id}`}><button>CLICK</button></Link>
               
             </>
         </div>
