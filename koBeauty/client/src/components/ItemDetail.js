@@ -13,8 +13,8 @@ const ItemDetail = () => {
     console.log(singleMakeup)
 
     const fetchMakeup = () => {
-        // axios.get(`makeup/${makeupId}`)
-        axios.get("makeup/")
+        axios.get(`/${makeupId}`)
+        // axios.get("/makeup")
         .then(res => setSingleMakeup(res.data))
         .catch(err => console.log(err.response))
     }
@@ -28,12 +28,21 @@ const ItemDetail = () => {
         <div>Make-up items????</div>
         { singleMakeup?.map(item => {
             return (
-                <Link path={`/makeup/${item._id}`} >
-                    <div key={item._id}>
+                <div key={item._id}>
+                <h1>{item.title}</h1>
+               
+                {/* <Link path={`/makeup/${item._id}`} key={item._id} >
+                    <div>
                         <h1>{item.title}</h1>
                         <p>{item._id}</p>
                     </div>
-                </Link>
+                </Link> */}
+
+                    <button>click<Link path={`/makeup/${item._id}`} key={item._id}  /></button>
+              
+           
+                </div>
+
                 // <div key={item._id}>
                 //     <h1>{item.title}</h1>
                 // </div>
