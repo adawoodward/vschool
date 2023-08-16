@@ -5,7 +5,7 @@ import Cart from './components/Cart'
 import ItemDetail from './components/ItemDetail'
 import Footer from './components/Footer'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
-import Makeup from './components/Makeup.js'
+import List from './components/List.js'
 import axios from 'axios'
 
 
@@ -30,6 +30,8 @@ function App() {
     getMakeups()
   }, [])
 
+  console.log(makeups)
+
   function handleFilter(e) {
     if (e.target.value === "reset") {
       getMakeups()
@@ -40,23 +42,22 @@ function App() {
     }
   }
 
-  function deleteMakeup(makeupId) {
-    axios.delete(`/makeup/${makeupId}`)
-    .then(res => {
-      setMakeups(prevMakeups => prevMakeups.filter(makeup => makeup._id !== makeupId))
-    })
-    .catch(err => console.log(err))
-  }
+  // function deleteMakeup(makeupId) {
+  //   axios.delete(`/makeup/${makeupId}`)
+  //   .then(res => {
+  //     setMakeups(prevMakeups => prevMakeups.filter(makeup => makeup._id !== makeupId))
+  //   })
+  //   .catch(err => console.log(err))
+  // }
 
   return (
       <BrowserRouter>
       <div className='App'>
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route exact path='/makeup' element={<Makeup/>} />
+          <Route exact path='/makeup' element={<List />} />
           {/* <Route path='/:makeupId' element={<ItemDetail />} /> */}
           <Route path='/makeup/:makeupId' element={<ItemDetail />} />
-
           <Route exact path='/cart' element={<Cart />} />
         </Routes>
         <Header />
@@ -70,10 +71,10 @@ function App() {
             <option value="Makeup-tools">Makeup-tools</option>
           </select>
         { makeups?.map(makeup => 
-          <Makeup 
+          <List 
           {...makeup}
           key={makeup.title}
-          deleteMakeup={deleteMakeup}
+          // deleteMakeup={deleteMakeup}
         // editMakeup={editMakeup}
         />) }
         <Footer />

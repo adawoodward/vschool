@@ -1,26 +1,22 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 // import Makeup from './Makeup'
 
 const ItemDetail = () => {
     const { makeupId } = useParams()
     // const { _id } = useParams()
+    const [product, setProduct] = useState([])
+    const navigate = useNavigate()
 
-    const [singleMakeup, setSingleMakeup] = useState([])
+    console.log(product)
 
-    const [detail, setDetail] = useState({})
-
-
-    console.log(singleMakeup)
-
-
-    const fetchMakeup = (makeupId) => {
+    const fetchMakeup = () => {
         // axios.get(`/${makeupId}`)
-        axios.get("/makeup")
+        axios.get(`/makeup/${makeupId}`)
         .then(res => {
             console.log(res)
-            setSingleMakeup(res.data)
+            setProduct(res.data)
         })
         .catch(err => console.log(err.response))
     }
@@ -29,27 +25,13 @@ const ItemDetail = () => {
         fetchMakeup()
     }, [])
 
-    const handleClick = (makeupId) => {
-        axios.get(`/${makeupId}`)
-        .then((res) => {
-            console.log(res.data)
-            setDetail(res.data);
-        })
-        .catch(err => console.log(err.response))
-    };
-
-    useEffect(() => {
-        handleClick()
-    }, [])
-
-
   return (
     <>
-        <div>Make-up items????</div>
-                <div key={singleMakeup._id}>
-                    <h1>{singleMakeup.title}</h1>
-                <Link to={`/makeup/${singleMakeup._id}`}><button >link??</button></Link>
-            </div>
+    <div className='container'>
+        <h1>Detail Page: {product.makeupId}</h1>
+        <div>{product.title}</div>
+        <div>{product.brand}</div>
+    </div>
 
     </>
   )
