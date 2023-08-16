@@ -16,7 +16,7 @@ export default function List(props) {
         getProducts()
       }, [])
 
-      console.log(products.makeupId)
+      console.log(products._id)
 
     // const { title, brand, category, _id } = props
 

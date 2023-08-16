@@ -4,8 +4,8 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 // import Makeup from './Makeup'
 
 const ItemDetail = () => {
-    const { makeupId } = useParams()
-    // const { _id } = useParams()
+    // const { makeupId } = useParams()
+    const { _id } = useParams()
     const [product, setProduct] = useState([])
     const navigate = useNavigate()
 
@@ -13,7 +13,8 @@ const ItemDetail = () => {
 
     const fetchMakeup = () => {
         // axios.get(`/${makeupId}`)
-        axios.get(`/makeup/${makeupId}`)
+        // axios.get(`/makeup/${makeupId}`)
+        axios.get(`/makeup/${_id}`)
         .then(res => {
             console.log(res)
             setProduct(res.data)
