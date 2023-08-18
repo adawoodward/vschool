@@ -60,7 +60,7 @@ function App() {
           <Route exact path='/cart' element={<Cart />} />
         </Routes>
         <Header />
-        <h4>Filter by Category</h4>
+        {/* <h4>Filter by Category</h4>
           <select onChange={handleFilter} className="filter-form">
             <option value="reset">All Makeup items</option>
             <option value="Eyes">Eyes</option>
@@ -75,7 +75,7 @@ function App() {
           key={makeup.title}
           // deleteMakeup={deleteMakeup}
           // editMakeup={editMakeup}
-        />) }
+        />) } */}
         <Footer />
       </div>
       </BrowserRouter>

@@ -26,10 +26,11 @@ export default function List(props) {
             <>
             <h1>List Page</h1>
             {products.map((product) => (
-                <div key={product._id} className='product-card'>
+                <div key={product.title} className='product-card'>
                 <h1>Title: {product.title}</h1>
                 <h2>Brand: {product.brand}</h2>
                 <h3>Category: {product.category}</h3>
+                <p>ID: {product._id}</p>
                 <Link to={`/makeup/${product._id}`}>
                     <div className='btn'>View Details</div>
                 </Link>

@@ -6,14 +6,12 @@ import List from './List'
 const ItemDetail = () => {
     // const { makeupId } = useParams()
     const { _id } = useParams()
-    const [product, setProduct] = useState([])
+    // const [product, setProduct] = useState([])
+    const [product, setProduct] = useState({})
+
     const navigate = useNavigate()
 
-    console.log(product)
-
     const fetchMakeup = () => {
-        // axios.get(`/${makeupId}`)
-        // axios.get(`/makeup/${makeupId}`)
         axios.get(`/makeup/${_id}`)
         .then(res => {
             console.log(res)
@@ -26,12 +24,20 @@ const ItemDetail = () => {
         fetchMakeup()
     }, [])
 
+    console.log(product)
+
   return (
     <>
-    <div className='container'>
-        <h1>Detail Page: {product.makeupId}</h1>
-        <div>{product.title}</div>
-        <div>{product.brand}</div>
+    <div className='detail-container'>
+        <h1>Detail Page</h1>
+        <p>{product._id}</p>
+        {/* {product?.map((item) => (
+            <div key={item._id}>
+                <h1>Detail Page: {item._id}</h1>
+                <div>{item.title}</div>
+                <div>{item.brand}</div>
+            </div>
+        ))} */}
     </div>
 
     </>
