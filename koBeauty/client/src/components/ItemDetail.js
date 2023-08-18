@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
-// import Makeup from './Makeup'
+import List from './List'
 
 const ItemDetail = () => {
     // const { makeupId } = useParams()

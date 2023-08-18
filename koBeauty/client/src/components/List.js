@@ -20,13 +20,15 @@ export default function List(props) {
 
     // const { title, brand, category, _id } = props
 
+
     return (
         <div className='list'>
             <>
+            <h1>List Page</h1>
             {products.map((product) => (
                 <div key={product._id} className='product-card'>
                 <h1>Title: {product.title}</h1>
-                {/* <h2>Brand: {product.brand}</h2> */}
+                <h2>Brand: {product.brand}</h2>
                 <h3>Category: {product.category}</h3>
                 <Link to={`/makeup/${product._id}`}>
                     <div className='btn'>View Details</div>

@@ -35,6 +35,6 @@ app.use((err, req, res, next) => {
     return res.send({errMsg: err.message})
 })
 
-app.listen(9007, () => {
-    console.log("The server is running on Port 9007")
+app.listen(7300, () => {
+    console.log("The server is running on Port 7300")
 })
