@@ -52,8 +52,6 @@ const Home = () => {
     <List 
     {...makeup}
     key={makeup.title}
-    // deleteMakeup={deleteMakeup}
-    // editMakeup={editMakeup}
   />) }
     </>
   

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import ItemDetail from './ItemDetail'
 
 export default function List(props) {
     const [products, setProducts] = useState([])

@@ -11,6 +11,15 @@ makeupRouter.get("/", (req, res, next) => {
     })
 })
 
+makeupRouter.get("/:id", (req, res, next) => {
+    Makeup.findById(req.params.id)
+    .then((makeups) => res.status(200).send(makeups))
+    .catch((err) => {
+        res.status(500)
+        return next(err)
+    })
+})
+
 // makeupRouter.get("/makeup", (req, res, next) => {
 //     Makeup.findById()
 //     .then((makeups) => res.status(200).send(makeups))
@@ -48,8 +57,8 @@ makeupRouter.post("/", (req, res, next) => {
     })
 })
 
-makeupRouter.delete("/:makeupId", (req, res) => {
-    Makeup.findOneAndDelete({_id: req.params.makeupId})
+makeupRouter.delete("/:id", (req, res) => {
+    Makeup.findOneAndDelete({_id: req.params.id})
     .then((deletedItem) => res.status(200).send(`Successfully deleted ${deletedItem.title} from the database!`))
     .catch((err) => {
         res.status(500)
@@ -57,7 +66,7 @@ makeupRouter.delete("/:makeupId", (req, res) => {
     })
 })
 
-makeupRouter.get("/:makeupId", (req, res, next) => {
+makeupRouter.get("/:id", (req, res, next) => {
     Makeup.findById({_id})
     .then((item) => res.status(200).send(item))
     .catch((err) => {
@@ -66,9 +75,9 @@ makeupRouter.get("/:makeupId", (req, res, next) => {
     })
 })
 
-makeupRouter.put("/:makeupId", (req, res, next) => {
+makeupRouter.put("/:id", (req, res, next) => {
     Makeup.findOneAndUpdate(
-        {_id: req.params.makeupId},
+        {_id: req.params.id},
         req.body,
         {new: true}
     )
