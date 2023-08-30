@@ -70,6 +70,6 @@ app.use((err, req, res, next) => {
 
 // Server Listen //
     // 1: PORT 2: CB (CALLBACK FUNCTION)
-app.listen(9000, () => {
-    console.log("The server is running on Port 9000")
+app.listen(7220, () => {
+    console.log("The server is running on Port 7220")
 })

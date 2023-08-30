@@ -15,7 +15,8 @@ const makeupSchema = new Schema({
         type: String,
         require: true,
         enum: ['Face', 'Eyes', 'Lips', 'Cheeks', 'Makeup-tools']
-    }
+    },
+    _id: { type: String, required: true }
 })
 
 module.exports = mongoose.model("Makeup", makeupSchema)

@@ -8,7 +8,6 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import List from './components/List.js'
 import axios from 'axios'
 
-
 function App() {
   const [makeups, setMakeups] = useState([])
 
