@@ -1,22 +1,38 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import List from './List'
+import { useParams } from 'react-router-dom'
 
-const ItemDetail = () => {
+const ItemDetail = ({products}) => {
     // const { makeupId } = useParams()
-    const { _id } = useParams()
-    // const [product, setProduct] = useState([])
+    const { id } = useParams()
     const [product, setProduct] = useState({})
 
+    // useEffect(() => {
+    //     const fetch = async () => {
+    //         try {
+    //             const { data } = await axios.get(`/makeup/${id}`)
+    //             res.json(data)
+    //             setProduct(data)
+    //             console.log(product)
+    //         } catch (err) {
+    //             console.error(err)
+    //         }
+    //     }
+    //     fetch()
+    // }, [])
+
     const fetchMakeup = () => {
-        // axios.get(`/makeup/${product._id}`)
-        axios.get(`/makeup/${_id}`)
+        axios.get(`/makeup/${product.id}`)
+        // axios.get(`/makeup/${id}`)
         .then(res => {
             console.log(res)
             console.log(res.data)
+            res.json()
             setProduct(res.data)
         })
+        // .then(data => {
+        //     setProduct(data)
+        // })
         .catch(err => console.log(err.response))
     }
 
@@ -24,16 +40,29 @@ const ItemDetail = () => {
         fetchMakeup()
     }, [])
 
-    console.log(product._id)
-    console.log(product.title)
+    console.log(product)
+
+    // console.log(product._id)
+    // console.log(product.title)
     
 
   return (
     <>
     <div className='detail-container'>
         <h1>Detail Page</h1>
-        <div>{product.title}</div>
-        <p>{product._id}</p>
+        <div>Title: {product.title}</div>
+        <p>ID: {product.item} </p>
+        {/* <div>
+            { products?.product.find(item => item.id === id).map((item, i) => 
+                (
+                    <>
+                    <div key={i}>
+                        {item.title}
+                    </div>
+                    </>
+                )
+            ) }
+        </div> */}
         {/* {product?.map((item) => (
             <div key={item._id}>
                 <h1>Detail Page: {item._id}</h1>

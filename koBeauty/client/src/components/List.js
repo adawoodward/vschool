@@ -5,17 +5,30 @@ import ItemDetail from './ItemDetail'
 
 export default function List(props) {
     const [products, setProducts] = useState([])
-    const navigate = useNavigate()
 
-    function getProducts() {
-        axios.get("/makeup")
-          .then(res => setProducts(res.data))
-          .catch(err => console.log(err.response))
-      }
-
-      useEffect(() => {
+    useEffect(() => {
+        const getProducts = async () => {
+        try {
+            const { data } = await axios.get('/makeup')
+            setProducts(data)
+        } catch (err) {
+            console.error(err)
+        }
+        }
         getProducts()
-      }, [])
+    }, [])
+
+
+
+    // function getProducts() {
+    //     axios.get("/makeup")
+    //       .then(res => setProducts(res.data))
+    //       .catch(err => console.log(err.response))
+    //   }
+
+    //   useEffect(() => {
+    //     getProducts()
+    //   }, [])
 
       console.log(products._id)
 
@@ -26,14 +39,19 @@ export default function List(props) {
         <div className='list'>
             <>
             <h1>List Page</h1>
-            {products.map((product) => (
+            {products?.map((product) => (
                 <div key={product.title} className='product-card'>
                 <h1>Title: {product.title}</h1>
                 <h2>Brand: {product.brand}</h2>
                 <h3>Category: {product.category}</h3>
                 <p>ID: {product._id}</p>
-                <Link to={`/makeup/${product._id}`}>
-                    <div className='btn'>View Details</div>
+                <Link to={`/makeup/${product.id}`}>
+                    <ItemDetail
+                        key={product.id}
+                        title={product.title}
+                        id={product.id}
+                    />
+                    {/* <div className='btn'>View Details</div> */}
                 </Link>
                 </div>
 

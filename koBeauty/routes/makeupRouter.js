@@ -1,7 +1,10 @@
 const express = require('express')
 const makeupRouter = express.Router()
 const Makeup = require('../models/makeup')
-const ObjectId = require('mongodb').ObjectId
+const ObjectId = require('mongodb').ObjectId;
+
+// const id = new ObjectId(objectIdString);
+// const ObjectId = require('mongodb').ObjectId
 // const { ObjectId } = require('mongodb')
 // const id = new ObjectId()
 // console.log(id)
@@ -17,42 +20,64 @@ makeupRouter.get("/", (req, res, next) => {
 
 // makeupRouter.get("/makeup/:id", (req, res, next) => {
     makeupRouter.get("/:id", (req, res, next) => {
-        // Makeup.findById({_id})
-        const id = req.params.id
+        // const id = req.params.id
 
-        // Makeup.findOne({_id: Object(id)})
-        // Makeup.findById(id)
-        // .then((result) => {
-        //     console.log(result)
-        // })
-        // .catch((err) => {
-        //     console.log(err)
-        // })
-
-        // Makeup.findById(id)
-        // .lean().exec(function (err, results) {
-        //     if (err) return console.error(err)
-        //     try {
-        //         console.log(id)
-        //         console.log(results)
-        //     } catch (error) {
-        //         console.log("error getting results")
-        //         console.log(error)
-        //     }
-        // })
-
-
-        // Makeup.findById({_id})
-        Makeup.findOne({_id: id})
-        .then((item) => res.status(200).send(item))
-        console.log(id)
+        Makeup.findOne({_id: req.params.id})
+        .then(item => 
+        {
+            console.log(item)
+            console.log(item.id)
+            res.status(200).json({item})
+        })
         .catch((err) => {
             res.status(500)
             return next(err)
         })
+
+
+        // const { id } = req.params
+        // // Makeup.findOne({_id: req.params.id})
+        // // Makeup.findOne({ _id: id })
+        // // Makeup.findById({_id})
+        // // Makeup.find({ _id: req.params.id })
+        // Makeup.findById({_id: id})
+        // .then(product => {
+        //     console.log(product)
+        //     res.status(200).json({product})
+        // }) 
+        // .catch((err) => {
+        //     res.status(500)
+        //     return next(err)
+        // })
+        // console.log(product.id)
+
+        // Makeup.findById({_id})
+      
+        // const product = await Makeup.findById({ _id: req.params.id })
+        // res.json(product)
+
+        // Makeup.find({ _id: mongoose.ObjectId(id) })
+        // Makeup.findOne({ _id: id })
+
+        // const requestedId = req.params.id
+        // const requestedId = req.params
+
+        // Makeup.findById({_id: requestedId})
+        // .then((item) => res.status(200).send(item))
+        // .catch((err) => {
+        //     res.status(500)
+        //     return next(err)
+        // })
+        // console.log(requestedId)
+        // console.log(id)
+
+
+        // works
+        // const { id } = req.params
+        // await Makeup.findById({_id: id})
     })
 
-// makeupRouter.get("/:id", (req, res, next) => {
+// makeupRouter.get("/makeup/:id", (req, res, next) => {
 //     // Makeup.findById(req.params.id)
 //     // console.log(req.params)
 //     // const id = req.params.id
