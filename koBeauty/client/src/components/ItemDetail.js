@@ -51,7 +51,7 @@ const ItemDetail = ({products}) => {
     <div className='detail-container'>
         <h1>Detail Page</h1>
         <div>Title: {product.title}</div>
-        <p>ID: {product.item} </p>
+        <p>ID: {product.id} </p>
         {/* <div>
             { products?.product.find(item => item.id === id).map((item, i) => 
                 (

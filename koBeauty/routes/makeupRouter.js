@@ -22,12 +22,14 @@ makeupRouter.get("/", (req, res, next) => {
     makeupRouter.get("/:id", (req, res, next) => {
         // const id = req.params.id
 
+        // Makeup.findById(req.params.id)
         Makeup.findOne({_id: req.params.id})
-        .then(item => 
+        .then(product => 
         {
-            console.log(item)
-            console.log(item.id)
-            res.status(200).json({item})
+            console.log(product)
+            console.log(product._id)
+            res.status(200).json(product)
+            // res.status(200).json({item})
         })
         .catch((err) => {
             res.status(500)
