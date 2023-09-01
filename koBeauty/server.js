@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const {v4: uuidv4} = require('uuid')
 const mongoose = require('mongoose')
 // const id = mongoose.Types.ObjectId(objectIdString);
+// if( !mongoose.Types.ObjectId.isValid(id) ) return false;
 
 
 app.use(express.json()) // Looks for a request body, and turns it into 'req.body'

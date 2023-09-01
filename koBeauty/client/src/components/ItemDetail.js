@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-const ItemDetail = ({products}) => {
+const ItemDetail = () => {
     // const { makeupId } = useParams()
     const { id } = useParams()
     const [product, setProduct] = useState({})
@@ -22,17 +22,17 @@ const ItemDetail = ({products}) => {
     // }, [])
 
     const fetchMakeup = () => {
-        axios.get(`/makeup/${product.id}`)
+        axios.get(`/makeup/${id}`)
         // axios.get(`/makeup/${id}`)
         .then(res => {
             console.log(res)
             console.log(res.data)
             res.json()
-            setProduct(res.data)
         })
-        // .then(data => {
-        //     setProduct(data)
-        // })
+        .then(data => {
+            setProduct(data)
+            console.log(data)
+        })
         .catch(err => console.log(err.response))
     }
 

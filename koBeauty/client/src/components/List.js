@@ -45,11 +45,11 @@ export default function List(props) {
                 <h2>Brand: {product.brand}</h2>
                 <h3>Category: {product.category}</h3>
                 <p>ID: {product._id}</p>
-                <Link to={`/makeup/${product.id}`}>
+                <Link to={`/makeup/${product._id}`}>
                     <ItemDetail
-                        key={product.id}
+                        key={product._id}
                         title={product.title}
-                        id={product.id}
+                        id={product._id}
                     />
                     {/* <div className='btn'>View Details</div> */}
                 </Link>
