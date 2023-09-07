@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 const ItemDetail = () => {
     // const { makeupId } = useParams()
     const { id } = useParams()
-    const [product, setProduct] = useState({})
+    const [item, setItem] = useState({})
 
     // useEffect(() => {
     //     const fetch = async () => {
@@ -27,12 +27,23 @@ const ItemDetail = () => {
         .then(res => {
             console.log(res)
             console.log(res.data)
-            res.json()
+            // const data = res.data
+            // const data = res.data
+            return res.json()
+            // return setItem({data})
+            // this.setProduct(res.data)
         })
+        // .then(response => this.setItem(response))
         .then(data => {
-            setProduct(data)
             console.log(data)
+            return setItem(data)
         })
+
+        // .then((data) => {
+        //     console.log(data)
+        //     this.setItem({data})
+        //     console.log(item)
+        // })
         .catch(err => console.log(err.response))
     }
 
@@ -40,7 +51,7 @@ const ItemDetail = () => {
         fetchMakeup()
     }, [])
 
-    console.log(product)
+    console.log(item)
 
     // console.log(product._id)
     // console.log(product.title)
@@ -50,8 +61,9 @@ const ItemDetail = () => {
     <>
     <div className='detail-container'>
         <h1>Detail Page</h1>
-        <div>Title: {product.title}</div>
-        <p>ID: {product.id} </p>
+        <div>Title: {item.title}</div>
+        <p>ID: {item._id} </p>
+
         {/* <div>
             { products?.product.find(item => item.id === id).map((item, i) => 
                 (
