@@ -29,7 +29,8 @@ makeupRouter.get("/", (req, res, next) => {
         {
             console.log(product)
             console.log(product._id)
-            res.status(200).json(product)
+            res.status(200).send(product)
+            // res.status(200).json(product)
             // res.status(200).json({item})
         })
         .catch((err) => {

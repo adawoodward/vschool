@@ -14,16 +14,30 @@ function App() {
   function getMakeups() {
     axios.get("/makeup")
       .then(res => setMakeups(res.data))
-      .catch(err => console.log(err.response))
+      .catch(err => console.log(err.response.data.errMsg))
   }
 
-  function addMakeup(newMakeup) {
-    axios.post("/makeup", newMakeup) 
-      .then(res => {
-        setMakeups(prevMakeups => [...prevMakeups, res.data])
-      })
-      .catch(err => console.log(err))
-  }
+//   function fetchMakeup(id) {
+//     axios.get(`/makeup/${id}`)
+//     .then((res) => {
+//         console.log(res)
+//         console.log(res.data)
+//         setMakeups(prevMakeups => prevMakeups.filter(item => item._id !== id))
+//     })
+//     .catch(err => console.log(err.response))
+// }
+
+// useEffect(() => {
+//     fetchMakeup()
+// }, [])
+
+  // function addMakeup(newMakeup) {
+  //   axios.post("/makeup", newMakeup) 
+  //     .then(res => {
+  //       setMakeups(prevMakeups => [...prevMakeups, res.data])
+  //     })
+  //     .catch(err => console.log(err))
+  // }
 
   useEffect(() => {
     getMakeups()
@@ -59,6 +73,10 @@ function App() {
           <Route exact path='/cart' element={<Cart />} />
         </Routes>
         <Header />
+        {/* {makeups.map(item =>
+          <ItemDetail
+            key={item._id} />
+          )} */}
         {/* <h4>Filter by Category</h4>
           <select onChange={handleFilter} className="filter-form">
             <option value="reset">All Makeup items</option>

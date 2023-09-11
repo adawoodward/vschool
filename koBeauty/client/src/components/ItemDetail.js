@@ -23,35 +23,23 @@ const ItemDetail = () => {
 
     const fetchMakeup = () => {
         axios.get(`/makeup/${id}`)
-        // axios.get(`/makeup/${id}`)
-        .then(res => {
+        .then((res) => {
             console.log(res)
             console.log(res.data)
-            // const data = res.data
-            // const data = res.data
-            return res.json()
-            // return setItem({data})
-            // this.setProduct(res.data)
+            console.log("data: ", res.json())
+            return res.json(res.data)
         })
-        // .then(response => this.setItem(response))
-        .then(data => {
+        .then((data) => {
             console.log(data)
-            return setItem(data)
+            setItem(data)
         })
-
-        // .then((data) => {
-        //     console.log(data)
-        //     this.setItem({data})
-        //     console.log(item)
-        // })
         .catch(err => console.log(err.response))
     }
+    console.log(item)
 
     useEffect(() => {
         fetchMakeup()
     }, [])
-
-    console.log(item)
 
     // console.log(product._id)
     // console.log(product.title)
@@ -62,7 +50,7 @@ const ItemDetail = () => {
     <div className='detail-container'>
         <h1>Detail Page</h1>
         <div>Title: {item.title}</div>
-        <p>ID: {item._id} </p>
+        <p>ID: {item.id} </p>
 
         {/* <div>
             { products?.product.find(item => item.id === id).map((item, i) => 
