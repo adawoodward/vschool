@@ -7,28 +7,14 @@ const ItemDetail = () => {
     // const { title } = props
     const { id } = useParams()
     // const { id } = req.query
-    // const [item, setItem] = useState({})
-    const [itemDetails, setItemDetails] = useState({})
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         try {
-    //             const { data } = await axios.get(`/makeup/${id}`)
-    //             res.json(data)
-    //             setProduct(data)
-    //             console.log(product)
-    //         } catch (err) {
-    //             console.error(err)
-    //         }
-    //     }
-    //     fetch()
-    // }, [])
+    const [itemDetail, setItemDetail] = useState({})
 
     const fetchMakeup = () => {
         axios.get(`/makeup/${id}`)
         .then((res) => {
             // console.log(res)
             // console.log(res.data)
-            setItemDetails(res.data)
+            setItemDetail(res.data)
             return res.status(200).json(res.data)
         })
         .catch(err => console.error(err.response))
@@ -46,7 +32,9 @@ const ItemDetail = () => {
     <>
     <div className='detail-container'>
         <h1>Detail Page</h1>
-        <div>Title: {itemDetails?.title}</div>
+        <div>Title: {itemDetail?.title}</div>
+        <div>Brand: {itemDetail?.brand}</div>
+        <div>Category: {itemDetail?.category}</div>
         <p>ID: {id} </p> 
 
         {/* <div>

@@ -48,11 +48,11 @@ const Home = () => {
       <option value="Face">Face</option>
       <option value="Makeup-tools">Makeup-tools</option>
     </select>
-  { makeups?.map(makeup => 
+  {/* { makeups?.map(makeup => 
     <List 
     {...makeup}
     key={makeup.title}
-  />) }
+  />) } */}
     </>
   
   )

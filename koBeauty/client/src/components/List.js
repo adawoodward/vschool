@@ -4,6 +4,7 @@ import axios from 'axios'
 import ItemDetail from './ItemDetail'
 
 export default function List(props) {
+    
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -49,6 +50,8 @@ export default function List(props) {
                     <ItemDetail
                         key={product._id}
                         title={product.title}
+                        brand={product.brand}
+                        category={product.category}
                         id={product._id}
                     />
                     {/* <div className='btn'>View Details</div> */}
