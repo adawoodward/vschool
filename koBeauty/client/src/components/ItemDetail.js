@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+// import { ObjectId } from 'mongodb'
 import { useParams } from 'react-router-dom'
 
 const ItemDetail = () => {
-    // const { makeupId } = useParams()
+    // const { title } = props
     const { id } = useParams()
-    const [item, setItem] = useState({})
-
+    // const { id } = req.query
+    // const [item, setItem] = useState({})
+    const [itemDetails, setItemDetails] = useState({})
     // useEffect(() => {
     //     const fetch = async () => {
     //         try {
@@ -24,18 +26,13 @@ const ItemDetail = () => {
     const fetchMakeup = () => {
         axios.get(`/makeup/${id}`)
         .then((res) => {
-            console.log(res)
-            console.log(res.data)
-            console.log("data: ", res.json())
-            return res.json(res.data)
+            // console.log(res)
+            // console.log(res.data)
+            setItemDetails(res.data)
+            return res.status(200).json(res.data)
         })
-        .then((data) => {
-            console.log(data)
-            setItem(data)
-        })
-        .catch(err => console.log(err.response))
+        .catch(err => console.error(err.response))
     }
-    console.log(item)
 
     useEffect(() => {
         fetchMakeup()
@@ -49,8 +46,8 @@ const ItemDetail = () => {
     <>
     <div className='detail-container'>
         <h1>Detail Page</h1>
-        <div>Title: {item.title}</div>
-        <p>ID: {item.id} </p>
+        <div>Title: {itemDetails?.title}</div>
+        <p>ID: {id} </p> 
 
         {/* <div>
             { products?.product.find(item => item.id === id).map((item, i) => 

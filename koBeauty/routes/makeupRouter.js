@@ -23,6 +23,7 @@ makeupRouter.get("/", (req, res, next) => {
         // const id = req.params.id
 
         // Makeup.findById(req.params.id)
+        console.log(req.params)
         console.log(req.params.id)
         Makeup.findOne({_id: req.params.id})
         .then(product => 
