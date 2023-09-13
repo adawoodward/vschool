@@ -30,7 +30,7 @@ export default function List(props) {
         getProducts()
       }, [])
 
-    // const { title, brand, category, _id } = props
+    const { title, brand, category, _id } = props
 
     function handleFilter(e) {
         if (e.target.value === "reset") {
