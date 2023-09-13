@@ -17,51 +17,11 @@ function App() {
       .catch(err => console.log(err.response.data.errMsg))
   }
 
-//   function fetchMakeup(id) {
-//     axios.get(`/makeup/${id}`)
-//     .then((res) => {
-//         console.log(res)
-//         console.log(res.data)
-//         setMakeups(prevMakeups => prevMakeups.filter(item => item._id !== id))
-//     })
-//     .catch(err => console.log(err.response))
-// }
-
-// useEffect(() => {
-//     fetchMakeup()
-// }, [])
-
-  // function addMakeup(newMakeup) {
-  //   axios.post("/makeup", newMakeup) 
-  //     .then(res => {
-  //       setMakeups(prevMakeups => [...prevMakeups, res.data])
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
   useEffect(() => {
     getMakeups()
   }, [])
 
   console.log(makeups)
-
-  function handleFilter(e) {
-    if (e.target.value === "reset") {
-      getMakeups()
-    } else {
-      axios.get(`/makeup/search/category?category=${e.target.value}`)
-      .then(res => setMakeups(res.data))
-      .catch(err => console.log(err))
-    }
-  }
-
-  // function deleteMakeup(makeupId) {
-  //   axios.delete(`/makeup/${makeupId}`)
-  //   .then(res => {
-  //     setMakeups(prevMakeups => prevMakeups.filter(makeup => makeup._id !== makeupId))
-  //   })
-  //   .catch(err => console.log(err))
-  // }
 
   return (
       <BrowserRouter>
@@ -77,21 +37,10 @@ function App() {
           <ItemDetail
             key={item._id} />
           )} */}
-        {/* <h4>Filter by Category</h4>
-          <select onChange={handleFilter} className="filter-form">
-            <option value="reset">All Makeup items</option>
-            <option value="Eyes">Eyes</option>
-            <option value="Lips">lips</option>
-            <option value="Cheeks">Cheeks</option>
-            <option value="Face">Face</option>
-            <option value="Makeup-tools">Makeup-tools</option>
-          </select>
-        { makeups?.map(makeup => 
-          <List 
+        {/* { makeups?.map(makeup => 
+        <List 
           {...makeup}
           key={makeup.title}
-          // deleteMakeup={deleteMakeup}
-          // editMakeup={editMakeup}
         />) } */}
         <Footer />
       </div>
