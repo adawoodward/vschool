@@ -22,11 +22,7 @@ const ItemDetail = () => {
 
     useEffect(() => {
         fetchMakeup()
-    }, [])
-
-    // console.log(product._id)
-    // console.log(product.title)
-    
+    }, [])    
 
   return (
     <>
@@ -36,7 +32,6 @@ const ItemDetail = () => {
         <div>Brand: {itemDetail?.brand}</div>
         <div>Category: {itemDetail?.category}</div>
         <p>ID: {id} </p> 
-
         {/* <div>
             { products?.product.find(item => item.id === id).map((item, i) => 
                 (

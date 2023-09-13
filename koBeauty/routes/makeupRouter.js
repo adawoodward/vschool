@@ -39,44 +39,6 @@ makeupRouter.get("/", (req, res, next) => {
             return next(err)
         })
 
-
-        // const { id } = req.params
-        // // Makeup.findOne({_id: req.params.id})
-        // // Makeup.findOne({ _id: id })
-        // // Makeup.findById({_id})
-        // // Makeup.find({ _id: req.params.id })
-        // Makeup.findById({_id: id})
-        // .then(product => {
-        //     console.log(product)
-        //     res.status(200).json({product})
-        // }) 
-        // .catch((err) => {
-        //     res.status(500)
-        //     return next(err)
-        // })
-        // console.log(product.id)
-
-        // Makeup.findById({_id})
-      
-        // const product = await Makeup.findById({ _id: req.params.id })
-        // res.json(product)
-
-        // Makeup.find({ _id: mongoose.ObjectId(id) })
-        // Makeup.findOne({ _id: id })
-
-        // const requestedId = req.params.id
-        // const requestedId = req.params
-
-        // Makeup.findById({_id: requestedId})
-        // .then((item) => res.status(200).send(item))
-        // .catch((err) => {
-        //     res.status(500)
-        //     return next(err)
-        // })
-        // console.log(requestedId)
-        // console.log(id)
-
-
         // works
         // const { id } = req.params
         // await Makeup.findById({_id: id})
