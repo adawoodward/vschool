@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 const Header = () => {
     return (
         <div>
-            <div className="topnav">
+            {/* <div className="topnav">
                 <Link to="/">Shopping Cart</Link>
-            </div>
+            </div> */}
             <div className="search-container">
                 <form action="/action_page.php">
                 <input type="text" placeholder="Search a product or a brand.." name="search" />

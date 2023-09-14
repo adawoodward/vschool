@@ -123,4 +123,16 @@ makeupRouter.put("/:id", (req, res, next) => {
     })
 })
 
+// makeupRouter.get("/:randomId", (req, res, next) => {
+//     const randomId = req.params.randomId
+//     const foundRandom = Makeup.find(random => random._id = randomId)
+//     console.log(foundRandom)
+//     if (!foundRandom) {
+//     const error = new Error(`The item with id ${randomId} was not found!`)
+//     res.status(500)
+//     return next(error)
+//     }
+//     res.status(200).send(foundRandom)
+// })
+
 module.exports = makeupRouter

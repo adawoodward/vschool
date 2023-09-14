@@ -30,7 +30,7 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route exact path='/makeup' element={<List />} />
           <Route path='/makeup/:id' element={<ItemDetail />} />
-          <Route exact path='/cart' element={<Cart />} />
+          {/* <Route exact path='/cart' element={<Cart />} /> */}
         </Routes>
         <Header />
         {/* {makeups.map(item =>
