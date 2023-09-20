@@ -17,6 +17,10 @@ const makeupSchema = new Schema({
         require: true,
         enum: ['Face', 'Eyes', 'Lips', 'Cheeks', 'Makeup-tools']
     },
+    img: {
+        data: Buffer,
+        contentType: String
+    }
     // ratings:{
     //     type: mongoose.Mixed,
     //     // A mixed type object to handle ratings. Each star level is represented in the ratings object

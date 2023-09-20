@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import List from './components/List.js'
 import axios from 'axios'
+import FileBase64 from 'react-file-base64';
 
 function App() {
   const [makeups, setMakeups] = useState([])
@@ -42,6 +43,7 @@ function App() {
           {...makeup}
           key={makeup.title}
         />) } */}
+        <br></br>
         <Footer />
       </div>
       </BrowserRouter>
