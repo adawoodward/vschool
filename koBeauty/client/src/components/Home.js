@@ -39,6 +39,12 @@ const Home = () => {
 
     console.log(randomMakeup)
 
+    return (
+      <>
+      <div>Title: {randomTitle}</div>
+      <div>ID: {randomId}</div>
+      </>
+    )
     // const randomObject = makeups[Math.floor(Math.random() * makeups.length)]
     // // setRandomMakeup(randomObject)
     // return randomObject
@@ -60,9 +66,7 @@ const Home = () => {
   const [eyes, setEyes] = useState([])
 
   const fetchEyesCategory = () => {
-    axios.get(`/makeup/search/category?category=eyes`)
-      .then(res => setEyes(res.data))
-      .catch(err => console.log(err))
+
   }
 
   useEffect(() => {
@@ -74,16 +78,30 @@ const Home = () => {
       <h1>Home Page</h1>
       <div className='link-container'><Link to="/makeup">Makeup Product PAGE</Link></div>
 
-      <h2>Featured Product</h2>
-      <div>Title: Cat Eye Liner</div>
-      <div>ID: 64c2a26a3a5f36261f11248a</div>
+
+      <div>
+        <h3>BEST OF K-BEAUTY AWARDS</h3>
+        <p>Treat yourself to these award winning products!</p>
+      </div>
+      <div>
+        <h3>FALL ESSENTIALS</h3>
+        <p>Get the perfect items for your fall makeup trends!</p>
+      </div>
+      <div>
+        <h3>OUR STORY</h3>
+        <p>“Our hope is that learning about beauty from a Korean perspective will change the way you think about your skin and how you treat it.”</p>
+        <p>It matters to us what you put on your skin.
+That’s why we scour thousands of products, testing each one to ensure our curations are authentic, safe and provide exceptional results, helping you embrace your real skin.</p>
+      </div>
+
+
       <br></br>
       <Link to={`/makeup/${randomMakeup?._id}`}> <button>Detail</button> </Link>
       <br></br>
-      <button onClick={getRandomMakeup}>Today's highlight</button>
+      <button onClick={getRandomMakeup}>Our Pick For You</button>
       <br></br>
-      <div>Title: {randomMakeup?.title}</div>
-      <div>ID: {randomMakeup?._id}</div>
+      {/* <div>Title: {randomMakeup?.title}</div>
+      <div>ID: {randomMakeup?._id}</div> */}
       <br></br>
       <br></br>
       <div>
