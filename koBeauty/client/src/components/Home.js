@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import List from './List'
 import { Link } from "react-router-dom";
+import ItemDetail from './ItemDetail';
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
 
   const [randomMakeup, setRandomMakeup] = useState(makeups[0])
   console.log(randomMakeup)
+  // const [randomMakeup, setRandomMakeup] = useState({})
 
   const getRandomMakeup = () => {
     const randomNum = Math.floor(Math.random() * makeups.length)
@@ -34,85 +36,96 @@ const Home = () => {
     console.log(random)
     const randomTitle = makeups[randomNum]?.title
     const randomId = makeups[randomNum]?._id
-    // setRandomMakeup(random)
-    setRandomMakeup({title: randomTitle, _id: randomId})
-
+    const randomBrand = makeups[randomNum]?.brand
+    const randomCategory = makeups[randomNum]?.category
+    setRandomMakeup(random)
+    setRandomMakeup({
+      title: randomTitle, 
+      _id: randomId,
+      brand: randomBrand,
+      category: randomCategory
+    })
     console.log(randomMakeup)
-
-    return (
-      <>
-      <div>Title: {randomTitle}</div>
-      <div>ID: {randomId}</div>
-      </>
-    )
-    // const randomObject = makeups[Math.floor(Math.random() * makeups.length)]
-    // // setRandomMakeup(randomObject)
-    // return randomObject
-
-
-    // axios.get(`makeup/${random?._id}`)
-    // .then((res) => {
-    //   console.log(res.data)
-    //   setRandomMakeup(res.data)
-    //   return res.status(200).json(res.data)
-    // })
-    // .catch(err => console.error(err.response))
   }
 
   useEffect(() => {
     getRandomMakeup()
   }, [])
 
-  const [eyes, setEyes] = useState([])
-
-  const fetchEyesCategory = () => {
-
-  }
-
-  useEffect(() => {
-    fetchEyesCategory()
-  }, [])
-
   return (
     <div>
       <h1>Home Page</h1>
       <div className='link-container'><Link to="/makeup">Makeup Product PAGE</Link></div>
-
-
-      <div>
+      {/* <div>
         <h3>BEST OF K-BEAUTY AWARDS</h3>
         <p>Treat yourself to these award winning products!</p>
       </div>
       <div>
         <h3>FALL ESSENTIALS</h3>
         <p>Get the perfect items for your fall makeup trends!</p>
-      </div>
+      </div> */}
       <div>
         <h3>OUR STORY</h3>
         <p>“Our hope is that learning about beauty from a Korean perspective will change the way you think about your skin and how you treat it.”</p>
-        <p>It matters to us what you put on your skin.
-That’s why we scour thousands of products, testing each one to ensure our curations are authentic, safe and provide exceptional results, helping you embrace your real skin.</p>
+        <p>It matters to us what you put on your skin. That's why we scour thousands of products, testing each one to ensure our curations are authentic, safe and provide exceptional results, helping you embrace your real skin.</p>
       </div>
-
-
-      <br></br>
-      <Link to={`/makeup/${randomMakeup?._id}`}> <button>Detail</button> </Link>
-      <br></br>
-      <button onClick={getRandomMakeup}>Our Pick For You</button>
-      <br></br>
-      {/* <div>Title: {randomMakeup?.title}</div>
-      <div>ID: {randomMakeup?._id}</div> */}
       <br></br>
       <br></br>
       <div>
-        {eyes.map(eye => (
-          <div key={eye.category}>
-            <Link to={`/categories/${eye.category}`}><button>Eyes</button></Link>
-          </div>
-        ))}
+        <h3>Our Pick For You</h3>
       </div>
-    </div>
-  )
-}
+      <br></br>
+      <div>
+      <div>{randomMakeup?.title === undefined ? "SKINFOOD's Peach Cotton Multi Finish Powder" : `${randomMakeup?.brand}'s ${randomMakeup?.title}`}</div>
+
+
+      <button onClick={getRandomMakeup}>Click</button>
+      <div>{randomMakeup?.title === undefined ? <Link to='http://localhost:3001/makeup/64c3eb9f27a705f6011ed19a'><button>Detail</button></Link> : <Link to= {`/makeup/${randomMakeup?._id}`}> <button>Detail</button> </Link>} 
+      </div>
+      </div>
+      <br></br>
+      <br></br>
+      <h3>Our Best 3 Brands</h3>
+      <div className='brand-container'>
+      <div className='brand-column'>
+        <h3>LANEIGE</h3>
+        <div>
+          {makeups.map((item) => {
+            if (item.brand === "Laneige") {
+              console.log(item)
+              return <h4 key={item._id}>{item?.title}</h4>
+            } 
+            return null
+          })}
+        </div>
+        </div>
+        <div className='brand-column'>
+          <h3>SKINFOOD</h3>
+          <div>
+            {makeups.map((item) => {
+            if (item.brand === "SKINFOOD") {
+              console.log(item)
+              return <h4 key={item._id}>{item?.title}</h4>
+            } 
+            return null
+          })}
+          </div>
+        </div>
+        <div className='brand-column'>
+          <h3>Etude</h3>
+          <div>
+            {makeups.map((item) => {
+            if (item.brand === "Etude") {
+              console.log(item)
+              return <h4 key={item._id}>{item?.title}</h4>
+            } 
+            return null
+          })}
+          </div>
+        </div>
+        </div>
+        </div>
+    
+)}
 
 export default Home

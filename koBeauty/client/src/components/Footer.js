@@ -1,7 +1,10 @@
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <>
+      <div>KoBeaty</div>
+      <div>FIND US ON SOCIAL</div>
+    </>
   )
 }
 

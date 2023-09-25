@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import List from './components/List.js'
 import axios from 'axios'
+import './styling/style.css'
 import FileBase64 from 'react-file-base64';
 
 function App() {

@@ -1,0 +1,17 @@
+/* .brand-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+  } */
+
+
+.brand-container {
+    display: inline-flex;
+    gap: 15px;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 70%;
+}
