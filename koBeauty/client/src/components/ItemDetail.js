@@ -27,11 +27,15 @@ const ItemDetail = () => {
   return (
     <>
     <div className='detail-container'>
+        <br></br>
         <h1>Detail Page</h1>
+        <hr></hr>
+        <br></br>
         <div>Title: {itemDetail?.title}</div>
         <div>Brand: {itemDetail?.brand}</div>
         <div>Category: {itemDetail?.category}</div>
         <p>ID: {id} </p> 
+        <br></br>
     </div>
 
     </>
