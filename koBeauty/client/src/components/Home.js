@@ -76,13 +76,21 @@ const Home = () => {
       </div>
       <br></br>
       <div>
-      <div>{randomMakeup?.title === undefined ? "SKINFOOD's Peach Cotton Multi Finish Powder" : `${randomMakeup?.brand}'s ${randomMakeup?.title}`}</div>
-
-
-      <button onClick={getRandomMakeup}>Click</button>
-      <div>{randomMakeup?.title === undefined ? <Link to='http://localhost:3001/makeup/64c3eb9f27a705f6011ed19a'><button>Detail</button></Link> : <Link to= {`/makeup/${randomMakeup?._id}`}> <button>Detail</button> </Link>} 
+        <div>
+          <div>{randomMakeup?.title === undefined ? "SKINFOOD's Peach Cotton Multi Finish Powder" : `${randomMakeup?.brand}'s ${randomMakeup?.title}`}</div>
+          <div>{randomMakeup?.title === undefined ? <Link to='http://localhost:3001/makeup/64c3eb9f27a705f6011ed19a'><button>Detail</button></Link> : <Link to= {`/makeup/${randomMakeup?._id}`}> <button>Detail</button> </Link>} </div>
+          <button onClick={getRandomMakeup}>Next</button>
+        </div>
+        {/* {makeups.map((item, index) => {
+          return (
+            <div>
+              <h1>{item.title}</h1>
+              {index !== 2 && <h1>{item.title}</h1>}
+            </div>
+          )
+        })} */}
       </div>
-      </div>
+
       <br></br>
       <br></br>
       <h3>Our Best 3 Brands</h3>
