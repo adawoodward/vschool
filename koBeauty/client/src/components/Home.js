@@ -54,6 +54,7 @@ const Home = () => {
 
   return (
     <div>
+      <br></br>
       <h1>KoBeauty</h1>
       <br></br>
       <hr></hr>
