@@ -2,7 +2,7 @@
 const Footer = () => {
   return (
     <>
-      <div>KoBeaty</div>
+      <div>KoBeauty</div>
       <div>FIND US ON SOCIAL</div>
     </>
   )

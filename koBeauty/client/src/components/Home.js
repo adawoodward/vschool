@@ -86,7 +86,7 @@ const Home = () => {
           <br></br>
           <div>{randomMakeup?.title === undefined ? <Link to='http://localhost:3001/makeup/64c3eb9f27a705f6011ed19a'><button className='button-1' role='button'>Read More..</button></Link> : <Link to= {`/makeup/${randomMakeup?._id}`}> <button className='button-1' role='button'>Read More..</button> </Link>} </div>
           <br></br>
-          <button onClick={getRandomMakeup} className='button-1' role='button'>Something else?</button>
+          <button onClick={getRandomMakeup} className='button-1' role='button'>Something Else?</button>
           <br></br>
         </div>
         <br></br>
