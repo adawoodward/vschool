@@ -35,15 +35,6 @@ function App() {
           {/* <Route exact path='/cart' element={<Cart />} /> */}
         </Routes>
         <Header />
-        {/* {makeups.map(item =>
-          <ItemDetail
-            key={item._id} />
-          )} */}
-        {/* { makeups?.map(makeup => 
-        <List 
-          {...makeup}
-          key={makeup.title}
-        />) } */}
         <br></br>
         <Footer />
       </div>

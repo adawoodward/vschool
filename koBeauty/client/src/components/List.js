@@ -47,6 +47,7 @@ export default function List(props) {
         <div className='list'>
             <>
             <h1>List Page</h1>
+            <br></br>
             <select onChange={handleFilter} className="filter-form">
             <option value="reset">All Makeup items</option>
             <option value="Eyes">Eyes</option>
@@ -54,15 +55,17 @@ export default function List(props) {
             <option value="Cheeks">Cheeks</option>
             <option value="Face">Face</option>
             <option value="Makeup-tools">Makeup-tools</option>
-          </select>
+            </select>
+            <br></br>
+            <br></br>
             {products?.map((product) => (
                 <div key={product.title} className='product-card'>
-                <h1>Title: {product.title}</h1>
-                <h2>Brand: {product.brand}</h2>
+                <h2>Title: {product.title}</h2>
+                <h3>Brand: {product.brand}</h3>
                 <h3>Category: {product.category}</h3>
-                <p>ID: {product._id}</p>
+                {/* <p>ID: {product._id}</p> */}
                 <Link to={`/makeup/${product._id}`}>
-                    <button>Detail</button>
+                    <button className='button-1' >Detail</button>
                     {/* <ItemDetail
                         key={product._id}
                         title={product.title}
@@ -71,6 +74,7 @@ export default function List(props) {
                         id={product._id}
                     /> */}
                 </Link>
+                <hr></hr>
                 </div>
 
             ))}

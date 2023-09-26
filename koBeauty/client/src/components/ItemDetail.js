@@ -32,24 +32,6 @@ const ItemDetail = () => {
         <div>Brand: {itemDetail?.brand}</div>
         <div>Category: {itemDetail?.category}</div>
         <p>ID: {id} </p> 
-        {/* <div>
-            { products?.product.find(item => item.id === id).map((item, i) => 
-                (
-                    <>
-                    <div key={i}>
-                        {item.title}
-                    </div>
-                    </>
-                )
-            ) }
-        </div> */}
-        {/* {product?.map((item) => (
-            <div key={item._id}>
-                <h1>Detail Page: {item._id}</h1>
-                <div>{item.title}</div>
-                <div>{item.brand}</div>
-            </div>
-        ))} */}
     </div>
 
     </>

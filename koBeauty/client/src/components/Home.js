@@ -54,8 +54,11 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>KoBeauty</h1>
+      <br></br>
+      <hr></hr>
       <div className='link-container'><Link to="/makeup">Makeup Product PAGE</Link></div>
+      <hr></hr>
       {/* <div>
         <h3>BEST OF K-BEAUTY AWARDS</h3>
         <p>Treat yourself to these award winning products!</p>
@@ -64,23 +67,30 @@ const Home = () => {
         <h3>FALL ESSENTIALS</h3>
         <p>Get the perfect items for your fall makeup trends!</p>
       </div> */}
+      <br></br>
       <div>
         <h3>OUR STORY</h3>
         <p>“Our hope is that learning about beauty from a Korean perspective will change the way you think about your skin and how you treat it.”</p>
         <p>It matters to us what you put on your skin. That's why we scour thousands of products, testing each one to ensure our curations are authentic, safe and provide exceptional results, helping you embrace your real skin.</p>
       </div>
       <br></br>
-      <br></br>
+      <hr></hr>
       <div>
+        <br></br>
         <h3>Our Pick For You</h3>
       </div>
       <br></br>
       <div>
         <div>
           <div>{randomMakeup?.title === undefined ? "SKINFOOD's Peach Cotton Multi Finish Powder" : `${randomMakeup?.brand}'s ${randomMakeup?.title}`}</div>
-          <div>{randomMakeup?.title === undefined ? <Link to='http://localhost:3001/makeup/64c3eb9f27a705f6011ed19a'><button>Detail</button></Link> : <Link to= {`/makeup/${randomMakeup?._id}`}> <button>Detail</button> </Link>} </div>
-          <button onClick={getRandomMakeup}>Next</button>
+          <br></br>
+          <div>{randomMakeup?.title === undefined ? <Link to='http://localhost:3001/makeup/64c3eb9f27a705f6011ed19a'><button className='button-1' role='button'>Read More..</button></Link> : <Link to= {`/makeup/${randomMakeup?._id}`}> <button className='button-1' role='button'>Read More..</button> </Link>} </div>
+          <br></br>
+          <button onClick={getRandomMakeup} className='button-1' role='button'>Something else?</button>
+          <br></br>
         </div>
+        <br></br>
+        <hr></hr>
         {/* {makeups.map((item, index) => {
           return (
             <div>
@@ -130,8 +140,10 @@ const Home = () => {
             return null
           })}
           </div>
+          <br></br>
         </div>
         </div>
+        <hr></hr>
         </div>
     
 )}
