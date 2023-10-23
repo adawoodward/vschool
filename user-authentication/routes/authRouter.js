@@ -20,9 +20,11 @@ authRouter.post("/signup", (req, res, next) => {
         res.status(500)
         return next(err)
       }
+      // withoutPassword will be called before the token gets signed in before the response gets sent,
+      // Taking the password out and returning the mutated user object 
                             // payload,            // secret
-      const token = jwt.sign(savedUser.toObject(), process.env.SECRET)
-      return res.status(201).send({ token, user: savedUser })
+      const token = jwt.sign(savedUser.withoutPassword(), process.env.SECRET)
+      return res.status(201).send({ token, user: savedUser.withoutPassword() })
     })
   })
 })
@@ -38,12 +40,25 @@ authRouter.post("/login", (req, res, next) => {
       res.status(403)
       return next(new Error("Username or Password are incorrect"))
     }
-    if(req.body.password !== user.password){
-      res.status(403)
-      return next(new Error("Username or Password are incorrect"))
-    }
-    const token = jwt.sign(user.toObject(), process.env.SECRET)
-    return res.status(200).send({ token, user })
+                      // passwordAttempt, callback function
+    user.checkPassword(req.body.password, (err, isMatch) => {
+      if(err) {
+        res.status(403)
+        return next(new Error("Username or Password are incorrect"))
+      }
+      if(!isMatch){
+        res.status(403)
+        return next(new Error("Username or Password are incorrect"))
+      }
+      const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
+      return res.status(200).send({ token, user: user.withoutPassword() })
+    })
+
+    // if(req.body.password !== user.password){
+    //   res.status(403)
+    //   return next(new Error("Username or Password are incorrect"))
+    // }
+
   })
 })
 
