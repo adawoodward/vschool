@@ -7,10 +7,11 @@ import Public from './components/Public.js'
 import { UserContext } from './context/UserProvider.js'
 
 export default function App(){
-  const { token } = useContext(UserContext)
+  const { token, logout } = useContext(UserContext)
   return (
     <div className="app">
-      <Navbar />
+      {/* pass logout as a prop called logout to our navbar */}
+      <Navbar logout={logout} /> 
       <Routes>
         <Route 
           path="/" 
