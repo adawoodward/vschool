@@ -5,9 +5,10 @@ export default function Navbar(props){
   const { logout, token } = props // destructuring to call it logout not props.logout
   return (
     <div className="navbar">
-      { token && <Link to="/profile">Profile</Link> } 
+      <Link to="/profile">Profile</Link> 
       <Link to="/public">Public</Link>
-      { token && <button onClick={logout}>Logout</button> }
+      <button onClick={logout}>Logout</button>
+      {/* { token && <button onClick={logout}>Logout</button> } */}
     </div>
   )
 }

@@ -4,7 +4,7 @@ import Navbar from './components/Navbar.js'
 import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
 import Public from './components/Public.js'
-import ProtectedRoute from './components/ProtectedRouter.js'
+import ProtectedRoute from './components/ProtectedRoute.js'
 import { UserContext } from './context/UserProvider.js'
 
 export default function App(){
@@ -20,13 +20,15 @@ export default function App(){
         />
         <Route 
           path="/profile"
-          element={<ProtectedRoute token={token} redirectTo="/">
+          element={
+          <ProtectedRoute token={token} redirectTo="/">
             <Profile/>
           </ProtectedRoute>}
         />
         <Route 
           path="/public"
-          element={<ProtectedRoute token={token} redirectTo="/">
+          element={
+          <ProtectedRoute token={token} redirectTo="/">
             <Public/>
           </ProtectedRoute>}
         />
