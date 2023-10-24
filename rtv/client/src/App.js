@@ -4,6 +4,8 @@ import Navbar from './components/Navbar.js'
 import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
 import Public from './components/Public.js'
+import Issue from './component/Issue.js'
+import MyIssue from './component/MyIssue.js'
 import ProtectedRoute from './components/ProtectedRoute.js'
 import { UserContext } from './context/UserProvider.js'
 
@@ -30,6 +32,13 @@ function App() {
           element={
           <ProtectedRoute token={token} redirectTo="/">
             <Public/>
+          </ProtectedRoute>}
+        />
+        <Route 
+          path="/myissue"
+          element={
+          <ProtectedRoute token={token} redirectTo="/">
+            <MyIssue/>
           </ProtectedRoute>}
         />
       </Routes>

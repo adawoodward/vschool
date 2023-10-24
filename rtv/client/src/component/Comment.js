@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const issueSchema = new Schema({
-    title: {
+    text: {
         type: String,
         required: true
     },
@@ -10,10 +10,6 @@ const issueSchema = new Schema({
         type: String,
         required: true
     },
-    completed: {
-        type: Boolean,
-        default: false
-      },
     imgUrl: {
         type: String,
         required: true
@@ -23,7 +19,7 @@ const issueSchema = new Schema({
         ref: "User",
         required: true
     },
-    comments: []
+    date: new Date()
 })
 
 module.exports = mongoose.model("Issue", issueSchema)

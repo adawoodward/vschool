@@ -16,7 +16,7 @@ export default function UserProvider(props) {
     const initState = {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "",
-        feeds: [],
+        issues: [],
         errMsg: ""
     }
 
@@ -59,7 +59,7 @@ export default function UserProvider(props) {
         setUserState({
             user: {},
             token: "",
-            feeds: []
+            issues: []
         })
     }
 
@@ -77,25 +77,25 @@ export default function UserProvider(props) {
         }))
     }
 
-    function getUserFeeds() {
+    function getUserIssues() {
         // since userAxios has the token built into it
-        userAxios.get("/api/feed/user")
+        userAxios.get("/api/issue/user")
             .then(res => {
                 setUserState(prevState => ({
                     ...prevState,
-                    feeds: res.data // because this is initial get request, we can just set that full array todos
+                    issues: res.data // because this is initial get request, we can just set that full array todos
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
     }
 
     // this addTodo will expect to receive a new todo as a parameter coming from the form  
-    function addFeed(newFeed) {
-        userAxios.post("/api/feed", newFeed)
+    function addIssue(newIssue) {
+        userAxios.post("/api/issue", newIssue)
             .then(res => {
                 setUserState(prevState => ({
                     ...prevState,               // adding the new todo here as res.data
-                    feeds: [...prevState.todos, res.data]
+                    issues: [...prevState.todos, res.data]
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
