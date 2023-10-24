@@ -1,22 +1,38 @@
-import './App.css';
+import React, { useContext } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Navbar from './components/Navbar.js'
+import Auth from './components/Auth.js'
+import Profile from './components/Profile.js'
+import Public from './components/Public.js'
+import ProtectedRoute from './components/ProtectedRoute.js'
+import { UserContext } from './context/UserProvider.js'
 
 function App() {
+  const { token, logout } = useContext(UserContext)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { token && <Navbar logout={ logout } /> }
+      <Routes>
+        <Route
+          path='/'
+          element={ token ? <Navigate to="/profile"/> : <Auth /> } 
+        />
+        <Route 
+          path='/profile'
+          element={
+            <ProtectedRoute token={token} redirectTo="/">
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path="/public"
+          element={
+          <ProtectedRoute token={token} redirectTo="/">
+            <Public/>
+          </ProtectedRoute>}
+        />
+      </Routes>
     </div>
   );
 }
