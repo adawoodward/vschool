@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from './UserContext';
+import { UserContext } from '../context/UserProvider';
 
 export default function Issue(props) {
     const { comments } = useContext(UserContext)

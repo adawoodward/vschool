@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
-import TodoForm from './TodoForm.js'
-import TodoList from './TodoList.js'
 import Issue from './Issue.js'
-import { UserContext } from '../context/UserProvider.js'
+import { UserContext } from '../context/UserProvider'
 import IssueForm from './IssueForm.js'
 import IssueList from './IssueList.js'
 

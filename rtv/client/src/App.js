@@ -4,9 +4,9 @@ import Navbar from './component/Navbar'
 import Auth from './component/Auth'
 import Profile from './component/Profile'
 import Public from './component/Public'
-import Issue from './component/Issue'
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './component/ProtectedRoute'
 import { UserContext } from './context/UserProvider'
+
 // import axios from 'axios'
 
 function App() {
