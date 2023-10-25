@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import TodoForm from './TodoForm.js'
-import TodoList from './TodoList.js'
+import TodoForm from './TodoForm'
+import TodoList from './TodoList'
 import Todo from './Todo.js'
-import { UserContext } from '../context/UserProvider.js'
+import { UserContext } from '../context/UserProvider'
 
 
 export default function Profile(){

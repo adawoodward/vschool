@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from './UserContext';
 
-function Issue(props) {
+export default function Issue(props) {
     const { comments } = useContext(UserContext)
     const { _id } = props.Issue
     const { title, description, imgUrl } = props
@@ -15,3 +15,4 @@ function Issue(props) {
         </div>
     )
 }
+
