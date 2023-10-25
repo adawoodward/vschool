@@ -99,7 +99,17 @@ export default function UserProvider(props) {
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
-        }
+    }
+
+    function postNewComment(newComment, issueId) {
+        axios.post(`/api/comments/${issueId}`, newComment)
+            .then(res => {
+                // Update the comments state with the new comment
+                setComments(prev => [...prev, res.data]);
+            })
+            .catch(err => console.log(err));
+    }
+    
 
     return (
         <UserContext.Provider
@@ -109,7 +119,8 @@ export default function UserProvider(props) {
                 login,
                 logout,
                 addIssue,
-                resetAuthErr
+                resetAuthErr,
+                postNewComment
             }}
         >
             { props.children }

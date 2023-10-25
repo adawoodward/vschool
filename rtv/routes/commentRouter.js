@@ -9,7 +9,7 @@ commentRouter.post('/:issueId', (req, res, next) => {
     req.body.issue = req.params.issueId; // Link the comment to the issue
     const newComment = new Comment(req.body);
 
-    newComment save((err, savedComment) => {
+    newComment.save((err, savedComment) => {
         if (err) {
             res.status(500);
             return next(err);
