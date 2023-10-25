@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar.js'
 import Auth from './components/Auth.js'
@@ -8,9 +8,15 @@ import Issue from './component/Issue.js'
 import MyIssue from './component/MyIssue.js'
 import ProtectedRoute from './components/ProtectedRoute.js'
 import { UserContext } from './context/UserProvider.js'
+import axios from 'axios'
 
 function App() {
-  const { token, logout } = useContext(UserContext)
+  const { token, logout, getAllComments } = useContext(UserContext)
+
+  useEffect(() => {
+    getAllComments()
+  }, [])
+
   return (
     <div className="App">
       { token && <Navbar logout={ logout } /> }

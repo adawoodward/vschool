@@ -43,7 +43,7 @@ export default function UserProvider(props) {
                 const { user, token } = res.data
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
-                getUserTodos()
+                getUserIssues()
                 setUserState(prevUserState => ({
                     ...prevUserState,
                     user,
@@ -95,7 +95,7 @@ export default function UserProvider(props) {
             .then(res => {
                 setUserState(prevState => ({
                     ...prevState,               // adding the new todo here as res.data
-                    issues: [...prevState.todos, res.data]
+                    issues: [...prevState.issues, res.data]
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
@@ -108,7 +108,7 @@ export default function UserProvider(props) {
                 signup,
                 login,
                 logout,
-                addTodo,
+                addIssue,
                 resetAuthErr
             }}
         >
