@@ -20,6 +20,8 @@ export default function UserProvider(props) {
         errMsg: ""
     }
 
+    const [comments, setComments] = useState([])
+    const [allIssues, setAllIssues] = useState([])
     const [userState, setUserState] = useState(initState)
 
     function signup(credentials){
@@ -110,6 +112,24 @@ export default function UserProvider(props) {
             .catch(err => console.log(err));
     }
     
+    function upVoteIssue(issueId) {
+        userAxios.put(`/main/issues/upVote/${issueId}`)
+            .then(res => {
+                setAllIssues(prevIssues => prevIssues.map(issue => issueId !== issue._id ? issue : res.data))
+                setUserState(prevUserState => ({ ...prevUserState, issues: prevUserState.issues.map(issue => issueId !== issue._id ? issue : res.data) }))
+            })
+            .catch(err => console.log(err))
+    }
+    
+    function downVoteIssue(issueId) {
+        userAxios.put(`/main/issues/downVote/${issueId}`)
+            .then(res => {
+                setAllIssues(prevIssues => prevIssues.map(issue => issueId !== issue._id ?  issue : res.data))
+                setUserState(prevUserState => ({ ...prevUserState, issues: prevUserState.issues.map(issue => issueId !== issue._id ? issue : res.data) }))
+            })
+            .catch(err => console.log(err))
+    }
+    
 
     return (
         <UserContext.Provider
@@ -120,7 +140,11 @@ export default function UserProvider(props) {
                 logout,
                 addIssue,
                 resetAuthErr,
-                postNewComment
+                postNewComment,
+                upVoteIssue,
+                downVoteIssue,
+                ...comments,
+                ...allIssues
             }}
         >
             { props.children }

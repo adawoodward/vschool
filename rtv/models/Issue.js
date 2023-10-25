@@ -10,20 +10,23 @@ const issueSchema = new Schema({
         type: String,
         required: true
     },
-    completed: {
-        type: Boolean,
-        default: false
-      },
-    imgUrl: {
-        type: String,
-        required: true
+    datePosted: {
+        type: Date,
+        default: Date.now
     },
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
-    comments: []
+    likedUsers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    dislikedUsers:[{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }]
 })
 
 module.exports = mongoose.model("Issue", issueSchema)
