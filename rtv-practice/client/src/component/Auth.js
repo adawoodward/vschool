@@ -26,8 +26,7 @@ export default function Auth(){
 
   function handleLogin(e){
     e.preventDefault()
-    // login
-    // console.log(inputs)
+    console.log(inputs)
     login(inputs)
   }
 
