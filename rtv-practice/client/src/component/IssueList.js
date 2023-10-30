@@ -1,12 +1,19 @@
-import React from 'react'
-import Issue from './Issue.js'
+import React from 'react';
+import Issue from './Issue.js';
 
-export default function IssueList(props){
-  const { issues } = props
+export default function IssueList(props) {
+  const { issues } = props;
+
+  // Check if 'issues' is an array before mapping
+  if (!Array.isArray(issues)) {
+    return <div className="issue-list">No issues to display</div>;
+  }
+
   return (
     <div className="issue-list">
-      {/* instead of <Todo title={todo.title} imgUrl={todo.imgUrl}, spread it into the props object */}
-      { issues.map(issue => <Issue {...issue} key={issue._id}/>) }
+      {issues.map((issue) => (
+        <Issue {...issue} key={issue._id} />
+      ))}
     </div>
-  )
+  );
 }

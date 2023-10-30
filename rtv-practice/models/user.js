@@ -36,12 +36,39 @@ userSchema.pre("save", function(next){
 })
 
 // method to check encrypted password on login   // string   // function
-userSchema.methods.checkPassword = function(passwordAttempt, callback) {
-    bcrypt.compare(passwordAttempt, this.password, (err, isMatch) => {
-        if(err) return callback(err)
-        return callback(null, isMatch)
-    })
-}
+// userSchema.methods.checkPassword = function(passwordAttempt, callback) {
+//     bcrypt.compare(passwordAttempt, this.password, (err, isMatch) => {
+//         if(err) {
+//             return callback(err, false)
+//         }
+//         return callback(null, isMatch)
+//     })
+// }
+
+// userSchema.methods.checkPassword = function(passwordAttempt, callback) {
+//     bcrypt.compare(passwordAttempt, this.password, (err, isMatch) => {
+//         console.log(passwordAttempt)
+//         console.log(this.password)
+//         if(err) {
+//             return callback(err, false)
+//         }
+//         if (isMatch) {
+//             return callback(null, true)
+//         } else {
+//             return callback(null, false)
+//         }
+//     })
+// }
+
+userSchema.methods.checkPassword = async function (passwordAttempt) {
+    try {
+        const isMatch = await bcrypt.compare(passwordAttempt, this.password);
+        return isMatch;
+    } catch (err) {
+        throw err; // Rethrow the error for better error handling
+    }
+};
+
 
 // method to remove user's password for token/sending the response
 userSchema.methods.withoutPassword = function() {
