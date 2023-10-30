@@ -20,8 +20,7 @@ export default function Auth(){
 
   function handleSignup(e){
     e.preventDefault()
-    // signup
-    // console.log(inputs)
+    console.log(inputs)
     signup(inputs)
   }
 

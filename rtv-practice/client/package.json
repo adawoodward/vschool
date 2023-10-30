@@ -36,5 +36,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:7400"
+  "proxy": "http://localhost:9009"
 }
