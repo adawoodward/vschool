@@ -23,11 +23,9 @@ mongoose
     console.error('Error connecting to the DB:', err);
   });
 
-// app.use('/auth', require('./routes/authRouter.js'))
-app.use('/auth', require('./routes/authRouter'))
+app.use('/auth', require('./routes/authRouter.js'))
 app.use('/api', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }))
-app.use('/api/issue', require('./routes/issueRouter'))
-// app.use('/api/issue', require('./routes/issueRouter.js'))
+app.use('/api/issue', require('./routes/issueRouter.js'))
 
 
 app.use((err, req, res, next) => {
@@ -39,6 +37,6 @@ app.use((err, req, res, next) => {
 })
 
 
-app.listen(5000, () => {
-    console.log("The server is running on Port 5000")
+app.listen(5001, () => {
+    console.log("The server is running on Port 5001")
 })
