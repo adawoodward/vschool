@@ -10,6 +10,9 @@ const issueSchema = new Schema({
         type: String,
         required: true
     },
+    imgUrl: {
+        type: String,
+    },
     datePosted: {
         type: Date,
         default: Date.now
