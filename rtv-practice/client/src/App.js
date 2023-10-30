@@ -11,9 +11,9 @@ import { UserContext } from './context/UserProvider'
 function App() {
   const { token, logout, getAllComments } = useContext(UserContext)
 
-  useEffect(() => {
-    getAllComments()
-  }, [])
+  // useEffect(() => {
+  //   getAllComments()
+  // }, [])
 
   return (
     <div className="App">
