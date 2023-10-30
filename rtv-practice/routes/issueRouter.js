@@ -1,108 +1,96 @@
-const express = require("express")
-const issueRouter = express.Router()
-const Issue = require('../models/issue.js')
+const express = require("express");
+const issueRouter = express.Router();
+const Issue = require('../models/issue.js');
 
-// Get All Todos
-issueRouter.get("/", (req, res, next) => {
-  Issue.find((err, issues) => {
-    if(err){
-      res.status(500)
-      return next(err)
-    }
-    return res.status(200).send(issues)
-  })
-})
+// Get All Issues
+issueRouter.get("/", async (req, res, next) => {
+  try {
+    const issues = await Issue.find();
+    return res.status(200).send(issues);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
-// Get todos by user id
-issueRouter.get("/user", (req, res, next) => {
-  Issue.find({ user: req.auth._id }, (err, issues) => {
-    if(err){
-      res.status(500)
-      return next(err)
-    }
-    return res.status(200).send(issues)
-  })
-})
+// Get issues by user id
+issueRouter.get("/user", async (req, res, next) => {
+  try {
+    const issues = await Issue.find({ user: req.auth._id });
+    return res.status(200).send(issues);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
-// Add new Todo
-issueRouter.post("/", (req, res, next) => {
-  req.body.user = req.auth._id
-  const newIssue = new Issue(req.body)
-  newIssue.save((err, savedIssue) => {
-    if(err){
-      res.status(500)
-      return next(err)
-    }
-    return res.status(201).send(savedIssue)
-  })
-})
+// Add new Issue
+issueRouter.post("/", async (req, res, next) => {
+  req.body.user = req.auth._id;
+  try {
+    const newIssue = new Issue(req.body);
+    const savedIssue = await newIssue.save();
+    return res.status(201).send(savedIssue);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
-// Delete Todo
-issueRouter.delete("/:issueId", (req, res, next) => {
-  Issue.findOneAndDelete(
-    { _id: req.params.issueId, user: req.auth._id },
-    (err, deletedIssue) => {
-      if(err){
-        res.status(500)
-        return next(err)
-      }
-      return res.status(200).send(`Successfully delete todo: ${deletedIssue.title}`)
-    }
-  )
-})
+// Delete Issue
+issueRouter.delete("/:issueId", async (req, res, next) => {
+  try {
+    const deletedIssue = await Issue.findOneAndDelete({ _id: req.params.issueId, user: req.auth._id });
+    return res.status(200).send(`Successfully delete issue: ${deletedIssue.title}`);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
-// Update Todo
-issueRouter.put("/:issueId", (req, res, next) => {
-  Issue.findOneAndUpdate(
-    { _id: req.params.issueId, user: req.auth._id },
-    req.body,
-    { new: true },
-    (err, updatedIssue) => {
-      if(err){
-        res.status(500)
-        return next(err)
-      }
-      return res.status(201).send(updatedIssue)
-    }
-  )
-})
+// Update Issue
+issueRouter.put("/:issueId", async (req, res, next) => {
+  try {
+    const updatedIssue = await Issue.findOneAndUpdate({ _id: req.params.issueId, user: req.auth._id }, req.body, { new: true });
+    return res.status(201).send(updatedIssue);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
-issueRouter.put('/upvote/:issueId', (req, res, next) => {
-    Issue.findOneAndUpdate(
-        { _id: req.params.issueId },
-        {
-            $addToSet: { likedUsers: req.auth._id },
-            $pull: { dislikedUsers: req.auth._id }
-        },
-        { new: true },
-        (err, updatedIssue) => {
-            if (err) {
-                res.status(500)
-                return next(err)
-            }
-            return res.status(201).send(updatedIssue)
-        }
-    )
-})
+issueRouter.put('/upvote/:issueId', async (req, res, next) => {
+  try {
+    const updatedIssue = await Issue.findOneAndUpdate(
+      { _id: req.params.issueId },
+      {
+        $addToSet: { likedUsers: req.auth._id },
+        $pull: { dislikedUsers: req.auth._id }
+      },
+      { new: true }
+    );
+    return res.status(201).send(updatedIssue);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
-issueRouter.put('/downVote/:issueId', (req, res, next) => {
-    Issue.findOneAndUpdate(
-        { _id: req.params.issueId },
-        {
-            $addToSet: { dislikedUsers: req.auth.__id },
-            $pull: { likedUsers: req.auth._id }
-        },
-        { new: true },
-        (err, updatedIssue) => {
-            if (err) {
-                res.status(500)
-                return next(err)
-            }
-            return res.status(201).send(updatedIssue)
-        }
-    )
-})
+issueRouter.put('/downVote/:issueId', async (req, res, next) => {
+  try {
+    const updatedIssue = await Issue.findOneAndUpdate(
+      { _id: req.params.issueId },
+      {
+        $addToSet: { dislikedUsers: req.auth._id },
+        $pull: { likedUsers: req.auth._id }
+      },
+      { new: true }
+    );
+    return res.status(201).send(updatedIssue);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
 
- 
-
-module.exports = issueRouter
+module.exports = issueRouter;
