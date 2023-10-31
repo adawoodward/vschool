@@ -6,8 +6,9 @@ const IssueDetail = () => {
     const { _id } = useParams()
     const [issueDetail, setIssueDetail] = useState({})
     const fetchIssue = () => {
-        axios.get(`/issue/${_id}`)
+        axios.get(`/issues/${_id}`)
         .then((res) => {
+            console.log(res.data)
             setIssueDetail(res.data)
             return res.status(200).json(res.data)
         })

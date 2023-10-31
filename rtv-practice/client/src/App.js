@@ -33,7 +33,7 @@ function App() {
         }
       />
       <Route 
-        path="/issue/:_id" 
+        path="/issues/:_id" 
         element={<IssueDetail />} />
       <Route 
         path="/public"

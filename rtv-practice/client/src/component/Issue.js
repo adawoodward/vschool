@@ -24,7 +24,7 @@ export default function Issue(props) {
                     {comment.text}
                 </div>
             ))}</p>
-        <Link to={`/issue/${_id}`}>
+        <Link to={`/issues/${_id}`}>
           <button>Detail</button>
         </Link>
         </div>

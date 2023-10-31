@@ -13,6 +13,22 @@ issueRouter.get("/", async (req, res, next) => {
   }
 });
 
+issueRouter.get('/issues/:issueId', (req, res, next) => {
+  console.log(req.params)
+  console.log(req.params.issueId)
+  Issue.findOne({_id: req.params.issueId})
+  .then(item => 
+  {
+    console.log(item)
+    console.log(item._id)
+    res.status(200).send(item)
+  })
+  .catch((err) => {
+    res.status(500)
+    return next(err)
+  })
+})
+
 // Get issues by user id
 issueRouter.get("/user", async (req, res, next) => {
   try {
