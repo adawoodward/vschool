@@ -144,7 +144,8 @@ export default function UserProvider(props) {
                 upVoteIssue,
                 downVoteIssue,
                 ...comments,
-                ...allIssues
+                ...allIssues,
+                userAxios
             }}
         >
             { props.children }

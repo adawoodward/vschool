@@ -1,12 +1,15 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { UserContext } from '../context/UserProvider'
 
 const IssueDetail = () => {
+
+    const {userAxios} = useContext(UserContext)
     const { _id } = useParams()
     const [issueDetail, setIssueDetail] = useState({})
     const fetchIssue = () => {
-        axios.get(`/issues/${_id}`)
+        userAxios.get(`/api/issue/issues/${_id}`)
         .then((res) => {
             console.log(res.data)
             setIssueDetail(res.data)
