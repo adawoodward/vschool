@@ -1,5 +1,6 @@
 import React from 'react';
 import Issue from './Issue.js';
+import { Link } from 'react-router-dom';
 
 export default function IssueList(props) {
   const { issues } = props;
@@ -12,7 +13,11 @@ export default function IssueList(props) {
   return (
     <div className="issue-list">
       {issues.map((issue) => (
-        <Issue {...issue} key={issue._id} />
+        <Issue {...issue} key={issue._id} issue={issue} >
+        <Link to={`/issue/${issue._id}`}>
+          <button>Detail</button>
+        </Link>
+        </Issue>
       ))}
     </div>
   );
