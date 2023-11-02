@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../context/UserProvider'
+import CommentForm from './CommentForm'
 
 const IssueDetail = () => {
 
@@ -22,6 +23,10 @@ const IssueDetail = () => {
         fetchIssue()
     }, [])
 
+    const fetchComments = () => {
+       
+    }
+
     const filteredComments = Array.isArray(comments) ? comments.filter(comments => comments.issue == _id) : []
 
     return (
@@ -35,6 +40,7 @@ const IssueDetail = () => {
         <div>Description: {issueDetail?.description}</div>
         <div>ImgUrl: {issueDetail?.imgUrl}</div>
         <div>Comment</div>
+        <CommentForm />
         <p>{filteredComments.map(comment => (
             <div key={comment._id}>
                 {comment.text}
