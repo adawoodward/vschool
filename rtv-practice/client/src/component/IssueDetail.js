@@ -25,7 +25,7 @@ const IssueDetail = () => {
     }, [])
 
     const fetchComments = () => {
-       userAxios.get(`/api/comment/${_id}`)
+       userAxios.get(`/api/comment/comments/${_id}`)
         .then((res) => {
             console.log(res.data)
             setComments(res.data)

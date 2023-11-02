@@ -104,7 +104,7 @@ export default function UserProvider(props) {
     }
 
     function postNewComment(newComment, issueId) {
-        axios.post(`/api/comment/${issueId}`, newComment)
+        axios.post(`/api/comments/${issueId}`, newComment)
             .then(res => {
                 // Update the comments state with the new comment
                 setComments(prev => [...prev, res.data]);
