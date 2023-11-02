@@ -6,7 +6,7 @@ import CommentForm from './CommentForm'
 
 const IssueDetail = () => {
 
-    const { userAxios, comments } = useContext(UserContext)
+    const { userAxios, comments, setComments, postNewComment } = useContext(UserContext)
     const { _id } = useParams()
     const [issueDetail, setIssueDetail] = useState({})
     const fetchIssue = () => {
@@ -21,11 +21,27 @@ const IssueDetail = () => {
 
     useEffect(() => {
         fetchIssue()
+        fetchComments()
     }, [])
 
     const fetchComments = () => {
-       
+       userAxios.get(`/api/comment/${_id}`)
+        .then((res) => {
+            console.log(res.data)
+            setComments(res.data)
+        })
+        .catch((err) => {
+            console.log(err.response)
+       })
     }
+
+    // function postComment(newComment) {
+    //     if (!_id) {
+    //         console.error("Invalid issueId")
+    //         return
+    //     }
+    //     postNewComment(newComment, _id)
+    // }
 
     const filteredComments = Array.isArray(comments) ? comments.filter(comments => comments.issue == _id) : []
 
@@ -40,7 +56,7 @@ const IssueDetail = () => {
         <div>Description: {issueDetail?.description}</div>
         <div>ImgUrl: {issueDetail?.imgUrl}</div>
         <div>Comment</div>
-        <CommentForm />
+        <CommentForm disabled={!issueDetail.title} />
         <p>{filteredComments.map(comment => (
             <div key={comment._id}>
                 {comment.text}

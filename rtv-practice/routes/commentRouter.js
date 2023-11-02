@@ -1,8 +1,5 @@
 const express = require('express')
 const commentRouter = express.Router()
-// const Comment = require('../models/comment.js')
-const User = require('../models/user.js')
-const jwt = require('jsonwebtoken')
 const Comment = require('../models/comment.js')
 
 commentRouter.get('/:issueId', async (req, res, next) => {
