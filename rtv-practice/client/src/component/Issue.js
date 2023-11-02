@@ -11,7 +11,7 @@ export default function Issue(props) {
 
     // Ensure that comments is an array before filtering
     const _id = issue ? issue._id : null;
-    const filteredComments = Array.isArray(comments) ? comments.filter(comment => comment.issue === _id) : [];
+    // const filteredComments = Array.isArray(comments) ? comments.filter(comment => comment.issue === _id) : [];
 
     // Rest of your component code
     return (
@@ -19,11 +19,11 @@ export default function Issue(props) {
             <h1>{title}</h1>
             <h3>{description}</h3>
             <img src={imgUrl} alt={imgUrl} width={300} />
-            <p>{filteredComments.map(comment => (
+            {/* <p>{filteredComments.map(comment => (
                 <div key={comment._id}>
                     {comment.text}
                 </div>
-            ))}</p>
+            ))}</p> */}
         <Link to={`/issues/${_id}`}>
           <button>Detail</button>
         </Link>

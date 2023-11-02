@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserProvider'
 
 const IssueDetail = () => {
 
-    const {userAxios} = useContext(UserContext)
+    const { userAxios, comments } = useContext(UserContext)
     const { _id } = useParams()
     const [issueDetail, setIssueDetail] = useState({})
     const fetchIssue = () => {
@@ -22,6 +22,8 @@ const IssueDetail = () => {
         fetchIssue()
     }, [])
 
+    const filteredComments = Array.isArray(comments) ? comments.filter(comments => comments.issue == _id) : []
+
     return (
         <>
         <div className='detail-container'>
@@ -33,6 +35,11 @@ const IssueDetail = () => {
         <div>Description: {issueDetail?.description}</div>
         <div>ImgUrl: {issueDetail?.imgUrl}</div>
         <div>Comment</div>
+        <p>{filteredComments.map(comment => (
+            <div key={comment._id}>
+                {comment.text}
+            </div>
+        ))}</p>
         <br></br>
         </div>
         </>
