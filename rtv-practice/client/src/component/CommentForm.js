@@ -11,7 +11,7 @@ export default function CommentForm({ issueId }) {
 
     const handleCommentSubmit = (e) => {
         e.preventDefault()
-        if(text) {
+        if (text) {
             postNewComment({ text, issueId })
             setText('')
         }

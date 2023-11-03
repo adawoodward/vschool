@@ -103,8 +103,17 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    // function postComment(newComment) {
+    //     if (!_id) {
+    //         console.error("Invalid issueId")
+    //         return
+    //     } 
+    //     postNewComment(newComment, _id)
+    // }
+
     function postNewComment(newComment, issueId) {
-        axios.post(`/api/comments/${issueId}`, newComment)
+        console.log("Posting comment for issueId:", issueId); // Debugging statement
+        userAxios.post(`/api/comment/issues/${issueId}`, newComment)
             .then(res => {
                 // Update the comments state with the new comment
                 setComments(prev => [...prev, res.data]);

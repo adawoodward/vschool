@@ -2,7 +2,7 @@ const express = require('express')
 const commentRouter = express.Router()
 const Comment = require('../models/comment.js')
 
-commentRouter.get('/:issueId', async (req, res, next) => {
+commentRouter.get('/issues/:issueId', async (req, res, next) => {
     try {
         const comments = await Comment.find({ issue: req.params.issueId })
         return res.status(200).send(comments)
@@ -12,7 +12,7 @@ commentRouter.get('/:issueId', async (req, res, next) => {
     }
 })
 
-commentRouter.post('/:issueId', async (req, res, next) => {
+commentRouter.post('/issues/:issueId', async (req, res, next) => {
     req.body.user = req.auth._id
     req.body.issue = req.params.issueId
     try {
@@ -25,18 +25,5 @@ commentRouter.post('/:issueId', async (req, res, next) => {
       }
 })
 
-// commentRouter.post('/:issueId', (req, res, next) => {
-//     req.body.user = req.auth._id; // Attach the user who posted the comment
-//     req.body.issue = req.params.issueId; // Link the comment to the issue
-//     const newComment = new Comment(req.body);
-
-//     newComment.save((err, savedComment) => {
-//         if (err) {
-//             res.status(500);
-//             return next(err);
-//         }
-//         return res.status(201).send(savedComment);
-//     });
-// });
 
 module.exports = commentRouter
