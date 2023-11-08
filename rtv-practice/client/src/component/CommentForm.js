@@ -12,7 +12,7 @@ export default function CommentForm({ issueId }) {
     const handleCommentSubmit = (e) => {
         e.preventDefault()
         if (text) {
-            postNewComment({ text, issueId })
+            postNewComment({ text, issue: issueId })
             setText('')
         }
     }

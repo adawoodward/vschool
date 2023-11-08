@@ -9,11 +9,6 @@ const {expressjwt} = require('express-jwt')
 app.use(express.json())
 app.use(morgan('dev'))
 
-// mongoose.connect(
-//     'mongodb://localhost:27017/rtv',
-//     () => console.log('Connected to the DB')
-// )
-
 mongoose
   .connect('mongodb://localhost:27017/rtv-practice')
   .then(() => {
@@ -24,7 +19,9 @@ mongoose
   });
 
 app.use('/auth', require('./routes/authRouter.js'))
-app.use('/api', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }))
+app.use('/api/issue', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
+app.use('/api/comment', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
+// app.use('/api', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }))
 app.use('/api/issue', require('./routes/issueRouter.js'))
 app.use('/api/comment', require('./routes/commentRouter.js'))
 
