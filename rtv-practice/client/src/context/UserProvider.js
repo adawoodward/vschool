@@ -103,11 +103,11 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function updateComments() {
-        if (userState.issueDetail._id) {
-            setComments(userState.issueDetail._id);
-        }
-    }
+    // function updateComments() {
+    //     if (userState.issueDetail._id) {
+    //         setComments(userState.issueDetail._id);
+    //     }
+    // }
 
     function postNewComment(newComment, issueId) {
         console.log('Posting comment for issueId:', issueId);
@@ -136,7 +136,6 @@ export default function UserProvider(props) {
             })
             .catch(err => console.log(err))
     }
-    
 
     return (
         <UserContext.Provider

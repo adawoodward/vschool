@@ -72,9 +72,9 @@ const IssueDetail = () => {
         }
     }
 
-    const filteredComments = Array.isArray(comments)
-        ? comments.filter((comment) => comment.issue === issueDetail._id)
-        : [];
+    // const filteredComments = Array.isArray(comments)
+    //     ? comments.filter((comment) => comment.issue === issueDetail._id)
+    //     : [];
 
     return (
         <>
@@ -88,7 +88,6 @@ const IssueDetail = () => {
                 <div>ImgUrl: {issueDetail?.imgUrl}</div>
                 <div>Comment</div>
                 {issueDetail._id ? (
-                    // <CommentForm issueId={issueDetail._id} onSubmit={postComment} />
                     <CommentForm postComment={postComment} issueId={issueDetail._id} />
                 ) : (
                     <p>Loading...</p>
