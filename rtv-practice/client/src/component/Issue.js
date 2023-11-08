@@ -2,49 +2,88 @@ import React, { useContext } from 'react';
 import { UserContext } from '../context/UserProvider';
 import { Link } from 'react-router-dom';
 
-
 export default function Issue(props) {
-    const { comments } = useContext(UserContext);
-    const { issue } = props;
-    const { title, description, imgUrl } = props;
-    // const { _id } = useParams
+  const { issue } = props;
+  const { title, description, imgUrl } = issue; // Destructure issue directly
+  const { _id, likedUsers, dislikedUsers } = issue;
 
-    // Ensure that comments is an array before filtering
-    const _id = issue ? issue._id : null;
-    // const filteredComments = Array.isArray(comments) ? comments.filter(comment => comment.issue === _id) : [];
+  // Get the UserContext and functions
+  const {
+    upVoteIssue,
+    downVoteIssue,
+    user: currentUser,
+  } = useContext(UserContext);
 
-    // Rest of your component code
-    return (
-        <div className='issue'>
-            <h1>{title}</h1>
-            <h3>{description}</h3>
-            <img src={imgUrl} alt={imgUrl} width={300} />
-            {/* <p>{filteredComments.map(comment => (
-                <div key={comment._id}>
-                    {comment.text}
-                </div>
-            ))}</p> */}
-        <Link to={`/issues/${_id}`}>
-          <button>Detail</button>
-        </Link>
-        </div>
-    )
+  const isLiked = likedUsers.includes(currentUser._id); // Check if current user liked the issue
+  const isDisliked = dislikedUsers.includes(currentUser._id); // Check if current user disliked the issue
+
+  const totalLikes = likedUsers.length;
+  const totalDislikes = dislikedUsers.length;
+
+  // Check if currentUser is defined and has liked/disliked arrays
+//   const likedIssues = currentUser?.likedIssues || [];
+//   const dislikedIssues = currentUser?.dislikedIssues || [];
+
+//   const isLiked = likedIssues.includes(_id); // Check if issue is liked
+//   const isDisliked = dislikedIssues.includes(_id); // Check if issue is disliked
+
+
+//   const isLiked = currentUser ? currentUser.likedIssues.includes(_id) : false;
+//   const isDisliked = currentUser ? currentUser.dislikedIssues.includes(_id) : false;
+
+  return (
+    <div className='issue'>
+      <h1>{title}</h1>
+      <h3>{description}</h3>
+      <img src={imgUrl} alt={imgUrl} width={300} />
+
+      {/* Like Button */}
+      <button
+        onClick={() => {
+          if (!isLiked) upVoteIssue(_id);
+        }}
+        disabled={isLiked}
+      >
+        Like
+      </button>
+
+      {/* Dislike Button */}
+      <button
+        onClick={() => {
+          if (!isDisliked) downVoteIssue(_id);
+        }}
+        disabled={isDisliked}
+      >
+        Dislike
+      </button>
+
+      <p>Total Likes: {totalLikes}</p>
+      <p>Total Dislikes: {totalDislikes}</p>
+
+      <Link to={`/issues/${_id}`}>
+        <button>Detail</button>
+      </Link>
+    </div>
+  );
 }
 
-// export default function Issue(props) {
-//     const { comments } = useContext(UserContext); // Access comments from the context
-//     const { _id } = props.issue; // Assuming you have an issue object
 
-//     // Efficiently filter comments for the current issue
-//     const filteredComments = comments.filter(comment => comment.issue === _id);
-// }
+// import React, { useContext } from 'react';
+// import { UserContext } from '../context/UserProvider';
+// import { Link } from 'react-router-dom';
 
 
 // export default function Issue(props) {
-//     const { comments, postNewComment } = useContext(UserContext);
-//     const { _id, title, description, imgUrl } = props;
-//     // Ensure comments is an array before filtering
-//     const filteredComments = Array.isArray(comments) ? comments.filter(comment => comment.issue === _id) : [];
+//     const { comments } = useContext(UserContext);
+//     const { issue } = props;
+//     const { title, description, imgUrl } = props;
+//     // const { _id } = useParams
+
+//     // Ensure that comments is an array before filtering
+//     const _id = issue ? issue._id : null;
+//     // const filteredComments = Array.isArray(comments) ? comments.filter(comment => comment.issue === _id) : [];
+
+//     // Rest of your component code
 //     return (
 //         <div className='issue'>
 //             <h1>{title}</h1>
@@ -55,8 +94,9 @@ export default function Issue(props) {
 //                     {comment.text}
 //                 </div>
 //             ))}</p> */}
-//             <CommentForm postNewComment={postNewComment}/>
+//         <Link to={`/issues/${_id}`}>
+//           <button>Detail</button>
+//         </Link>
 //         </div>
-//     );
+//     )
 // }
-

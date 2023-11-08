@@ -5,7 +5,8 @@ const Issue = require('../models/issue.js');
 // Get All Issues
 issueRouter.get("/", async (req, res, next) => {
   try {
-    const issues = await Issue.find();
+    // const issues = await Issue.find();
+    const issues = await Issue.find().populate('user'); // Add populate to also get user details
     return res.status(200).send(issues);
   } catch (err) {
     res.status(500);

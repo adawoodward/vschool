@@ -118,24 +118,34 @@ export default function UserProvider(props) {
             })
             .catch((err) => console.log(err));
     }
-    
-    function upVoteIssue(issueId) {
-        userAxios.put(`/main/issues/upVote/${issueId}`)
-            .then(res => {
-                setAllIssues(prevIssues => prevIssues.map(issue => issueId !== issue._id ? issue : res.data))
-                setUserState(prevUserState => ({ ...prevUserState, issues: prevUserState.issues.map(issue => issueId !== issue._id ? issue : res.data) }))
-            })
-            .catch(err => console.log(err))
-    }
-    
-    function downVoteIssue(issueId) {
-        userAxios.put(`/main/issues/downVote/${issueId}`)
-            .then(res => {
-                setAllIssues(prevIssues => prevIssues.map(issue => issueId !== issue._id ?  issue : res.data))
-                setUserState(prevUserState => ({ ...prevUserState, issues: prevUserState.issues.map(issue => issueId !== issue._id ? issue : res.data) }))
-            })
-            .catch(err => console.log(err))
-    }
+
+    // UserProvider.js
+function upVoteIssue(issueId) {
+    userAxios.put(`/api/issue/upvote/${issueId}`)
+      .then(res => {
+        // Update the state with the updated issue after upvoting
+        setAllIssues(prevIssues => prevIssues.map(issue => (issueId !== issue._id ? issue : res.data)));
+        setUserState(prevUserState => ({
+          ...prevUserState,
+          issues: prevUserState.issues.map(issue => (issueId !== issue._id ? issue : res.data))
+        }));
+      })
+      .catch(err => console.log(err));
+  }
+  
+  function downVoteIssue(issueId) {
+    userAxios.put(`/api/issue/downvote/${issueId}`)
+      .then(res => {
+        // Update the state with the updated issue after downvoting
+        setAllIssues(prevIssues => prevIssues.map(issue => (issueId !== issue._id ? issue : res.data)));
+        setUserState(prevUserState => ({
+          ...prevUserState,
+          issues: prevUserState.issues.map(issue => (issueId !== issue._id ? issue : res.data))
+        }));
+      })
+      .catch(err => console.log(err));
+  }
+  
 
     return (
         <UserContext.Provider
