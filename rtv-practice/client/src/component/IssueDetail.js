@@ -139,24 +139,41 @@ const IssueDetail = () => {
     //     }
     // };
 
-    function postComment(newComment) {
+    async function postComment(newComment) {
         if (!issueDetail._id) {
             console.error("Invalid issueId");
             return;
         }
         console.log("issueId: ", issueDetail._id);
-            // postNewComment(newComment, issueDetail._id);
-        postNewComment(newComment, newComment.issue)
-        .then(()=> {
-            return updateComments()
-        })
-        .then(() => {
-            console.log(comments)
-        })
-        .catch((error) => {
-            console.error("Error updating comments: ", error)
-        })
+    
+        try {
+            await postNewComment(newComment, issueDetail._id);
+            await updateComments();
+            console.log(comments);
+        } catch (error) {
+            console.error("Error updating comments: ", error);
+        }
     }
+    
+
+    // async function postComment(newComment) {
+    //     if (!issueDetail._id) {
+    //         console.error("Invalid issueId");
+    //         return;
+    //     }
+    //     console.log("issueId: ", issueDetail._id);
+    //         // postNewComment(newComment, issueDetail._id);
+    //     postNewComment(newComment, newComment.issue)
+    //     .then(()=> {
+    //         return updateComments()
+    //     })
+    //     .then(() => {
+    //         console.log(comments)
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error updating comments: ", error)
+    //     })
+    // }
 
     const filteredComments = Array.isArray(comments)
         ? comments.filter((comment) => comment.issue === issueDetail._id)
@@ -174,7 +191,8 @@ const IssueDetail = () => {
                 <div>ImgUrl: {issueDetail?.imgUrl}</div>
                 <div>Comment</div>
                 {issueDetail._id ? (
-                    <CommentForm issueId={issueDetail._id} onSubmit={postComment} />
+                    // <CommentForm issueId={issueDetail._id} onSubmit={postComment} />
+                    <CommentForm postComment={postComment} issueId={issueDetail._id} />
                 ) : (
                     <p>Loading...</p>
                 )}

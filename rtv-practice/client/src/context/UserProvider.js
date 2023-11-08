@@ -121,25 +121,42 @@ export default function UserProvider(props) {
         }
     }
 
-    function postComment(newComment, issueId) {
-        if (!issueId) {
-            console.error('Invalid issueId');
-            return;
-        }
+    // function postComment(newComment, issueId) {
+    //     if (!issueId) {
+    //         console.error('Invalid issueId');
+    //         return;
+    //     }
 
-        // fetchIssue(issueId)
+    //     // fetchIssue(issueId)
 
-        postNewComment(newComment, issueId)
-            .then(() => {
-                return updateComments();
-            })
-            .then(() => {
-                console.log(comments);
-            })
-            .catch((error) => {
-                console.error('Error updating comments: ', error);
-            });
-    }
+    //     postNewComment(newComment, issueId)
+    //         .then(() => {
+    //             return updateComments();
+    //         })
+    //         .then(() => {
+    //             console.log(comments);
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error updating comments: ', error);
+    //         });
+    // }
+
+    // async function postComment(newComment) {
+    //     if (!issueDetail._id) {
+    //         console.error("Invalid issueId");
+    //         return;
+    //     }
+    //     console.log("issueId: ", issueDetail._id);
+        
+    //     try {
+    //         await postNewComment(newComment, issueDetail._id);
+    //         await updateComments();
+    //         console.log(comments);
+    //     } catch (error) {
+    //         console.error("Error updating comments: ", error);
+    //     }
+    // }
+    
 
     function postNewComment(newComment, issueId) {
         console.log('Posting comment for issueId:', issueId);
@@ -208,7 +225,6 @@ export default function UserProvider(props) {
                 logout,
                 addIssue,
                 resetAuthErr,
-                postComment,
                 postNewComment,
                 upVoteIssue,
                 downVoteIssue,

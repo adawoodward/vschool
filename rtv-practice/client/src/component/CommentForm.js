@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import UserProvider, { UserContext } from '../context/UserProvider'
 
-export default function CommentForm({ issueId }) {
+export default function CommentForm({ issueId, postComment }) {
     const [text, setText] = useState('')
-    const { postNewComment } = useContext(UserContext)
+    // const { postComment } = useContext(UserContext)
 
     const handleInputChange = (e) => {
         setText(e.target.value)
@@ -12,7 +12,7 @@ export default function CommentForm({ issueId }) {
     const handleCommentSubmit = (e) => {
         e.preventDefault()
         if (text) {
-            postNewComment({ text, issue: issueId })
+            postComment({ text, issue: issueId })
             setText('')
         }
     }
