@@ -91,18 +91,6 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
-//       // Add a function to fetch issue details by ID and set them in the state
-//     function fetchIssue(_id) {
-//         userAxios.get(`/api/issue/issues/${_id}`)
-//             .then((res) => {
-//             setUserState((prevUserState) => ({
-//                 ...prevUserState,
-//                 issueDetail: res.data,
-//             }));
-//         })
-//             .catch((err) => console.error(err));
-//   }
-
     // this addTodo will expect to receive a new todo as a parameter coming from the form  
     function addIssue(newIssue) {
         userAxios.post("/api/issue", newIssue)
@@ -121,43 +109,6 @@ export default function UserProvider(props) {
         }
     }
 
-    // function postComment(newComment, issueId) {
-    //     if (!issueId) {
-    //         console.error('Invalid issueId');
-    //         return;
-    //     }
-
-    //     // fetchIssue(issueId)
-
-    //     postNewComment(newComment, issueId)
-    //         .then(() => {
-    //             return updateComments();
-    //         })
-    //         .then(() => {
-    //             console.log(comments);
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error updating comments: ', error);
-    //         });
-    // }
-
-    // async function postComment(newComment) {
-    //     if (!issueDetail._id) {
-    //         console.error("Invalid issueId");
-    //         return;
-    //     }
-    //     console.log("issueId: ", issueDetail._id);
-        
-    //     try {
-    //         await postNewComment(newComment, issueDetail._id);
-    //         await updateComments();
-    //         console.log(comments);
-    //     } catch (error) {
-    //         console.error("Error updating comments: ", error);
-    //     }
-    // }
-    
-
     function postNewComment(newComment, issueId) {
         console.log('Posting comment for issueId:', issueId);
         userAxios
@@ -167,35 +118,6 @@ export default function UserProvider(props) {
             })
             .catch((err) => console.log(err));
     }
-
-    // function postComment(newComment) {
-    //     if (!issueDetail._id) {
-    //         console.error("Invalid issueId");
-    //         return;
-    //     }
-    
-    //     postNewComment(newComment, issueDetail._id) // Pass issueDetail._id as the issueId
-    //         .then(() => {
-    //             return updateComments();
-    //         })
-    //         .then(() => {
-    //             console.log(comments);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error updating comments: ", error);
-    //         });
-    // }
-    
-
-    // function postNewComment(newComment, issueId) {
-    //     console.log("Posting comment for issueId:", issueId); // Debugging statement
-    //     userAxios.post(`/api/comment/issues/${issueId}`, newComment)
-    //         .then(res => {
-    //             // Update the comments state with the new comment
-    //             setComments(prev => [...prev, res.data]);
-    //         })
-    //         .catch(err => console.log(err));
-    // }
     
     function upVoteIssue(issueId) {
         userAxios.put(`/main/issues/upVote/${issueId}`)
