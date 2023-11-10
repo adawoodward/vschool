@@ -44,7 +44,7 @@ export default function Issue(props) {
         }}
         disabled={isLiked}
       >
-        Like
+        Upvote
       </button>
 
       {/* Dislike Button */}
@@ -54,14 +54,14 @@ export default function Issue(props) {
         }}
         disabled={isDisliked}
       >
-        Dislike
+        Downvote
       </button>
 
-      <p>Total Likes: {totalLikes}</p>
-      <p>Total Dislikes: {totalDislikes}</p>
+      <p>Total Upvotes: {totalLikes}</p>
+      <p>Total Downvotes: {totalDislikes}</p>
 
       <Link to={`/issues/${_id}`}>
-        <button>Detail</button>
+        <button>Read more..</button>
       </Link>
     </div>
   );

@@ -99,7 +99,10 @@ const IssueDetail = () => {
                 </p> */}
                 <div>
                 {comments?.map((comment) => (
-                    <div key={comment._id}>{comment.text}</div>
+                    <div key={comment._id}>
+                        {comment.text}
+                        <button>Delete</button>
+                    </div>
                 ))}
                 </div>
 

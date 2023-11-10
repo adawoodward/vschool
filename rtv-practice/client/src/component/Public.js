@@ -36,6 +36,7 @@ export default function Public() {
   return (
     <div className="public">
       <h1>Public Issues</h1>
+      <h2>All Issues</h2>
       <IssueList issues={allIssues} />
       {/* <IssueList issues={issues} /> */}
     </div>

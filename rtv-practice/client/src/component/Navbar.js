@@ -7,6 +7,7 @@ function Navbar(props){
     <div className="navbar">
       <Link to="/profile">Profile</Link> 
       <Link to="/public">Public</Link>
+      <Link to='/post'>Post</Link>
       <button onClick={logout}>Logout</button>
       {/* { token && <button onClick={logout}>Logout</button> } */}
     </div>

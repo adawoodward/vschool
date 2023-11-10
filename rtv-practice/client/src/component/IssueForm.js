@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../context/UserProvider';
 
 const initInputs = {
   title: "",
@@ -28,6 +30,8 @@ export default function IssueForm(props){
 
   const { title, description, imgUrl } = inputs
   return (
+    <>
+    <h1>Add Issue Here</h1>
     <form onSubmit={handleSubmit}>
       <input 
         type="text" 
@@ -49,5 +53,6 @@ export default function IssueForm(props){
         placeholder="Image Url"/>
       <button>Add Issue</button>
     </form>
+    </>
   )
 }

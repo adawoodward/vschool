@@ -7,10 +7,11 @@ import Public from './component/Public'
 import IssueDetail from './component/IssueDetail'
 import ProtectedRoute from './component/ProtectedRoute'
 import { UserContext } from './context/UserProvider'
+import IssueForm from './component/IssueForm'
 
 
 function App() {
-  const { token, logout, getAllComments } = useContext(UserContext)
+  const { token, logout, getAllComments, addIssue } = useContext(UserContext)
 
   // useEffect(() => {
   //   getAllComments()
@@ -40,6 +41,13 @@ function App() {
         element={
         <ProtectedRoute token={token} redirectTo="/">
           <Public />
+        </ProtectedRoute>}
+      />
+      <Route 
+        path="/post"
+        element={
+        <ProtectedRoute token={token} redirectTo="/">
+          <IssueForm addIssue={addIssue} />
         </ProtectedRoute>}
       />
     </Routes>
