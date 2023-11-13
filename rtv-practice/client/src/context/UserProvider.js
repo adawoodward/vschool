@@ -21,6 +21,8 @@ export default function UserProvider(props) {
     }
 
     const [comments, setComments] = useState([])
+    // const [issues, setIssues] = useState(initState.issues);
+
     const [allIssues, setAllIssues] = useState([])
     const [userState, setUserState] = useState(initState)
 
@@ -83,6 +85,7 @@ export default function UserProvider(props) {
         // since userAxios has the token built into it
         userAxios.get("/api/issue/user")
             .then(res => {
+                console.log('Retrieved issues:', res.data)
                 setUserState(prevState => ({
                     ...prevState,
                     issues: res.data // because this is initial get request, we can just set that full array todos

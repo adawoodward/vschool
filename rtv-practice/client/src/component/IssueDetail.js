@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserProvider';
 import CommentForm from './CommentForm';
 
 const IssueDetail = () => {
-    const { userAxios, comments, setComments, postNewComment } = useContext(UserContext);
+    const { userAxios, comments, setComments, postNewComment, setIssues } = useContext(UserContext);
     const { _id } = useParams();
     const [issueDetail, setIssueDetail] = useState({});
     const navigate = useNavigate()
@@ -78,6 +78,13 @@ const IssueDetail = () => {
             const url = `/api/issue/${_id}`;
             console.log("Deleting issue at URL:", url);
             await userAxios.delete(url);
+            // Update the state to remove the deleted issue
+            // setIssueDetail({})
+            // setUserState(prevState => ({
+            //     ...prevState,
+            //     issues: prevState.issues.filter(issue => issue._id !== _id)
+            // }));
+            setIssues(prevIssues => prevIssues.filter(issue => issue._id !== _id));
             navigate('/profile')
         } catch (error) {
             console.error('Error deleting issue:', error);
