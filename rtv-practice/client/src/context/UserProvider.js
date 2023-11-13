@@ -166,7 +166,8 @@ function upVoteIssue(issueId) {
                 setComments,
                 ...allIssues,
                 setAllIssues,
-                userAxios
+                userAxios,
+                setUserState
             }}
         >
             { props.children }
