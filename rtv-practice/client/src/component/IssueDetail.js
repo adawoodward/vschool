@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
 import CommentForm from './CommentForm';
 
 const IssueDetail = () => {
-    const { userAxios, comments, setComments, postNewComment } = useContext(UserContext);
+    const { userAxios, comments, setComments, postNewComment, deleteComment } = useContext(UserContext);
     const { _id } = useParams();
     const [issueDetail, setIssueDetail] = useState({});
+    const navigate = useNavigate()
 
     const fetchIssue = async () => {
         try {
@@ -72,6 +73,26 @@ const IssueDetail = () => {
         }
     }
 
+    async function deleteIssue() {
+        try {
+            const url = `/api/issue/${_id}`;
+            console.log("Deleting issue at URL:", url);
+            await userAxios.delete(url);
+            navigate('/profile')
+        } catch (error) {
+            console.error('Error deleting issue:', error);
+        }
+    }
+    
+
+    // async function deleteIssue() {
+    //     try {
+    //         await userAxios.delete(`/api/issue/issues/${_id}`)
+    //     } catch (error) {
+    //         console.error('Error deleting issue:', error)
+    //     }
+    // }
+
     // const filteredComments = Array.isArray(comments)
     //     ? comments.filter((comment) => comment.issue === issueDetail._id)
     //     : [];
@@ -86,6 +107,7 @@ const IssueDetail = () => {
                 <div>Title: {issueDetail?.title}</div>
                 <div>Description: {issueDetail?.description}</div>
                 <div>ImgUrl: {issueDetail?.imgUrl}</div>
+                <button onClick={deleteIssue}>Delete Issue</button>
                 <div>Comment</div>
                 {issueDetail._id ? (
                     <CommentForm postComment={postComment} issueId={issueDetail._id} />
@@ -97,11 +119,12 @@ const IssueDetail = () => {
                         <div key={comment._id}>{comment.text}</div>
                     ))}
                 </p> */}
-                <div>
+                <div className='comment'>
                 {comments?.map((comment) => (
                     <div key={comment._id}>
                         {comment.text}
-                        <button>Delete</button>
+                        <button onClick={() => deleteComment(comment._id)}>Delete Comment</button>
+                        {/* <button>Delete</button> */}
                     </div>
                 ))}
                 </div>

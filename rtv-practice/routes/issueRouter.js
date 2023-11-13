@@ -58,6 +58,9 @@ issueRouter.post("/", async (req, res, next) => {
 issueRouter.delete("/:issueId", async (req, res, next) => {
   try {
     const deletedIssue = await Issue.findOneAndDelete({ _id: req.params.issueId, user: req.auth._id });
+    if (!deletedIssue) {
+      return res.status(404).send("Issue not found")
+    }
     return res.status(200).send(`Successfully delete issue: ${deletedIssue.title}`);
   } catch (err) {
     res.status(500);
