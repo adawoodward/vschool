@@ -106,6 +106,21 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    const editIssue = async (issueId, updatedData) => {
+        try {
+            // Make API request to update the issue
+            await userAxios.put(`/api/issue/${issueId}`, updatedData);
+    
+            // Update the state
+            setAllIssues(prevIssues => {
+                return prevIssues.map(issue => (issue._id === issueId ? { ...issue, ...updatedData } : issue));
+            });
+        } catch (error) {
+            console.error('Error editing issue:', error);
+        }
+    };
+    
+
     // function updateComments() {
     //     if (userState.issueDetail._id) {
     //         setComments(userState.issueDetail._id);
@@ -167,7 +182,8 @@ function upVoteIssue(issueId) {
                 ...allIssues,
                 setAllIssues,
                 userAxios,
-                setUserState
+                setUserState,
+                editIssue
             }}
         >
             { props.children }

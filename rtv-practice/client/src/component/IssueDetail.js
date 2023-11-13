@@ -3,11 +3,80 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
 import CommentForm from './CommentForm';
 
+// Add the EditForm component here
+const EditForm = ({ formData, setFormData, onCancel, onSave }) => {
+    // Initialize defaultFormData with default values
+    const defaultFormData = {
+        title: '',
+        description: '',
+        imgUrl: '',
+    };
+
+    // Ensure formData is always defined
+    if (!formData) {
+        setFormData(defaultFormData);
+    }
+    
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+  
+    const handleSave = () => {
+      // Implement the save logic here
+      // Make API request to update the issue with formData
+      // After successful update, set isEditing to false
+      onSave(formData); // Pass formData to the onSave prop
+    };
+  
+    return (
+      <form>
+        <label>
+          Title:
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Description:
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Image URL:
+          <input
+            type="text"
+            name="imgUrl"
+            value={formData.imgUrl}
+            onChange={handleInputChange}
+          />
+        </label>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+        <button type="button" onClick={handleSave}>
+          Save Changes
+        </button>
+      </form>
+    );
+  };
+
 const IssueDetail = () => {
     const { userAxios, comments, setComments, postNewComment, setUserState } = useContext(UserContext);
     const { _id } = useParams();
     const [issueDetail, setIssueDetail] = useState({});
     const navigate = useNavigate()
+    const [isEditing, setIsEditing] = useState(false)
+    const [formData, setFormData] = useState({}); // Add formData state
 
     const fetchIssue = async () => {
         try {
@@ -100,6 +169,24 @@ const IssueDetail = () => {
         }
     }
 
+    // Define the handleSave function
+    const handleSave = async (updatedFormData) => {
+        try {
+        // Make API request to update the issue with updatedFormData
+        await userAxios.put(`/api/issue/${_id}`, updatedFormData);
+      
+        // After successful update, set isEditing to false
+        setIsEditing(false);
+
+        // Refetch the issue and comments to update the UI
+        await fetchIssue();
+        await updateComments();
+        } catch (error) {
+        console.error('Error updating issue:', error);
+        }
+    };
+      
+
     return (
         <>
             <div className='detail-container'>
@@ -107,9 +194,21 @@ const IssueDetail = () => {
                 <h1>Detail Page</h1>
                 <hr />
                 <br />
+                {isEditing ? (
+                <EditForm
+                formData={formData}
+                setFormData={setFormData}
+                onCancel={() => setIsEditing(false)}
+                onSave={handleSave}
+                />) : (
+                <>
                 <div>Title: {issueDetail?.title}</div>
                 <div>Description: {issueDetail?.description}</div>
                 <div>ImgUrl: {issueDetail?.imgUrl}</div>
+                </>
+                )}
+                {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)}
+                {/* {isEditing ? (<button className='save' onClick={handleSave}>Save Changes</button>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)} */}
                 <button onClick={deleteIssue}>Delete Issue</button>
                 <div>Comment</div>
                 {issueDetail._id ? (
@@ -117,17 +216,12 @@ const IssueDetail = () => {
                 ) : (
                     <p>Loading...</p>
                 )}
-                {/* <p>
-                    {filteredComments.map((comment) => (
-                        <div key={comment._id}>{comment.text}</div>
-                    ))}
-                </p> */}
+
                 <div className='comment'>
                 {comments?.map((comment) => (
                     <div key={comment._id}>
                         {comment.text}
                         <button onClick={() => deleteComment(comment._id)}>Delete Comment</button>
-                        {/* <button>Delete</button> */}
                     </div>
                 ))}
                 </div>
