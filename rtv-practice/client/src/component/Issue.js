@@ -20,17 +20,6 @@ export default function Issue(props) {
   const totalLikes = likedUsers.length;
   const totalDislikes = dislikedUsers.length;
 
-  // Check if currentUser is defined and has liked/disliked arrays
-//   const likedIssues = currentUser?.likedIssues || [];
-//   const dislikedIssues = currentUser?.dislikedIssues || [];
-
-//   const isLiked = likedIssues.includes(_id); // Check if issue is liked
-//   const isDisliked = dislikedIssues.includes(_id); // Check if issue is disliked
-
-
-//   const isLiked = currentUser ? currentUser.likedIssues.includes(_id) : false;
-//   const isDisliked = currentUser ? currentUser.dislikedIssues.includes(_id) : false;
-
   return (
     <div className='issue'>
       <h1>{title}</h1>

@@ -2,73 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
 import CommentForm from './CommentForm';
-
-// Add the EditForm component here
-const EditForm = ({ formData, setFormData, onCancel, onSave }) => {
-    // Initialize defaultFormData with default values
-    const defaultFormData = {
-        title: '',
-        description: '',
-        imgUrl: '',
-    };
-
-    // Ensure formData is always defined
-    if (!formData) {
-        setFormData(defaultFormData);
-    }
-    
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
-  
-    const handleSave = () => {
-      // Implement the save logic here
-      // Make API request to update the issue with formData
-      // After successful update, set isEditing to false
-      onSave(formData); // Pass formData to the onSave prop
-    };
-  
-    return (
-      <form>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Image URL:
-          <input
-            type="text"
-            name="imgUrl"
-            value={formData.imgUrl}
-            onChange={handleInputChange}
-          />
-        </label>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-        <button type="button" onClick={handleSave}>
-          Save Changes
-        </button>
-      </form>
-    );
-  };
+import EditForm from './EditForm';
 
 const IssueDetail = () => {
     const { userAxios, comments, setComments, postNewComment, setUserState } = useContext(UserContext);
@@ -76,13 +10,18 @@ const IssueDetail = () => {
     const [issueDetail, setIssueDetail] = useState({});
     const navigate = useNavigate()
     const [isEditing, setIsEditing] = useState(false)
-    const [formData, setFormData] = useState({}); // Add formData state
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        imgUrl: ''
+    }); // Add formData state
 
     const fetchIssue = async () => {
         try {
             const res = await userAxios.get(`/api/issue/issues/${_id}`);
             console.log(res.data);
             setIssueDetail(res.data);
+            setFormData(res.data)
             return res.data;
         } catch (err) {
             console.error(err.response);
@@ -181,6 +120,12 @@ const IssueDetail = () => {
         // Refetch the issue and comments to update the UI
         await fetchIssue();
         await updateComments();
+
+        // Add the following line to trigger a re-render in the Profile component
+        setUserState(prevUserState => ({
+            ...prevUserState,
+            issues: prevUserState.issues.map(issue => (issue._id !== _id ? issue : { ...issue, ...updatedFormData })),
+        }));
         } catch (error) {
         console.error('Error updating issue:', error);
         }
