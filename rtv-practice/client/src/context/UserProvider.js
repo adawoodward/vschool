@@ -148,6 +148,13 @@ function upVoteIssue(issueId) {
           issues: prevUserState.issues.map(issue => (issueId !== issue._id ? issue : res.data))
         }));
       })
+      .then(() => {
+        // Refetch the data from the server after updating the votes
+        return userAxios.get('/api/issue');
+      })
+      .then((res) => {
+        setAllIssues(res.data);
+      })
       .catch(err => console.log(err));
   }
   
@@ -160,6 +167,13 @@ function upVoteIssue(issueId) {
           ...prevUserState,
           issues: prevUserState.issues.map(issue => (issueId !== issue._id ? issue : res.data))
         }));
+      })
+      .then(() => {
+        // Refetch the data from the server after updating the votes
+        return userAxios.get('/api/issue');
+      })
+      .then((res) => {
+        setAllIssues(res.data);
       })
       .catch(err => console.log(err));
   }

@@ -20,20 +20,36 @@ export default function Public() {
       });
   }, [userAxios]);
 
-  const handleUpVote = (issueId) => {
-    upVoteIssue(issueId);
+  const handleUpVote = async (issueId) => {
+    await upVoteIssue(issueId);
     setUserState(prevUserState => ({
       ...prevUserState,
       issues: prevUserState.issues.map(issue => (issue._id !== _id ? issue : { ...issue, upvotes: issue.upvotes + 1 })),
-  }));
+    }));
+    // Refetch the data from the server after updating the votes
+    userAxios.get('api/issue')
+    .then((res) => {
+      setAllIssues(res.data)
+    })
+    .catch((err) => {
+      console.error('Error fetching all issues:', err)
+    })
   };
 
-  const handleDownVote = (issueId) => {
-    downVoteIssue(issueId);
+  const handleDownVote = async (issueId) => {
+    await downVoteIssue(issueId);
     setUserState(prevUserState => ({
       ...prevUserState,
       issues: prevUserState.issues.map(issue => (issue._id !== _id ? issue : { ...issue, downvotes: issue.downvotes + 1 })),
-  }));
+    }));
+    // Refetch the data from the server after updating the votes
+    userAxios.get('/api/issue')
+    .then((res) => {
+      setAllIssues(res.data);
+    })
+    .catch((err) => {
+      console.error('Error fetching all issues:', err);
+    });
   };
 
   return (
