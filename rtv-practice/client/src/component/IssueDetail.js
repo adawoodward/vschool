@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserProvider';
 import CommentForm from './CommentForm';
 
 const IssueDetail = () => {
-    const { userAxios, comments, setComments, postNewComment, deleteComment } = useContext(UserContext);
+    const { userAxios, comments, setComments, postNewComment } = useContext(UserContext);
     const { _id } = useParams();
     const [issueDetail, setIssueDetail] = useState({});
     const navigate = useNavigate()
@@ -84,6 +84,14 @@ const IssueDetail = () => {
         }
     }
     
+    async function deleteComment(commentId) {
+        try {
+            await userAxios.delete(`/api/comment/${commentId}`)
+            await updateComments()
+        } catch (error) {
+            console.error('Error deleting comment:', error)
+        }
+    }
 
     // async function deleteIssue() {
     //     try {
@@ -133,7 +141,7 @@ const IssueDetail = () => {
             </div>
         </>
     );
-};
+}
 
 export default IssueDetail;
 

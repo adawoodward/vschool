@@ -25,10 +25,10 @@ commentRouter.post('/issues/:issueId', async (req, res, next) => {
       }
 })
 
-commentRouter.delete('/issues/:issueId', async (req, res, next) => {
+commentRouter.delete('/:commentId', async (req, res, next) => {
     try {
         const deletedComment = await Comment.findOneAndDelete({
-            _id: req.params.issueId, 
+            _id: req.params.commentId, 
             user: req.auth._id
         })
         return res.status(200).send(`Successfully deleted comment: ${deletedComment.text}`)
