@@ -59,37 +59,3 @@ export default function Issue(props) {
     </div>
   );
 }
-
-
-// import React, { useContext } from 'react';
-// import { UserContext } from '../context/UserProvider';
-// import { Link } from 'react-router-dom';
-
-
-// export default function Issue(props) {
-//     const { comments } = useContext(UserContext);
-//     const { issue } = props;
-//     const { title, description, imgUrl } = props;
-//     // const { _id } = useParams
-
-//     // Ensure that comments is an array before filtering
-//     const _id = issue ? issue._id : null;
-//     // const filteredComments = Array.isArray(comments) ? comments.filter(comment => comment.issue === _id) : [];
-
-//     // Rest of your component code
-//     return (
-//         <div className='issue'>
-//             <h1>{title}</h1>
-//             <h3>{description}</h3>
-//             <img src={imgUrl} alt={imgUrl} width={300} />
-//             {/* <p>{filteredComments.map(comment => (
-//                 <div key={comment._id}>
-//                     {comment.text}
-//                 </div>
-//             ))}</p> */}
-//         <Link to={`/issues/${_id}`}>
-//           <button>Detail</button>
-//         </Link>
-//         </div>
-//     )
-// }

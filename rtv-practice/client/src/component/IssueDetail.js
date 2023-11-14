@@ -58,7 +58,7 @@ const IssueDetail = () => {
         fetchData();
     }, []);
 
-    // Define this function to update the comments state
+    // function to update the comments state
     const updateComments = async () => {
         if (issueDetail._id) {
             await fetchComments(issueDetail._id);
@@ -86,13 +86,10 @@ const IssueDetail = () => {
             const url = `/api/issue/${_id}`;
             console.log("Deleting issue at URL:", url);
             await userAxios.delete(url);
-            // Update the state to remove the deleted issue
-            // setIssueDetail({})
             setUserState(prevUserState => ({
                 ...prevUserState,
                 issues: prevUserState.issues.filter(issue => issue._id !== _id)
             }));
-            // setIssues(prevIssues => prevIssues.filter(issue => issue._id !== _id));
             navigate('/profile')
         } catch (error) {
             console.error('Error deleting issue:', error);

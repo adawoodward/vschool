@@ -4,7 +4,6 @@ import UserProvider, { UserContext } from '../context/UserProvider'
 export default function CommentForm({ issueId, postComment }) {
     const [text, setText] = useState('')
     const { user } = useContext(UserContext)
-    // const { postComment } = useContext(UserContext)
 
     const handleInputChange = (e) => {
         setText(e.target.value)

@@ -1,4 +1,3 @@
-// import React, { useState } from 'react'
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../context/UserProvider';
 
@@ -23,7 +22,6 @@ export default function IssueForm(props){
 
   function handleSubmit(e){
     e.preventDefault()
-    // add todo
     addIssue(inputs)
     setInputs(initInputs)
   }
