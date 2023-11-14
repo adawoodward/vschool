@@ -136,6 +136,7 @@ const IssueDetail = () => {
                 <h1>Detail Page</h1>
                 <hr />
                 <br />
+                {/* it passes these functions and the form data as props to the EditForm component */}
                 {isEditing ? (
                 <EditForm
                 formData={formData}
