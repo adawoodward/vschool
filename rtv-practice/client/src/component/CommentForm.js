@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import UserProvider, { UserContext } from '../context/UserProvider'
+import { UserContext } from '../context/UserProvider'
 
 export default function CommentForm({ issueId, postComment }) {
     const [text, setText] = useState('')

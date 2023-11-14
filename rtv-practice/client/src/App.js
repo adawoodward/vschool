@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Auth from './component/Auth'
 import Navbar from './component/Navbar'
@@ -11,11 +11,7 @@ import IssueForm from './component/IssueForm'
 
 
 function App() {
-  const { token, logout, getAllComments, addIssue } = useContext(UserContext)
-
-  // useEffect(() => {
-  //   getAllComments()
-  // }, [])
+  const { token, logout, addIssue } = useContext(UserContext)
 
   return (
     <div className="App">
