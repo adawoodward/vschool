@@ -137,7 +137,27 @@ export default function UserProvider(props) {
             .catch((err) => console.log(err));
     }
 
-    // UserProvider.js
+//     async function upVoteIssue(issueId) {
+//     try {
+//             const res = await userAxios.put(`/api/issue/upvote/${issueId}`)
+//             return res.data
+//         } catch (err) {
+//             console.log(err)
+//             throw err
+//         }
+//   }
+  
+//     async function downVoteIssue(issueId) {
+//     try {
+//           const res = await userAxios.put(`/api/issue/downvote/${issueId}`)
+//           return res.data
+//       } catch (err) {
+//           console.log(err)
+//           throw err
+//       }
+//     }
+  
+
 function upVoteIssue(issueId) {
     userAxios.put(`/api/issue/upvote/${issueId}`)
       .then(res => {
