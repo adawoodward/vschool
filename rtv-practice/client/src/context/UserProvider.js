@@ -81,6 +81,16 @@ export default function UserProvider(props) {
         }))
     }
 
+    function getAllIssues(){
+        userAxios.get('/api/issue')
+            .then((res) => {
+                setAllIssues(res.data);
+            })
+            .catch((err) => {
+                console.error('Error fetching all issues:', err);
+            });
+    }
+
     function getUserIssues() {
         // since userAxios has the token built into it
         userAxios.get("/api/issue/user")
@@ -169,18 +179,19 @@ function upVoteIssue(issueId) {
       .catch(err => console.log(err));
   }
   
+  console.log(allIssues)
+
   function downVoteIssue(issueId) {
     userAxios
       .put(`/api/issue/downvote/${issueId}`)
       .then(res => {
+        console.log(res.data)
         // Update the specific issue in the state after downvoting
-        setAllIssues(prevIssues =>
-          prevIssues.map(issue => (issue._id !== issueId ? issue : res.data))
-        );
+        setAllIssues(prevIssues => prevIssues.map(issue => (issue._id !== issueId ? issue : res.data)));
         setUserState(prevUserState => ({
           ...prevUserState,
           issues: prevUserState.issues.map(issue =>
-            issue._id !== issueId ? issue : res.data
+             issue._id !== issueId ? issue : res.data
           )
         }));
       })
@@ -201,12 +212,13 @@ function upVoteIssue(issueId) {
                 downVoteIssue,
                 comments,
                 setComments,
-                ...allIssues,
+                allIssues,
                 setAllIssues,
                 userAxios,
                 setUserState,
                 editIssue,
-                userState
+                userState,
+                getAllIssues
             }}
         >
             { props.children }
