@@ -1,6 +1,5 @@
 import React from 'react';
 import Issue from './Issue.js';
-import { Link } from 'react-router-dom';
 
 export default function IssueList(props) {
   const { issues, handleUpVote, handleDownVote } = props;
@@ -12,7 +11,7 @@ export default function IssueList(props) {
 
   return (
     <div className="issue-list">
-      {issues.map((issue) => (
+      {issues.map((issue) => ( // for each issue in the array, it renders an Issue component
         <Issue 
         key={issue._id} 
         issue={issue}

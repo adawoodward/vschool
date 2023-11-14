@@ -21,10 +21,12 @@ const EditForm = ({ formData, setFormData, onCancel, onSave }) => {
     }));
   };
 
+  // calls onSave function, passing the current formData as an argument
   const handleSave = () => {
     onSave(formData);
   };
 
+  // calls onCancel function, resetting the formData state to default vaules
   const handleCancel = () => {
     onCancel();
     setFormData({

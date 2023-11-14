@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-                             // receive as props
+                             
 function Navbar(props){
   const { logout } = props // destructuring to call it logout not props.logout
   return (

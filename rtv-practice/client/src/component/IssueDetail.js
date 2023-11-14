@@ -18,10 +18,10 @@ const IssueDetail = () => {
 
     const fetchIssue = async () => {
         try {
-            const res = await userAxios.get(`/api/issue/issues/${_id}`);
+            const res = await userAxios.get(`/api/issue/issues/${_id}`); 
             console.log(res.data);
-            setIssueDetail(res.data);
-            setFormData(res.data)
+            setIssueDetail(res.data); // updates issueDetail state with the retrieved data
+            setFormData(res.data) // sets formData state with the same data retrieved 
             return res.data;
         } catch (err) {
             console.error(err.response);
@@ -33,7 +33,7 @@ const IssueDetail = () => {
         try {
             const res = await userAxios.get(`/api/comment/issues/${issueId}`);
             console.log(res.data);
-            setComments(res.data);
+            setComments(res.data); // updated comments state with res.data, and it will update the comments on frontend
             console.log(comments);
         } catch (err) {
             console.error("Error fetching comments: ", err.response);
@@ -45,8 +45,8 @@ const IssueDetail = () => {
         const fetchData = async () => {
             try {
                 const issueData = await fetchIssue();
-                if (issueData._id) {
-                    await fetchComments(issueData._id);
+                if (issueData._id) { // if issueData._id exists, it calls fecthComments to fetch comments related to the issue with the same _id
+                    await fetchComments(issueData._id); 
                 } else {
                     console.log("Invalid issueId");
                 }
@@ -58,11 +58,11 @@ const IssueDetail = () => {
         fetchData();
     }, []);
 
-    // function to update the comments state
+    // function to update the comments 
     const updateComments = async () => {
         if (issueDetail._id) {
-            await fetchComments(issueDetail._id);
-        }
+            await fetchComments(issueDetail._id);  // If the issueDetail has a valid _id, it calls the fetchComments function, passing the _id as an argument to retrieve comments associated with that specific issue from the server
+        } // If there's no valid _id, the function won't make the call to fetch comments
     };
 
     async function postComment(newComment) {
@@ -73,8 +73,8 @@ const IssueDetail = () => {
         console.log("issueId: ", issueDetail._id);
     
         try {
-            await postNewComment(newComment, issueDetail._id);
-            await updateComments();
+            await postNewComment(newComment, issueDetail._id); // call postNewComment to add the new comment to the issue with issueDetail._id
+            await updateComments(); // after posting comment, it calls updateComments function to fetch and update the comments
             console.log(comments);
         } catch (error) {
             console.error("Error updating comments: ", error);
@@ -89,8 +89,8 @@ const IssueDetail = () => {
             setUserState(prevUserState => ({
                 ...prevUserState,
                 issues: prevUserState.issues.filter(issue => issue._id !== _id)
-            }));
-            navigate('/profile')
+            })); // updating userState by removing the deleted issue from issues array
+            navigate('/profile') 
         } catch (error) {
             console.error('Error deleting issue:', error);
         }
@@ -99,14 +99,14 @@ const IssueDetail = () => {
     async function deleteComment(commentId) {
         try {
             await userAxios.delete(`/api/comment/${commentId}`)
-            await updateComments()
+            await updateComments() // to refresh the comments after deleting
         } catch (error) {
             console.error('Error deleting comment:', error)
         }
     }
 
-    // Define the handleSave function
-    const handleSave = async (updatedFormData) => {
+    // functionality for saving changes made to an issue
+    const handleSave = async (updatedFormData) => { // takes updatedFormData as an argument
         try {
         // Make API request to update the issue with updatedFormData
         await userAxios.put(`/api/issue/${_id}`, updatedFormData);
@@ -122,7 +122,7 @@ const IssueDetail = () => {
         setUserState(prevUserState => ({
             ...prevUserState,
             issues: prevUserState.issues.map(issue => (issue._id !== _id ? issue : { ...issue, ...updatedFormData })),
-        }));
+        })); // maps through prevUserState.issues array and looks for the specific issue with the same _id, replaces old data with updatedFormData
         } catch (error) {
         console.error('Error updating issue:', error);
         }
