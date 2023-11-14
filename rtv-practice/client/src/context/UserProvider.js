@@ -119,13 +119,6 @@ export default function UserProvider(props) {
             console.error('Error editing issue:', error);
         }
     };
-    
-
-    // function updateComments() {
-    //     if (userState.issueDetail._id) {
-    //         setComments(userState.issueDetail._id);
-    //     }
-    // }
 
     function postNewComment(newComment, issueId) {
         console.log('Posting comment for issueId:', issueId);
@@ -156,48 +149,42 @@ export default function UserProvider(props) {
 //           throw err
 //       }
 //     }
-  
 
 function upVoteIssue(issueId) {
-    userAxios.put(`/api/issue/upvote/${issueId}`)
+    userAxios
+      .put(`/api/issue/upvote/${issueId}`)
       .then(res => {
-        // Update the state with the updated issue after upvoting
-        setAllIssues(prevIssues => prevIssues.map(issue => (issueId !== issue._id ? issue : res.data)));
+        // Update the specific issue in the state after upvoting
+        setAllIssues(prevIssues =>
+          prevIssues.map(issue => (issue._id !== issueId ? issue : res.data))
+        );
         setUserState(prevUserState => ({
           ...prevUserState,
-          issues: prevUserState.issues.map(issue => (issueId !== issue._id ? issue : res.data))
+          issues: prevUserState.issues.map(issue =>
+            issue._id !== issueId ? issue : res.data
+          )
         }));
-      })
-      .then(() => {
-        // Refetch the data from the server after updating the votes
-        return userAxios.get('/api/issue');
-      })
-      .then((res) => {
-        setAllIssues(res.data);
       })
       .catch(err => console.log(err));
   }
   
   function downVoteIssue(issueId) {
-    userAxios.put(`/api/issue/downvote/${issueId}`)
+    userAxios
+      .put(`/api/issue/downvote/${issueId}`)
       .then(res => {
-        // Update the state with the updated issue after downvoting
-        setAllIssues(prevIssues => prevIssues.map(issue => (issueId !== issue._id ? issue : res.data)));
+        // Update the specific issue in the state after downvoting
+        setAllIssues(prevIssues =>
+          prevIssues.map(issue => (issue._id !== issueId ? issue : res.data))
+        );
         setUserState(prevUserState => ({
           ...prevUserState,
-          issues: prevUserState.issues.map(issue => (issueId !== issue._id ? issue : res.data))
+          issues: prevUserState.issues.map(issue =>
+            issue._id !== issueId ? issue : res.data
+          )
         }));
-      })
-      .then(() => {
-        // Refetch the data from the server after updating the votes
-        return userAxios.get('/api/issue');
-      })
-      .then((res) => {
-        setAllIssues(res.data);
       })
       .catch(err => console.log(err));
   }
-  
 
     return (
         <UserContext.Provider
@@ -217,7 +204,8 @@ function upVoteIssue(issueId) {
                 setAllIssues,
                 userAxios,
                 setUserState,
-                editIssue
+                editIssue,
+                userState
             }}
         >
             { props.children }
