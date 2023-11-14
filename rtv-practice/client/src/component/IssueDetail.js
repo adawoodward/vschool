@@ -146,22 +146,29 @@ const IssueDetail = () => {
                 onCancel={() => setIsEditing(false)}
                 onSave={handleSave}
                 />) : (
-                <>
+                <div className='detail'>
                 <div>Title: {issueDetail?.title}</div>
+                <br></br>
                 <div>Description: {issueDetail?.description}</div>
+                <br></br>
                 <div>ImgUrl: {issueDetail?.imgUrl}</div>
-                </>
+                <br></br>
+                </div>
                 )}
+                <div className='edit-delete-buttons'>
                 {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)}
-                {/* {isEditing ? (<button className='save' onClick={handleSave}>Save Changes</button>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)} */}
-                <button onClick={deleteIssue}>Delete Issue</button>
-                <div>Comment</div>
+                <button className='delete' onClick={deleteIssue}>Delete Issue</button>
+                </div>
+                <br></br>
+                {/* {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)}
+                <button className='delete' onClick={deleteIssue}>Delete Issue</button> */}
+                <div className='comment-container'>Comment
                 {issueDetail._id ? (
                     <CommentForm postComment={postComment} issueId={issueDetail._id} />
                 ) : (
                     <p>Loading...</p>
                 )}
-
+                <br></br>
                 <div className='comment'>
                 {comments?.map((comment) => (
                     <div key={comment._id}>
@@ -169,6 +176,7 @@ const IssueDetail = () => {
                         <button onClick={() => deleteComment(comment._id)}>Delete Comment</button>
                     </div>
                 ))}
+                </div>
                 </div>
 
                 <br />

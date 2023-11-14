@@ -25,7 +25,7 @@ export default function Issue(props) {
       <h1>{title}</h1>
       <h3>{description}</h3>
       <img src={imgUrl} alt={imgUrl} width={300} />
-
+      <div className='vote-button'>
       {/* Like Button */}
       <button
         onClick={() => {
@@ -33,8 +33,10 @@ export default function Issue(props) {
         }}
         disabled={isLiked}
       >
-        Upvote
+        {/* Upvote */}
+        <i className='far fa-thumbs-up' style={{fontSize: '40px'}}></i>
       </button>
+
 
       {/* Dislike Button */}
       <button
@@ -43,11 +45,13 @@ export default function Issue(props) {
         }}
         disabled={isDisliked}
       >
-        Downvote
+        <i className='far fa-thumbs-down' style={{fontSize: '40px'}}></i>
       </button>
-
+      </div>
+      <div className='vote'>
       <p>Total Upvotes: {totalLikes}</p>
       <p>Total Downvotes: {totalDislikes}</p>
+      </div>
 
       <Link to={`/issues/${_id}`}>
         <button>Read more..</button>

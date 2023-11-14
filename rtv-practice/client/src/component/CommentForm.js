@@ -19,7 +19,7 @@ export default function CommentForm({ issueId, postComment }) {
     }
 
     return (
-      <div>
+      <div className='comment-form'>
           <h3>Add a Comment</h3>
           {user ? (
               <form onSubmit={handleCommentSubmit}>
@@ -29,6 +29,7 @@ export default function CommentForm({ issueId, postComment }) {
                       onChange={handleInputChange}
                       placeholder="Write your comment here"
                   />
+                  <br></br>
                   <button type="submit">Submit Comment</button>
               </form>
           ) : (

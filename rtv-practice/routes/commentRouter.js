@@ -2,6 +2,16 @@ const express = require('express')
 const commentRouter = express.Router()
 const Comment = require('../models/comment.js')
 
+commentRouter.get('/issues', async (req, res, next) => {
+    try {
+        const comments = await Comment.find().populate('user')
+        return res.status(200).send(comments) 
+    } catch (err) {
+        res.status(500)
+        return next(err)
+    }
+})
+
 commentRouter.get('/issues/:issueId', async (req, res, next) => {
     try {
         const comments = await Comment.find({ issue: req.params.issueId })
