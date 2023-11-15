@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Post(props) {
   const { post } = props;
   const { title, brand, category, description, imgUrl } = post; // Destructure issue directly
-  const { _id, likedUsers, dislikedUsers } = issue;
+  const { _id, likedUsers, dislikedUsers } = post;
 
   // Get the UserContext and functions
   const {

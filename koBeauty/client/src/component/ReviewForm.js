@@ -50,6 +50,7 @@ export default function ReviewForm({ postId, postReview }) {
     //     }
     // }
 
+    const { text, rating, imgUrl } = inputs
 
 
     return (
@@ -72,7 +73,7 @@ export default function ReviewForm({ postId, postReview }) {
                   <br></br>
                   <br />
                   <label htmlFor="rating">Rating:</label>
-                  <select name="rating" value={inputs.rating} onChange={handleRatingChange}>
+                  <select name="rating" value={rating} onChange={handleRatingChange}>
                   {[1, 2, 3, 4, 5].map((value) => (
                     <option key={value} value={value}>
                         {value}

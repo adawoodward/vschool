@@ -84,7 +84,7 @@ export default function UserProvider(props) {
     function getAllPosts(){
         userAxios.get('/api/post')
             .then((res) => {
-                setAllIssues(res.data);
+                setAllPosts(res.data);
             })
             .catch((err) => {
                 console.error('Error fetching all posts:', err);

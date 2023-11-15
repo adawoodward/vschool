@@ -31,7 +31,7 @@ const PostDetail = () => {
         }
     };
 
-    const fetchReviews= async (issueId) => {
+    const fetchReviews= async (postId) => {
         try {
             const res = await userAxios.get(`/api/review/posts/${postId}`);
             console.log(res.data);
@@ -160,7 +160,7 @@ const PostDetail = () => {
                 )}
                 <div className='edit-delete-buttons'>
                 {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Post</button>)}
-                <button className='delete' onClick={deleteIssue}>Delete Post</button>
+                <button className='delete' onClick={deletePost}>Delete Post</button>
                 </div>
                 <br></br>
                 {/* {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)}
