@@ -17,22 +17,22 @@ const reviewSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Post' // Reference to the issue the comment is related to
   },
-  ratings: [{
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User', // Reference to the user who rated the review
-    },
-    value: {
+  rating: [
+    // user: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'User', // Reference to the user who rated the review
+    // },
+    {value: {
       type: Number,
       min: 1,
       max: 5,
-      required: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-  }]
+      required: true}
+    }
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+}
 })
 
 module.exports = mongoose.model("Review", reviewSchema)

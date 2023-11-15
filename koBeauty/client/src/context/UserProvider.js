@@ -21,7 +21,8 @@ export default function UserProvider(props) {
     }
 
     const [reviews, setReviews] = useState([])
-    const [allPosts, setAllPosts] = useState([])
+    const [allPosts, setAllPosts] = useState(null);
+    // const [allPosts, setAllPosts] = useState([])
     const [userState, setUserState] = useState(initState)
 
     function signup(credentials){
@@ -81,37 +82,54 @@ export default function UserProvider(props) {
         }))
     }
 
-    function getAllPosts(){
+    // function getAllPosts(){
+    //     userAxios.get('/api/post')
+    //         .then((res) => {
+    //             setAllPosts(res.data);
+    //         })
+    //         .catch((err) => {
+    //             console.error('Error fetching all posts:', err);
+    //         });
+    // }
+
+    function getAllPosts() {
         userAxios.get('/api/post')
             .then((res) => {
-                setAllPosts(res.data);
+                setAllPosts(res.data || []); // Set response data or an empty array
             })
             .catch((err) => {
                 console.error('Error fetching all posts:', err);
+                setAllPosts([]); // Set an empty array on error
             });
     }
+    
 
     function getUserPosts() {
         // since userAxios has the token built into it
         userAxios.get("/api/post/user")
             .then(res => {
                 console.log('Retrieved posts:', res.data)
-                setUserState(prevState => ({
-                    ...prevState,
-                    posts: res.data // because this is initial get request, we can just set that full array todos
-                }))
+                if (Array.isArray(res.data)) { // Check if res.data is an array
+                    setUserState(prevState => ({
+                        ...prevState,
+                        posts: res.data
+                    }))
+                } else {
+                    console.error('Response data is not an array:', res.data);
+                    // Handle the scenario where res.data is not an array
+                }
             })
             .catch(err => console.log(err.response.data.errMsg))
     }
 
     // this addTodo will expect to receive a new todo as a parameter coming from the form  
-    function addPost(newPost) {
+    function addPost(newPost, postId) {
         userAxios.post("/api/post", newPost)
             .then(res => {
-                setUserState(prevState => ({
-                    ...prevState,               // adding the new issue here as res.data
-                    posts: [...prevState.posts, res.data]
-                })) // updating the state with the newly added issue
+                setUserState(prevUserState => ({
+                    ...prevUserState,
+                    posts: Array.isArray(prevUserState.posts) ? prevUserState.posts.map(post => (post._id !== postId ? post : res.data)) : []
+                }));                
             })
             .catch(err => console.log(err.response.data.errMsg))
     }
@@ -133,10 +151,11 @@ export default function UserProvider(props) {
       // takes two parameter: newComment (the comment to be posted) & issueId (identifies the issue for which the comment is posted).
     function postNewReview(newReview, postId) {
         console.log('Posting review for postId:', postId);
+        // const { text, imgUrl, rating } = newReview;
         userAxios
             .post(`/api/review/posts/${postId}`, newReview)
             .then((res) => {
-                setReviews((prev) => [...prev, res.data]);
+                setReviews((prevReviews) => [...prevReviews, res.data]);
             }) // updating the comments state, takes the previous state(prev) and adds the new comment(res.data)
             .catch((err) => console.log(err));
     }

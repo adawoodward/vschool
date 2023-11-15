@@ -40,7 +40,7 @@ export default function PostForm(props){
         placeholder="Title"/>
       <input 
         type="text" 
-        name="title" 
+        name="brand" 
         value={brand} 
         onChange={handleChange} 
         placeholder="Brand"/>

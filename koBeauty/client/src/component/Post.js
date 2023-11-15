@@ -35,18 +35,16 @@ export default function Post(props) {
         }}
         disabled={isLiked}
       >
-        {/* Upvote */}
+        {/* Upvote */}Like
         <i className='far fa-thumbs-up' style={{fontSize: '40px'}}></i>
       </button>
-
-
       {/* Dislike Button */}
       <button
         onClick={() => {
           if (!isDisliked) downVotePost(_id);
         }}
         disabled={isDisliked}
-      >
+      > Dislike
         <i className='far fa-thumbs-down' style={{fontSize: '40px'}}></i>
       </button>
       </div>

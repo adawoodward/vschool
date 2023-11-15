@@ -154,7 +154,9 @@ const PostDetail = () => {
                 <br></br>
                 <div>Description: {postDetail?.description}</div>
                 <br></br>
-                <div>ImgUrl: {postDetail?.imgUrl}</div>
+                {/* <div>ImgUrl: {postDetail?.imgUrl}</div> */}
+                <img src={postDetail?.imgUrl} alt={postDetail?.imgUrl} width={300} />
+
                 <br></br>
                 </div>
                 )}
@@ -175,7 +177,14 @@ const PostDetail = () => {
                 <div className='review'>
                 {reviews?.map((review) => (
                     <div key={review._id}>
-                        {review.text}
+                        <div>{review.text}</div>
+                        <div>Ratings:
+                            {review.ratings.map((rating, index) => (
+                                <span key={index}>{rating.value} </span>
+                            ))}
+                        </div>
+                        <img src={review.imgUrl} width={200} alt={review.imgUrl}/>
+                        {/* <img src={postDetail?.imgUrl} alt={postDetail?.imgUrl} width={300} /> */}
                         <button onClick={() => deleteReview(review._id)}>Delete Review</button>
                     </div>
                 ))}
