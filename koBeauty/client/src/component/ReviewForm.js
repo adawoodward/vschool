@@ -8,10 +8,10 @@ const initInputs = {
     rating: 1 // Default rating value
 }
 
-export default function ReviewForm({ postId }) {
+export default function ReviewForm({ postId, postReview }) {
     // const [text, setText] = useState('')
     const [inputs, setInputs] = useState(initInputs)
-    const { user, postReview } = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     // const handleInputChange = (e) => {
     //     setText(e.target.value)

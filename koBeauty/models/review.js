@@ -17,18 +17,12 @@ const reviewSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Post' // Reference to the issue the comment is related to
   },
-  rating: [
-    // user: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'User', // Reference to the user who rated the review
-    // },
-    {value: {
-      type: Number,
-      min: 1,
-      max: 5,
-      required: true}
-    }
-  ],
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -206,6 +206,7 @@ function upVotePost(postId) {
                 logout,
                 addPost,
                 resetAuthErr,
+                // postReview,
                 postNewReview,
                 upVotePost,
                 downVotePost,
