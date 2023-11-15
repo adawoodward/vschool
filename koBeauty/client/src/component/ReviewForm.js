@@ -9,13 +9,8 @@ const initInputs = {
 }
 
 export default function ReviewForm({ postId, postReview }) {
-    // const [text, setText] = useState('')
     const [inputs, setInputs] = useState(initInputs)
     const { user } = useContext(UserContext)
-
-    // const handleInputChange = (e) => {
-    //     setText(e.target.value)
-    // }
 
     function handleInputChange(e){
         const {name, value} = e.target
@@ -35,20 +30,12 @@ export default function ReviewForm({ postId, postReview }) {
     
       const handleReviewSubmit = (e) => {
         e.preventDefault();
-        const { text, imgUrl, rating } = inputs; // Destructure inputs
+        // const { text, imgUrl, rating } = inputs; // Destructure inputs
         if (text && user) {
-          postReview({ text, imgUrl, post: postId, rating }, postId); // Include rating in the postReview function
+          postReview({ text, imgUrl, rating, post: postId }); // Include rating in the postReview function
           setInputs(initInputs);
         }
       };
-
-    // const handleReviewSubmit = (e) => {
-    //     e.preventDefault()
-    //     if (text && user) {
-    //         postReview({ text, imgUrl, post: postId })
-    //         setInputs(initInputs)
-    //     }
-    // }
 
     const { text, rating, imgUrl } = inputs
 

@@ -151,7 +151,6 @@ export default function UserProvider(props) {
       // takes two parameter: newComment (the comment to be posted) & issueId (identifies the issue for which the comment is posted).
     function postNewReview(newReview, postId) {
         console.log('Posting review for postId:', postId);
-        // const { text, imgUrl, rating } = newReview;
         userAxios
             .post(`/api/review/posts/${postId}`, newReview)
             .then((res) => {
@@ -206,7 +205,6 @@ function upVotePost(postId) {
                 logout,
                 addPost,
                 resetAuthErr,
-                // postReview,
                 postNewReview,
                 upVotePost,
                 downVotePost,

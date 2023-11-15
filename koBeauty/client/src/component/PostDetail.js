@@ -165,8 +165,7 @@ const PostDetail = () => {
                 <button className='delete' onClick={deletePost}>Delete Post</button>
                 </div>
                 <br></br>
-                {/* {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Issue</button>)}
-                <button className='delete' onClick={deleteIssue}>Delete Issue</button> */}
+          
                 <div className='review-container'>REVIEW
                 {postDetail._id ? (
                     <ReviewForm postReview={postReview} postId={postDetail._id} />
@@ -178,13 +177,8 @@ const PostDetail = () => {
                 {reviews?.map((review) => (
                     <div key={review._id}>
                         <div>{review.text}</div>
-                        <div>Ratings:
-                            {review.ratings.map((rating, index) => (
-                                <span key={index}>{rating.value} </span>
-                            ))}
-                        </div>
+                        <div>{review.rating}</div>
                         <img src={review.imgUrl} width={200} alt={review.imgUrl}/>
-                        {/* <img src={postDetail?.imgUrl} alt={postDetail?.imgUrl} width={300} /> */}
                         <button onClick={() => deleteReview(review._id)}>Delete Review</button>
                     </div>
                 ))}
