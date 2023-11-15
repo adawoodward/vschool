@@ -1,43 +1,40 @@
-const express = require("express")
+const express = require('express')
 const app = express()
+require('dotenv').config()
 const morgan = require('morgan')
-const {v4: uuidv4} = require('uuid')
 const mongoose = require('mongoose')
-// const id = mongoose.Types.ObjectId(objectIdString);
-// if( !mongoose.Types.ObjectId.isValid(id) ) return false;
+const {expressjwt} = require('express-jwt')
+// const expressJwt = require('express-jwt'); // Corrected import
 
+app.use(express.json())
+app.use(morgan('dev'))
 
-app.use(express.json()) // Looks for a request body, and turns it into 'req.body'
-app.use(morgan('dev')) // Logs requests to the console
+mongoose
+  .connect('mongodb://localhost:27017/kobeauty')
+  .then(() => {
+    console.log('Connected to the DB');
+  })
+  .catch((err) => {
+    console.error('Error connecting to the DB:', err);
+  });
 
-app.use("/items", (req, res, next) => {
-    console.log("THE ITEMS MIDDLEWARE WAS EXECUTED")
-    next()
-})
+app.use('/auth', require('./routes/authRouter.js'))
+// app.use('/api/issue', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
+// app.use('/api/comment', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
+app.use('/api', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }))
+app.use('/api/post', require('./routes/postRouter.js'))
+app.use('/api/review', require('./routes/reviewRouter.js'))
 
-app.use("/items", (req, res, next) => {
-    req.body = { name: "Rick" }
-    next()
-})
-
-app.get("/items", (req, res, next) => {
-    console.log("GET REQUEST RECIEVED")
-    res.send(req.body)
-})
-
-mongoose.connect('mongodb://127.0.0.1:27017/makeupdb',{useNewUrlParser: true})
-.then(()=> console.log("Connected to MongoDB"))
-.catch(err => console.error(err));
-
-
-// Routes //
-app.use("/makeup", require("./routes/makeupRouter"))
 
 app.use((err, req, res, next) => {
     console.log(err)
+    if(err.name === "UnauthorizedError"){
+        res.status(err.status)
+    }
     return res.send({errMsg: err.message})
 })
 
-app.listen(7300, () => {
-    console.log("The server is running on Port 7300")
+
+app.listen(5002, () => {
+    console.log("The server is running on Port 5002")
 })
