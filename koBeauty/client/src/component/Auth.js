@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import AuthForm from './AuthForm.js'
 import { UserContext } from '../context/UserProvider.js'
+import Hero from './Hero.js'
 
 const initInputs = { username: "", password: "" }
 
@@ -39,6 +40,7 @@ export default function Auth(){
   return (
     <div className="auth-container">
       <h1>KOBEAUTY App</h1>
+      <Hero />
       { !toggle ?
         <>
           <AuthForm 
