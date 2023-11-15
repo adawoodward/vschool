@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
 import PostList from './PostList';
 
 export default function Public() {
-  const { userAxios, setUserState, upVotePost, downVotePost, getAllPosts, allPosts } = useContext(UserContext);
+  const { upVotePost, downVotePost, getAllPosts, allPosts } = useContext(UserContext);
 
-  const { _id } = useParams();
+  // const { _id } = useParams();
   console.log(allPosts)
   useEffect(() => {
     // Fetch all issues from the server
