@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserProvider';
-// import PostList from './PostList';
+import { Link } from 'react-router-dom';
 
 export default function Category() {
     const { userAxios, upVotePost, downVotePost, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
@@ -51,9 +51,11 @@ export default function Category() {
           <div>
           {allPosts && allPosts.map(post => (
                     <div key={post._id}>
-                        {/* Render post details here */}
-                        <p>{post.title}</p>
-                        {/* Add other post details as needed */}
+                        <h3>{post.title}</h3>
+                        <img src={post.imgUrl} width={300} />
+                        <Link to={`/posts/${post._id}`}>
+                          <button>Read more..</button>
+                        </Link>
                     </div>
                 ))}
           </div>

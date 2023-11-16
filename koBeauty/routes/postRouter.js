@@ -114,12 +114,35 @@ postRouter.put('/downVote/:postId', async (req, res, next) => {
 });
 
 postRouter.get("/search/category", (req, res, next) => {
-  Post.find({category: req.query.category})
+  Post.find({ category: req.query.category })
   .then((posts) => res.status(200).send(posts))
   .catch((err) => {
     res.status(500)
     return next(err)
   })
 })
+
+// postRouter.get("/search/brand", (req, res, next) => {
+//   Post.find({ brand: req.query.brand })
+//     .then((posts) => res.status(200).send(posts))
+//     .catch((err) => {
+//       res.status(500);
+//       return next(err);
+//     });
+// });
+
+postRouter.get("/search/brand", async (req, res, next) => {
+  try {
+    const brandQuery = req.query.brand;
+    const regexQuery = new RegExp(`^${brandQuery}$`, 'i'); // 'i' for case-insensitive
+
+    const posts = await Post.find({ brand: regexQuery });
+    return res.status(200).send(posts);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
+
 
 module.exports = postRouter;

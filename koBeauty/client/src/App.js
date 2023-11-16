@@ -9,6 +9,7 @@ import ProtectedRoute from './component/ProtectedRoute'
 import { UserContext } from './context/UserProvider'
 import PostForm from './component/PostForm'
 import Category from './component/Category'
+import Brand from './component/Brand'
 
 
 function App() {
@@ -56,6 +57,14 @@ function App() {
           <Category />
         </ProtectedRoute>}
       />
+      <Route
+          path="/post/search/brand"
+          element={
+            <ProtectedRoute token={token} redirectTo="/">
+              <Brand />
+            </ProtectedRoute>
+          }
+        />
     </Routes>
   </div>
   );
