@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 export const UserContext = React.createContext()
@@ -19,7 +20,7 @@ export default function UserProvider(props) {
         issues: [],
         errMsg: ""
     }
-
+    const navigate = useNavigate()
     const [reviews, setReviews] = useState([])
     const [allPosts, setAllPosts] = useState(null);
     // const [allPosts, setAllPosts] = useState([])
@@ -123,16 +124,33 @@ export default function UserProvider(props) {
     }
 
     // this addTodo will expect to receive a new todo as a parameter coming from the form  
-    function addPost(newPost, postId) {
+    // function addPost(newPost, postId) {
+    //     userAxios.post("/api/post", newPost)
+    //         .then(res => {
+    //             setUserState(prevUserState => ({
+    //                 ...prevUserState,
+    //                 posts: Array.isArray(prevUserState.posts) ? prevUserState.posts.map(post => (post._id !== postId ? post : res.data)) : []
+    //             })); 
+    //             navigate('/profile')            
+    //         })
+    //         .catch(err => console.log(err.response.data.errMsg))
+    // }
+
+    function addPost(newPost) {
         userAxios.post("/api/post", newPost)
             .then(res => {
+                setAllPosts(prevAllPosts => {
+                    return prevAllPosts ? [res.data, ...prevAllPosts] : [res.data];
+                });
                 setUserState(prevUserState => ({
                     ...prevUserState,
-                    posts: Array.isArray(prevUserState.posts) ? prevUserState.posts.map(post => (post._id !== postId ? post : res.data)) : []
-                }));                
+                    posts: prevUserState.posts ? [res.data, ...prevUserState.posts] : [res.data]
+                }));
+                navigate('/profile');
             })
-            .catch(err => console.log(err.response.data.errMsg))
+            .catch(err => console.log(err.response.data.errMsg));
     }
+    
 
     const editPost = async (postId, updatedData) => {
         try {

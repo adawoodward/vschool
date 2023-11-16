@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserProvider';
 // import PostList from './PostList';
 
 export default function Category() {
-    const { UserAxios, upVotePost, downVotePost, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
+    const { userAxios, upVotePost, downVotePost, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
   
     console.log(allPosts)
     useEffect(() => {
@@ -27,7 +27,7 @@ export default function Category() {
               await getAllPosts();
               console.log(allPosts);
           } else {
-              const response = await UserAxios.get(`/api/post/search/category?category=${e.target.value}`);
+              const response = await userAxios.get(`/api/post/search/category?category=${e.target.value}`);
               console.log(response.data);
               setAllPosts(response.data);
           }
@@ -35,9 +35,6 @@ export default function Category() {
           console.log(error);
       }
   }
-  
-
-  
   
     return (
       <div className="category">
@@ -51,6 +48,15 @@ export default function Category() {
             <option value="Face">Face</option>
             <option value="Makeup-tools">Makeup-tools</option>
             </select>
+          <div>
+          {allPosts && allPosts.map(post => (
+                    <div key={post._id}>
+                        {/* Render post details here */}
+                        <p>{post.title}</p>
+                        {/* Add other post details as needed */}
+                    </div>
+                ))}
+          </div>
       </div>
     );
   }
