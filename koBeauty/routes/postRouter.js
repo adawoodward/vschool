@@ -113,4 +113,13 @@ postRouter.put('/downVote/:postId', async (req, res, next) => {
   }
 });
 
+postRouter.get("/search/category", (req, res, next) => {
+  Post.find({category: req.query.category})
+  .then((posts) => res.status(200).send(posts))
+  .catch((err) => {
+    res.status(500)
+    return next(err)
+  })
+})
+
 module.exports = postRouter;
