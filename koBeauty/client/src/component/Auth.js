@@ -39,9 +39,9 @@ export default function Auth(){
 
   return (
     <div className="auth-container">
-      <h1>KOBEAUTY App</h1>
       <Hero />
-      <h3>SIGNUP LOGIN SECTION</h3>
+      <br></br>
+      <h3>Create Account</h3>
       { !toggle ?
         <>
           <AuthForm 

@@ -17,9 +17,7 @@ function App() {
   const { token, logout, addPost } = useContext(UserContext)
 
   return (
-    <div className="App">
-      <h1>KOBEAUTY</h1>
-      
+    <div className="App">      
     { token && <Navbar logout={ logout } /> }
     <Routes>
       <Route exact path='/post/random' element={<Hero />} />
