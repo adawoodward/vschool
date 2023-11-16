@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/UserProvider'
-
+import StarRating from './StarRating'
 
 const initInputs = {
     text: "",
@@ -60,6 +60,7 @@ export default function ReviewForm({ postId, postReview }) {
                   <br></br>
                   <br />
                   <label htmlFor="rating">Rating:</label>
+                  <StarRating rating={rating} /> {/* Use the StarRating component */}
                   <select name="rating" value={rating} onChange={handleRatingChange}>
                   {[1, 2, 3, 4, 5].map((value) => (
                     <option key={value} value={value}>

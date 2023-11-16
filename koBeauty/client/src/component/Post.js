@@ -22,10 +22,10 @@ export default function Post(props) {
 
   return (
     <div className='issue'>
-      <h1>{title}</h1>
-      <h3>{brand}</h3>
-      <h3>{category}</h3>
-      <h3>{description}</h3>
+      <h1>Title: {title}</h1>
+      <h3>Brand: {brand}</h3>
+      <h3>Category: {category}</h3>
+      <h3>Description: {description}</h3>
       <img src={imgUrl} alt={imgUrl} width={300} />
       <div className='vote-button'>
       {/* Like Button */}

@@ -10,6 +10,7 @@ import { UserContext } from './context/UserProvider'
 import PostForm from './component/PostForm'
 import Category from './component/Category'
 import Brand from './component/Brand'
+import Hero from './component/Hero'
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
       
     { token && <Navbar logout={ logout } /> }
     <Routes>
+      <Route exact path='/post/random' element={<Hero />} />
+
       <Route
         path='/'
         element={ token ? <Navigate to="/profile"/> : <Auth /> } 

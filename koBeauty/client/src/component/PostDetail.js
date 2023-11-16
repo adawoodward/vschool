@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
 import ReviewForm from './ReviewForm';
 import EditForm from './EditForm';
+import StarRating from './StarRating';
 
 const PostDetail = () => {
     const { userAxios, reviews, setReviews, postNewReview, setUserState } = useContext(UserContext);
@@ -178,6 +179,7 @@ const PostDetail = () => {
                     <div key={review._id}>
                         <div>{review.text}</div>
                         <div>{review.rating}</div>
+                        <StarRating rating={review.rating} /> {/* Use the StarRating component */}
                         <img src={review.imgUrl} width={200} alt={review.imgUrl}/>
                         <button onClick={() => deleteReview(review._id)}>Delete Review</button>
                     </div>

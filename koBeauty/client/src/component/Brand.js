@@ -38,8 +38,8 @@ function Brand() {
         filteredPosts.map(post => (
           <div key={post._id}>
             {/* Render post details here */}
-            <h3>{post.title}</h3>
-            <h3>{post.category}</h3>
+            <h3>Name: {post.title}</h3>
+            <h3>Category: {post.category}</h3>
             {/* <h3>{post.description}</h3> */}
             <img src={post.imgUrl} width={300} />
             <Link to={`/posts/${post._id}`}>
