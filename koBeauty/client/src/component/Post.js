@@ -29,7 +29,7 @@ export default function Post(props) {
 
   return (
     <div className='post'>
-      <h1 className='title'>{title}</h1>
+      <h1 className='title' style={{ fontSize: title.length > 40 ? '23px' : '28px' }}>{title}</h1>
       <h3>Brand: {brand}</h3>
       <h3>Category: {category}</h3>
       {/* <h3>Description: {description}</h3> */}

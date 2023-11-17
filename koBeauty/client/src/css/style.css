@@ -648,7 +648,6 @@ span:empty {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    /* Set the margin-top to push it down */
     margin-top: 10px;
     margin-left: 10px;
     background-color: white;
@@ -672,4 +671,6 @@ span:empty {
   .edit-form button:hover {
     background-color: #EFA0A7;
   }
+ 
+
   
