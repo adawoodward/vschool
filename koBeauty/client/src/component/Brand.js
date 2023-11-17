@@ -36,7 +36,7 @@ function Brand() {
       />
       {filteredPosts.length > 0 ? (
         filteredPosts.map(post => (
-          <div key={post._id}>
+          <div key={post._id} className='brand-item'>
             {/* Render post details here */}
             <h3>Name: {post.title}</h3>
             <h3>Category: {post.category}</h3>
@@ -56,50 +56,3 @@ function Brand() {
 
 export default Brand;
 
-
-// import React, { useContext, useEffect } from 'react';
-// import { UserContext } from '../context/UserProvider';
-
-// function Brand() {
-//   const { userAxios, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
-
-//   console.log(allPosts)
-//   useEffect(() => {
-//     // Fetch all issues from the server
-//     getAllPosts()
-//   }, []);
-
-//   async function handleBrandSearch(e) {
-//     try {
-//       if (e.target.value === 'reset') {
-//         await getAllPosts();
-//       } else {
-//         const response = await userAxios.get(`/api/post/search/brand?brand=${e.target.value}`);
-//         setAllPosts(response.data);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-
-//   return (
-//     <div className="brand">
-//       <h1>Brand</h1>
-//       <input
-//         type="text"
-//         placeholder="Search by brand..."
-//         onChange={handleBrandSearch}
-//         className="brand-search-input"
-//       />
-//        {allPosts && allPosts.map(post => (
-//                     <div key={post._id}>
-//                         {/* Render post details here */}
-//                         <p>{post.title}</p>
-//                         {/* Add other post details as needed */}
-//                     </div>
-//                 ))}
-//     </div>
-//   );
-// }
-
-// export default Brand;

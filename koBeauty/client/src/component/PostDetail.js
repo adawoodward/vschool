@@ -147,7 +147,7 @@ const PostDetail = () => {
                 onSave={handleSave}
                 />) : (
                 <div className='detail'>
-                <div>Title: {postDetail?.title}</div>
+                <div>{postDetail?.title}</div>
                 <br></br>                
                 <div>Brand: {postDetail?.brand}</div>
                 <br></br>

@@ -12,8 +12,11 @@ export default function Profile() {
 
   return (
     <div className="profile">
+      <div className='account'>
       <h1>Welcome @{username}!</h1>
+      <br></br>
       <h2>Your Posts</h2>
+      </div>
       <PostList posts={posts} />
     </div>
   );

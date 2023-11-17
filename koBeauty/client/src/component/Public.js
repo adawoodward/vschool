@@ -25,7 +25,6 @@ export default function Public() {
 
   return (
     <div className="public">
-      <h1>Public Posts</h1>
       <h2>All Posts</h2>
       <PostList
         posts={allPosts}

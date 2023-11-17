@@ -41,7 +41,9 @@ export default function Auth(){
     <div className="auth-container">
       <Hero />
       <br></br>
+      <div className='signup-container'>
       <h3>Create Account</h3>
+      <br></br>
       { !toggle ?
         <>
           <AuthForm 
@@ -51,8 +53,8 @@ export default function Auth(){
             btnText="Sign up"
             errMsg={errMsg}
           />
+          <br></br>
           <p onClick={toggleForm}>Already a member?</p>
-          {/* <p onClick={() => setToggle(prev => !prev)}>Already a member?</p> */}
         </>
       :
         <>
@@ -63,9 +65,11 @@ export default function Auth(){
             btnText="Login"
             errMsg={errMsg}
           />
+          <br></br>
           <p onClick={toggleForm}>Not a member?</p>
         </>
       }
+    </div>
     </div>
   )
 }

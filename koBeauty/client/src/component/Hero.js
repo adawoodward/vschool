@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserProvider';
-import PinkBrown from '../assets/PinkBrown.png'
+// import PinkBrown from '../assets/PinkBrown.png'
 import logo from '../assets/logo.png'
+import yellowbanner from '../assets/yellowbanner.png'
 
 const Hero = () => {
 //   const [randomProducts, setRandomProducts] = useState([]);
@@ -23,7 +24,7 @@ const Hero = () => {
     <div className="hero-container">
       {/* <h1>!!!!!!!!!!!HERO SECTION!!!!!!!!!!</h1> */}
       <img src={logo} className='logo'/>
-      <img src={PinkBrown} className='pinkbrown'/>
+      <img src={yellowbanner} className='banner'/>
       <h2>Join Our KoBeauty Club and Get all the real info you need for your shopping!</h2>
     </div>
   );

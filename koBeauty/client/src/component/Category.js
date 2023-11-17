@@ -37,7 +37,7 @@ export default function Category() {
   }
   
     return (
-      <div className="category">
+      <div className="category-container">
         <h1>Category</h1>
         <br></br>
             <select onChange={handleFilter} className="filter-form">
@@ -48,11 +48,12 @@ export default function Category() {
             <option value="Face">Face</option>
             <option value="Makeup-tools">Makeup-tools</option>
             </select>
-          <div>
+          <div className='category'>
           {allPosts && allPosts.map(post => (
-                    <div key={post._id}>
+                    <div key={post._id} className='category-item'>
                         <h3>{post.title}</h3>
                         <img src={post.imgUrl} width={300} />
+                        <br></br>
                         <Link to={`/posts/${post._id}`}>
                           <button>Read more..</button>
                         </Link>
