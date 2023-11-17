@@ -38,6 +38,7 @@ export default function Category() {
   
     return (
       <div className="category-container">
+        <br></br>
         <h1>Category</h1>
         <br></br>
             <select onChange={handleFilter} className="filter-form">
