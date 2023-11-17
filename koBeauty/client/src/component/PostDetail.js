@@ -198,7 +198,7 @@ const PostDetail = () => {
                 {Array.isArray(reviews) && reviews.map((review) => (
                     <div key={review._id} className='review-item'>
                         <br></br>
-                        <p>{user._id}</p>
+                        {/* <p>{user.username}</p> */}
                         <p>{review.text}</p>
                         <br></br>
                         {/* <div>{review.rating}</div> */}
