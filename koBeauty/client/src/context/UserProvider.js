@@ -22,8 +22,7 @@ export default function UserProvider(props) {
     }
     const navigate = useNavigate()
     const [reviews, setReviews] = useState([])
-    const [allPosts, setAllPosts] = useState(null);
-    // const [allPosts, setAllPosts] = useState([])
+    const [allPosts, setAllPosts] = useState([]);
     const [userState, setUserState] = useState(initState)
 
     function signup(credentials){
@@ -83,26 +82,26 @@ export default function UserProvider(props) {
         }))
     }
 
-    // function getAllPosts(){
-    //     userAxios.get('/api/post')
-    //         .then((res) => {
-    //             setAllPosts(res.data);
-    //         })
-    //         .catch((err) => {
-    //             console.error('Error fetching all posts:', err);
-    //         });
-    // }
-
-    function getAllPosts() {
+    function getAllPosts(){
         userAxios.get('/api/post')
             .then((res) => {
-                setAllPosts(res.data || []); // Set response data or an empty array
+                setAllPosts(res.data);
             })
             .catch((err) => {
                 console.error('Error fetching all posts:', err);
-                setAllPosts([]); // Set an empty array on error
             });
     }
+
+    // function getAllPosts() {
+    //     userAxios.get('/api/post')
+    //         .then((res) => {
+    //             setAllPosts(res.data || []); // Set response data or an empty array
+    //         })
+    //         .catch((err) => {
+    //             console.error('Error fetching all posts:', err);
+    //             setAllPosts([]); // Set an empty array on error
+    //         });
+    // }
     
 
     function getUserPosts() {
@@ -180,14 +179,17 @@ export default function UserProvider(props) {
 function upVotePost(postId) {
     userAxios
       .put(`/api/post/upvote/${postId}`) // using userAxios to send a PUT request to this endpoint
+    //   .then(() => {
+    //     // Fetch updated post data after upvoting
+    //     return userAxios.get(`/api/post/${postId}`);
+    //   })
       .then(res => {
+        console.log(res.data)
         // Update the specific issue in the state after upvoting
-        setAllPosts(prevPosts =>
-          prevPosts.map(post => (post._id !== postId ? post : res.data))
-        ); // updating allIssues state, for the issue that matches the 'issueId', it replaces issue with the updated issue data from 'res.data'
+        setAllPosts(prevPosts => prevPosts.map(post => (post._id !== postId ? post : res.data))); // updating allIssues state, for the issue that matches the 'issueId', it replaces issue with the updated issue data from 'res.data'
         setUserState(prevUserState => ({
           ...prevUserState,
-          posts: prevUserState.posts.map(post =>
+          posts: prevUserState.posts?.map((post) =>
             post._id !== postId ? post : res.data
           ) // updating userState, checking the specific issue using 'issueId', replacing it with updated issue data
         }));
@@ -200,13 +202,17 @@ function upVotePost(postId) {
   function downVotePost(postId) {
     userAxios
       .put(`/api/post/downvote/${postId}`)
+    //   .then(() => {
+    //     // Fetch updated post data after downvoting
+    //     return userAxios.get(`/api/post/${postId}`);
+    //   })
       .then(res => {
         console.log(res.data)
         // Update the specific issue in the state after downvoting
         setAllPosts(prevPosts => prevPosts.map(post => (post._id !== postId ? post : res.data)));
         setUserState(prevUserState => ({
           ...prevUserState,
-          posts: prevUserState.posts.map(post =>
+          posts: prevUserState.posts?.map((post) =>
              post._id !== postId ? post : res.data
           )
         }));

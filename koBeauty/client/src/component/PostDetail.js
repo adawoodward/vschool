@@ -36,7 +36,7 @@ const PostDetail = () => {
         try {
             const res = await userAxios.get(`/api/review/posts/${postId}`);
             console.log(res.data);
-            setReviews(res.data); // updated comments state with res.data, and it will update the comments on frontend
+            setReviews(res.data || []); // updated comments state with res.data, and it will update the comments on frontend
             console.log(reviews);
         } catch (err) {
             console.error("Error fetching reviews: ", err.response);
@@ -178,7 +178,7 @@ const PostDetail = () => {
                 <br></br>
                 <h2>REVIEWS</h2>
                 <br></br>
-                {reviews?.map((review) => (
+                {Array.isArray(reviews) && reviews.map((review) => (
                     <div key={review._id} className='review-item'>
                         <br></br>
                         <p>{review.text}</p>
