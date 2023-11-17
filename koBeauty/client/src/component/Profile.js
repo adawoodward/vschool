@@ -10,6 +10,12 @@ export default function Profile() {
     console.log('Posts have changed:', posts);
   }, [posts]);
 
+  // console.log(posts)
+  // useEffect(() => {
+  //   // Fetch all issues from the server
+  //   getUserPosts()
+  // }, []);
+
   return (
     <div className="profile">
       <div className='account'>

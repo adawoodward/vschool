@@ -6,6 +6,8 @@ import EditForm from './EditForm';
 import StarRating from './StarRating';
 
 const PostDetail = () => {
+    const { user } = useContext(UserContext);
+
     const { userAxios, reviews, setReviews, postNewReview, setUserState } = useContext(UserContext);
     const { _id } = useParams();
     const [postDetail, setPostDetail] = useState({});
@@ -21,9 +23,8 @@ const PostDetail = () => {
 
     const fetchPost = async () => {
         try {
-            const res = await userAxios.get(`/api/posts/${_id}`); 
+            const res = await userAxios.get(`/api/post/posts/${_id}`); 
             // const res = await userAxios.get(`/api/post/:postId`); 
-
             console.log(res.data);
             setPostDetail(res.data); // updates issueDetail state with the retrieved data
             setFormData(res.data) // sets formData state with the same data retrieved 
@@ -61,6 +62,12 @@ const PostDetail = () => {
         };
         fetchData();
     }, []);
+
+    // Function to check if the current user is the creator of the post
+    const isCurrentUserPostCreator = () => {
+        return user._id === postDetail.user; // Assuming postDetail.user contains the user ID of the post creator
+    };
+
 
     // function to update the comments 
     const updateReviews = async () => {
@@ -162,10 +169,41 @@ const PostDetail = () => {
                 <br></br>
                 </div>
                 )}
+
+                {/* <div className='edit-delete-buttons'>
+                    {isEditing ? (
+                        <div></div>
+                    ) : (
+                        <button
+                            className='edit'
+                            onClick={() => setIsEditing(true)}
+                            disabled={!isCurrentUserPostCreator()} // Disable edit button if the user is not the post creator
+                        >
+                            Edit Post
+                        </button>
+                    )}
+                    <button className='delete' onClick={deletePost} disabled={!isCurrentUserPostCreator()}>
+                        Delete Post
+                    </button>
+                </div> */}
+
                 <div className='edit-delete-buttons'>
+                {!isEditing && isCurrentUserPostCreator() && (
+                    <button className='edit' onClick={() => setIsEditing(true)}>Edit Post</button>
+                )}
+                {!isEditing && isCurrentUserPostCreator() && (
+                    <button className='delete' onClick={deletePost}>Delete Post</button>
+                )}
+                {!isCurrentUserPostCreator() && (
+                    <p>You can't edit this post.</p>
+                )}
+                </div>
+
+
+                {/* <div className='edit-delete-buttons'>
                 {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Post</button>)}
                 <button className='delete' onClick={deletePost}>Delete Post</button>
-                </div>
+                </div> */}
                 <br></br>
           
                 <div className='review-container'>

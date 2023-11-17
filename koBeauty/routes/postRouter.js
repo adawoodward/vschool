@@ -14,7 +14,7 @@ postRouter.get("/", async (req, res, next) => {
   }
 });
 
-postRouter.get('/post/:postId', (req, res, next) => {
+postRouter.get('/posts/:postId', (req, res, next) => {
   console.log(req.params)
   console.log(req.params.postId)
   Post.findOne({_id: req.params.postId})
@@ -33,7 +33,9 @@ postRouter.get('/post/:postId', (req, res, next) => {
 // Get issues by user id
 postRouter.get("/user", async (req, res, next) => {
   try {
+    console.log('User ID: ', req.auth._id)
     const posts = await Post.find({ user: req.auth._id });
+    console.log(posts)
     return res.status(200).send(posts);
   } catch (err) {
     res.status(500);

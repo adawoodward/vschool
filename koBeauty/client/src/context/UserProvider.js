@@ -103,24 +103,36 @@ export default function UserProvider(props) {
     //         });
     // }
     
-
     function getUserPosts() {
         // since userAxios has the token built into it
         userAxios.get("/api/post/user")
             .then(res => {
                 console.log('Retrieved posts:', res.data)
-                if (Array.isArray(res.data)) { // Check if res.data is an array
-                    setUserState(prevState => ({
-                        ...prevState,
-                        posts: res.data
-                    }))
-                } else {
-                    console.error('Response data is not an array:', res.data);
-                    // Handle the scenario where res.data is not an array
-                }
+                setUserState(prevState => ({
+                    ...prevState,
+                    posts: res.data // because this is initial get request, we can just set that full array todos
+                }))
             })
             .catch(err => console.log(err.response.data.errMsg))
     }
+
+    // function getUserPosts() {
+    //     // since userAxios has the token built into it
+    //     userAxios.get("/api/post/user")
+    //         .then(res => {
+    //             console.log('Retrieved posts:', res.data)
+    //             if (Array.isArray(res.data)) { // Check if res.data is an array
+    //                 setUserState(prevState => ({
+    //                     ...prevState,
+    //                     posts: res.data
+    //                 }))
+    //             } else {
+    //                 console.error('Response data is not an array:', res.data);
+    //                 // Handle the scenario where res.data is not an array
+    //             }
+    //         })
+    //         .catch(err => console.log(err.response.data.errMsg))
+    // }
 
     // this addTodo will expect to receive a new todo as a parameter coming from the form  
     // function addPost(newPost, postId) {
@@ -240,7 +252,8 @@ function upVotePost(postId) {
                 setUserState,
                 editPost,
                 userState,
-                getAllPosts
+                getAllPosts,
+                getUserPosts
             }}
         >
             { props.children }

@@ -57,7 +57,7 @@ export default function Post(props) {
       <p>Total Dislikes: {totalDislikes}</p>
       </div>
       <br></br>
-      <Link to={`/posts/${_id}`}>
+      <Link to={`/post/${_id}`}>
         <button>Read more..</button>
       </Link>
     </div>

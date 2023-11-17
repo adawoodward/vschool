@@ -35,7 +35,7 @@ function App() {
         }
       />
       <Route 
-        path="/posts/:_id" 
+        path="/post/:_id" 
         element={<PostDetail />} />
       <Route 
         path="/public"
