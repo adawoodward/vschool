@@ -608,4 +608,68 @@ span:empty {
     font-size: 14px;
     color: #666;
   }
+
+  /* EditForm component styles */
+.edit-form {
+    text-align: center;
+    margin: 20px auto;
+    width: 60%;
+  }
+  
+  .edit-form h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .edit-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .edit-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    justify-content: center;
+  }
+  
+  .edit-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .edit-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    /* Set the margin-top to push it down */
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: white;
+  }
+  
+  .edit-form textarea {
+    height: 100px;
+  }
+  
+  .edit-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #E9747E;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-form button:hover {
+    background-color: #EFA0A7;
+  }
   

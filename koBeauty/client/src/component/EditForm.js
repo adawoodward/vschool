@@ -40,7 +40,7 @@ const EditForm = ({ formData, setFormData, onCancel, onSave }) => {
   
 
   return (
-    <form>
+    <form className='edit-form'>
       <label>
         Title:
         <input
