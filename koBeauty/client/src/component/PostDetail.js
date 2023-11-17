@@ -170,23 +170,6 @@ const PostDetail = () => {
                 </div>
                 )}
 
-                {/* <div className='edit-delete-buttons'>
-                    {isEditing ? (
-                        <div></div>
-                    ) : (
-                        <button
-                            className='edit'
-                            onClick={() => setIsEditing(true)}
-                            disabled={!isCurrentUserPostCreator()} // Disable edit button if the user is not the post creator
-                        >
-                            Edit Post
-                        </button>
-                    )}
-                    <button className='delete' onClick={deletePost} disabled={!isCurrentUserPostCreator()}>
-                        Delete Post
-                    </button>
-                </div> */}
-
                 <div className='edit-delete-buttons'>
                 {!isEditing && isCurrentUserPostCreator() && (
                     <button className='edit' onClick={() => setIsEditing(true)}>Edit Post</button>
@@ -198,12 +181,6 @@ const PostDetail = () => {
                     <p>You can't edit this post.</p>
                 )}
                 </div>
-
-
-                {/* <div className='edit-delete-buttons'>
-                {isEditing ? (<div></div>) : (<button className='edit' onClick={() => setIsEditing(true)}>Edit Post</button>)}
-                <button className='delete' onClick={deletePost}>Delete Post</button>
-                </div> */}
                 <br></br>
           
                 <div className='review-container'>
@@ -221,6 +198,7 @@ const PostDetail = () => {
                 {Array.isArray(reviews) && reviews.map((review) => (
                     <div key={review._id} className='review-item'>
                         <br></br>
+                        <p>{user._id}</p>
                         <p>{review.text}</p>
                         <br></br>
                         {/* <div>{review.rating}</div> */}
