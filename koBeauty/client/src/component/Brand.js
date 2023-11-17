@@ -27,18 +27,22 @@ function Brand() {
 
   return (
     <div className="brand">
+      <br></br>
       <h1>Brand</h1>
+      <br></br>
       <input
         type="text"
         placeholder="Search by brand..."
         onChange={handleBrandSearch}
         className="brand-search-input"
       />
+      <br></br>
+      <br></br>
       {filteredPosts.length > 0 ? (
         filteredPosts.map(post => (
           <div key={post._id} className='brand-item'>
             {/* Render post details here */}
-            <h3>Name: {post.title}</h3>
+            <h3>{post.title}</h3>
             <h3>Category: {post.category}</h3>
             {/* <h3>{post.description}</h3> */}
             <img src={post.imgUrl} width={300} />

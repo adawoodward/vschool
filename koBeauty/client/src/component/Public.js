@@ -25,7 +25,11 @@ export default function Public() {
 
   return (
     <div className="public">
-      <h2>All Posts</h2>
+      <br></br>
+      <br></br>
+      <h1 style={{textAlign: 'center'}}>All Posts</h1>
+      <br></br>
+      <br></br>
       <PostList
         posts={allPosts}
         handleUpVote={handleUpVote}

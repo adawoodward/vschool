@@ -136,7 +136,6 @@ const PostDetail = () => {
             <div className='detail-container'>
                 <br />
                 <h1>Detail Page</h1>
-                <hr />
                 <br />
                 {/* it passes these functions and the form data as props to the EditForm component */}
                 {isEditing ? (
@@ -147,13 +146,13 @@ const PostDetail = () => {
                 onSave={handleSave}
                 />) : (
                 <div className='detail'>
-                <div>{postDetail?.title}</div>
+                <div>Title: {postDetail?.title}</div>
                 <br></br>                
                 <div>Brand: {postDetail?.brand}</div>
                 <br></br>
                 <div>Category: {postDetail?.category}</div>
                 <br></br>
-                <div>Description: {postDetail?.description}</div>
+                <div className='detail-description'>Description:<br></br> {postDetail?.description}</div>
                 <br></br>
                 {/* <div>ImgUrl: {postDetail?.imgUrl}</div> */}
                 <img src={postDetail?.imgUrl} alt={postDetail?.imgUrl} width={300} />
@@ -167,21 +166,33 @@ const PostDetail = () => {
                 </div>
                 <br></br>
           
-                <div className='review-container'>REVIEW
+                <div className='review-container'>
                 {postDetail._id ? (
                     <ReviewForm postReview={postReview} postId={postDetail._id} />
                 ) : (
                     <p>Loading...</p>
                 )}
                 <br></br>
+                <hr></hr>
                 <div className='review'>
+                <br></br>
+                <h2>REVIEWS</h2>
+                <br></br>
                 {reviews?.map((review) => (
-                    <div key={review._id}>
-                        <div>{review.text}</div>
-                        <div>{review.rating}</div>
+                    <div key={review._id} className='review-item'>
+                        <br></br>
+                        <p>{review.text}</p>
+                        <br></br>
+                        {/* <div>{review.rating}</div> */}
                         <StarRating rating={review.rating} /> {/* Use the StarRating component */}
+                        <br></br>
                         <img src={review.imgUrl} width={200} alt={review.imgUrl}/>
+                        <br></br>
+                        <br></br>
                         <button onClick={() => deleteReview(review._id)}>Delete Review</button>
+                        <br></br>
+                        <br></br>
+                        <hr></hr>
                     </div>
                 ))}
                 </div>

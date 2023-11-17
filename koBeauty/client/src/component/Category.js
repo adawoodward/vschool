@@ -53,6 +53,7 @@ export default function Category() {
           {allPosts && allPosts.map(post => (
                     <div key={post._id} className='category-item'>
                         <h3>{post.title}</h3>
+                        <h3>{post.brand}</h3>
                         <img src={post.imgUrl} width={300} />
                         <br></br>
                         <Link to={`/posts/${post._id}`}>

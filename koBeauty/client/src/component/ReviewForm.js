@@ -42,9 +42,22 @@ export default function ReviewForm({ postId, postReview }) {
 
     return (
       <div className='review-form'>
-          <h3>Add a Review</h3>
+          <hr></hr>
+          <br></br>
+          <h2>Add a Review</h2>
+          <br></br>
           {user ? (
               <form onSubmit={handleReviewSubmit}>
+                  {/* <label htmlFor="rating"></label> */}
+                  <StarRating rating={rating} /> {/* Use the StarRating component */}
+                  <select className='star-rating' name="rating" value={rating} onChange={handleRatingChange}>
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <option key={value} value={value}>
+                        {value}
+                    </option>
+                  ))}
+                  </select>
+                  <br></br>
                   <textarea
                       name="text"
                       value={text}
@@ -57,18 +70,6 @@ export default function ReviewForm({ postId, postReview }) {
                     value={imgUrl} 
                     onChange={handleInputChange} 
                     placeholder="ImageUrl here"/>
-                  <br></br>
-                  <br />
-                  <label htmlFor="rating">Rating:</label>
-                  <StarRating rating={rating} /> {/* Use the StarRating component */}
-                  <select name="rating" value={rating} onChange={handleRatingChange}>
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <option key={value} value={value}>
-                        {value}
-                    </option>
-                  ))}
-                  </select>
-                  <br></br>
                   <button type="submit">Submit Review</button>
               </form>
           ) : (

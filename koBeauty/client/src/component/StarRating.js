@@ -10,7 +10,7 @@ const StarRating = ({ rating }) => {
       stars.push(<span key={i}>&#9734;</span>); // Empty star
     }
   }
-  return <div>{stars}</div>;
+  return <div className='stars'>Rating: {stars}</div>;
 };
 
 export default StarRating;
