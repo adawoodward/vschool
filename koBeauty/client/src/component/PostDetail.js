@@ -21,7 +21,7 @@ const PostDetail = () => {
 
     const fetchPost = async () => {
         try {
-            const res = await userAxios.get(`/api/post/posts/${_id}`); 
+            const res = await userAxios.get(`/api/post/${_id}`); 
             console.log(res.data);
             setPostDetail(res.data); // updates issueDetail state with the retrieved data
             setFormData(res.data) // sets formData state with the same data retrieved 
