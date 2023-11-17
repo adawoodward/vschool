@@ -14,7 +14,7 @@ postRouter.get("/", async (req, res, next) => {
   }
 });
 
-postRouter.get('/:postId', (req, res, next) => {
+postRouter.get('/post/:postId', (req, res, next) => {
   console.log(req.params)
   console.log(req.params.postId)
   Post.findOne({_id: req.params.postId})
