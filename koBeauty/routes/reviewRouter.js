@@ -14,7 +14,7 @@ reviewRouter.get('/posts', async (req, res, next) => {
 
 reviewRouter.get('/posts/:postId', async (req, res, next) => {
     try {
-        const reviews = await Review.find({ post: req.params.postId })
+        const reviews = await Review.find({ post: req.params.postId }).populate('user'); // Ensure populating the user field here
         return res.status(200).send(reviews)
     } catch (err) {
         res.status(500)
