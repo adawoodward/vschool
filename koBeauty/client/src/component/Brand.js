@@ -46,7 +46,7 @@ function Brand() {
             <h3>Category: {post.category}</h3>
             {/* <h3>{post.description}</h3> */}
             <img src={post.imgUrl} width={300} />
-            <Link to={`/posts/${post._id}`}>
+            <Link to={`/post/${post._id}`}>
                 <button>Read more..</button>
             </Link>
           </div>

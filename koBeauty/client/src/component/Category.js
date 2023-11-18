@@ -56,7 +56,7 @@ export default function Category() {
                         <h3>{post.brand}</h3>
                         <img src={post.imgUrl} width={300} />
                         <br></br>
-                        <Link to={`/posts/${post._id}`}>
+                        <Link to={`/post/${post._id}`}>
                           <button>Read more..</button>
                         </Link>
                     </div>
