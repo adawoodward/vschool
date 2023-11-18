@@ -198,7 +198,7 @@ const PostDetail = () => {
                 {Array.isArray(reviews) && reviews.map((review) => (
                     <div key={review._id} className='review-item'>
                         <br></br>
-                        {/* <p>{user.username}</p> */}
+                        <p>{review.user.username}</p>
                         <p>{review.text}</p>
                         <br></br>
                         {/* <div>{review.rating}</div> */}
@@ -207,7 +207,15 @@ const PostDetail = () => {
                         <img src={review.imgUrl} width={200} alt={review.imgUrl}/>
                         <br></br>
                         <br></br>
-                        <button onClick={() => deleteReview(review._id)}>Delete Review</button>
+                        {/* <button onClick={() => deleteReview(review._id)}>Delete Review</button> */}
+                        {/* <button onClick={() => deleteReview(review._id)}>
+                            {user._id === review.user ? 'Delete Review' : <div></div>}
+                        </button> */}
+                         {user._id === review.user && (
+                         <button onClick={() => deleteReview(review._id)}>
+                            Delete Review
+                        </button>
+                        )}
                         <br></br>
                         <br></br>
                         <hr></hr>
