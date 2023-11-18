@@ -132,6 +132,7 @@ button:hover {
   
 .post img {
     margin-top: 10px;
+    border-radius: 7px;
 }
   
 .vote-button {
@@ -174,6 +175,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     background-color: #EFA0A7;
+    border-radius: 7px;
 }
 
 .vote-button button {
@@ -194,6 +196,8 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 7px;
+    margin-top: 5px;
 }
 
 .post p {
