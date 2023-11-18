@@ -22,18 +22,18 @@ reviewRouter.get('/posts/:postId', async (req, res, next) => {
     }
 })
 
-// reviewRouter.post('/posts/:postId', async (req, res, next) => {
-//     req.body.user = req.auth._id
-//     req.body.post = req.params.postId
-//     try {
-//         const newReview = new Review(req.body);
-//         const savedReview = await newReview.save();
-//         return res.status(201).send(savedReview);
-//       } catch (err) {
-//         res.status(500);
-//         return next(err);
-//       }
-// })
+reviewRouter.post('/posts/:postId', async (req, res, next) => {
+    req.body.user = req.auth._id
+    req.body.post = req.params.postId
+    try {
+        const newReview = new Review(req.body);
+        const savedReview = await newReview.save();
+        return res.status(201).send(savedReview);
+      } catch (err) {
+        res.status(500);
+        return next(err);
+      }
+})
 
 reviewRouter.delete('/:reviewId', async (req, res, next) => {
     try {
