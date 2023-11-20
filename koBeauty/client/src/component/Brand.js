@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 function Brand() {
-  const { userAxios, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
+  const { userAxios, getAllPosts } = useContext(UserContext);
   const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
@@ -41,7 +41,6 @@ function Brand() {
       {filteredPosts.length > 0 ? (
         filteredPosts.map(post => (
           <div key={post._id} className='brand-item'>
-            {/* Render post details here */}
             <h3>{post.title}</h3>
             <h3>Category: {post.category}</h3>
             {/* <h3>{post.description}</h3> */}

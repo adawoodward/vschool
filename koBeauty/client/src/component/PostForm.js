@@ -8,7 +8,7 @@ const initInputs = {
   imgUrl: ""
 }
 
-// receive addTodo as props
+// receive addPost as props
 export default function PostForm(props){
   const [inputs, setInputs] = useState(initInputs)
   const { addPost } = props

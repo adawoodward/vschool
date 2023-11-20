@@ -9,16 +9,15 @@ export default function Public() {
   // const { _id } = useParams();
   console.log(allPosts)
   useEffect(() => {
-    // Fetch all issues from the server
     getAllPosts()
   }, []);
 
-  // Function to handle upvoting an issue
+  // Function to handle upvoting an post
   const handleUpVote = (postId) => {
     upVotePost(postId)
   };
 
-  // Function to handle downvoting an issue
+  // Function to handle downvoting an post
   const handleDownVote = (postId) => {
     downVotePost(postId)
   };

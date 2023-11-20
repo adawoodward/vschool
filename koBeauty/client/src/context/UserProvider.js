@@ -91,17 +91,6 @@ export default function UserProvider(props) {
                 console.error('Error fetching all posts:', err);
             });
     }
-
-    // function getAllPosts() {
-    //     userAxios.get('/api/post')
-    //         .then((res) => {
-    //             setAllPosts(res.data || []); // Set response data or an empty array
-    //         })
-    //         .catch((err) => {
-    //             console.error('Error fetching all posts:', err);
-    //             setAllPosts([]); // Set an empty array on error
-    //         });
-    // }
     
     function getUserPosts() {
         // since userAxios has the token built into it
@@ -110,7 +99,7 @@ export default function UserProvider(props) {
                 console.log('Retrieved posts:', res.data)
                 setUserState(prevState => ({
                     ...prevState,
-                    posts: res.data // because this is initial get request, we can just set that full array todos
+                    posts: res.data // because this is initial get request, we can just set that full array posts
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
@@ -134,26 +123,26 @@ export default function UserProvider(props) {
 
     const editPost = async (postId, updatedData) => {
         try {
-            // Make API request to update the issue
+            // Make API request to update the post
             await userAxios.put(`/api/post/${postId}`, updatedData);
     
             // Update the state
             setAllPosts(prevPosts => {
                 return prevPosts.map(post => (post._id === postId ? { ...post, ...updatedData } : post));
-            }); // issues matches with issueId will create a new changed object {...issue, ...updatedData}
+            }); // posts matches with postId will create a new changed object {...post, ...updatedData}
         } catch (error) {
             console.error('Error editing post:', error);
         }
     };
 
-      // takes two parameter: newComment (the comment to be posted) & issueId (identifies the issue for which the comment is posted).
+      // takes two parameter: newReview (the review to be posted) & postId (identifies the post for which the review is posted).
     function postNewReview(newReview, postId) {
         console.log('Posting review for postId:', postId);
         userAxios
             .post(`/api/review/posts/${postId}`, newReview)
             .then((res) => {
                 setReviews((prevReviews) => [...prevReviews, res.data]);
-            }) // updating the comments state, takes the previous state(prev) and adds the new comment(res.data)
+            }) // updating the reviews state, takes the previous state(prev) and adds the new review(res.data)
             .catch((err) => console.log(err));
     }
 
@@ -167,12 +156,12 @@ function upVotePost(postId) {
       .then(res => {
         console.log(res.data)
         // Update the specific issue in the state after upvoting
-        setAllPosts(prevPosts => prevPosts.map(post => (post._id !== postId ? post : res.data))); // updating allIssues state, for the issue that matches the 'issueId', it replaces issue with the updated issue data from 'res.data'
+        setAllPosts(prevPosts => prevPosts.map(post => (post._id !== postId ? post : res.data))); // updating allPost state, for the post that matches the 'postId', it replaces post with the updated post data from 'res.data'
         setUserState(prevUserState => ({
           ...prevUserState,
           posts: prevUserState.posts?.map((post) =>
             post._id !== postId ? post : res.data
-          ) // updating userState, checking the specific issue using 'issueId', replacing it with updated issue data
+          ) // updating userState, checking the specific post using 'postId', replacing it with updated post data
         }));
       })
       .catch(err => console.log(err));

@@ -3,23 +3,12 @@ import { UserContext } from '../context/UserProvider';
 import { Link } from 'react-router-dom';
 
 export default function Category() {
-    const { userAxios, upVotePost, downVotePost, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
+    const { userAxios, getAllPosts, allPosts, setAllPosts } = useContext(UserContext);
   
     console.log(allPosts)
     useEffect(() => {
-      // Fetch all issues from the server
       getAllPosts()
     }, []);
-  
-    // Function to handle upvoting an issue
-    const handleUpVote = (postId) => {
-      upVotePost(postId)
-    };
-  
-    // Function to handle downvoting an issue
-    const handleDownVote = (postId) => {
-      downVotePost(postId)
-    };
 
     async function handleFilter(e) {
       try {

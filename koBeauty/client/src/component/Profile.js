@@ -5,7 +5,7 @@ import PostList from './PostList.js';
 export default function Profile() {
   const { user: { username }, posts } = useContext(UserContext);
 
-  // Effect to re-render when issues change
+  // Effect to re-render when posts change
   useEffect(() => {
     console.log('Posts have changed:', posts);
   }, [posts]);

@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserProvider';
-// import PinkBrown from '../assets/PinkBrown.png'
 import logo from '../assets/logo.png'
 import yellowbanner from '../assets/yellowbanner.png'
 
 const Hero = () => {
-//   const [randomProducts, setRandomProducts] = useState([]);
   const { userAxios } = useContext(UserContext);
-
 
 //   useEffect(() => {
 //     // Fetch random products when the component mounts

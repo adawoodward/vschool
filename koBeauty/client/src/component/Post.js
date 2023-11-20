@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Post(props) {
   const { post } = props;
-  const { title, brand, category, description, imgUrl } = post; // Destructure issue directly
+  const { title, brand, category, description, imgUrl } = post; // Destructure post directly
   const { _id, likedUsers, dislikedUsers } = post;
 
   // Get the UserContext and functions
@@ -15,13 +15,8 @@ export default function Post(props) {
     allPosts
   } = useContext(UserContext);
 
-  // const isLiked = likedUsers.includes(currentUser._id); // Check if current user liked the issue
-  // const isDisliked = dislikedUsers.includes(currentUser._id); // Check if current user disliked the issue
-  // const totalLikes = likedUsers.length;
-  // const totalDislikes = dislikedUsers.length;
-
-  const isLiked = likedUsers && likedUsers.includes(currentUser._id);
-  const isDisliked = dislikedUsers && dislikedUsers.includes(currentUser._id);
+  const isLiked = likedUsers && likedUsers.includes(currentUser._id);  // Check if current user liked the post
+  const isDisliked = dislikedUsers && dislikedUsers.includes(currentUser._id); // Check if current user disliked the post
   const totalLikes = likedUsers ? likedUsers.length : 0;
   const totalDislikes = dislikedUsers ? dislikedUsers.length : 0;
   

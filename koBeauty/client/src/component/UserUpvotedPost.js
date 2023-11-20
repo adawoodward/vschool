@@ -7,7 +7,7 @@ export default function UserUpvotedPosts() {
 
   console.log(allPosts)
   useEffect(() => {
-    // Fetch all issues from the server
+    // Fetch all posts from the server
     getAllPosts()
   }, []);
 

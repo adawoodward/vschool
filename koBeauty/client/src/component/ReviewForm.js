@@ -30,7 +30,6 @@ export default function ReviewForm({ postId, postReview }) {
     
       const handleReviewSubmit = (e) => {
         e.preventDefault();
-        // const { text, imgUrl, rating } = inputs; // Destructure inputs
         if (text && user) {
           postReview({ text, imgUrl, rating, post: postId }); // Include rating in the postReview function
           setInputs(initInputs);
@@ -48,7 +47,6 @@ export default function ReviewForm({ postId, postReview }) {
           <br></br>
           {user ? (
               <form onSubmit={handleReviewSubmit}>
-                  {/* <label htmlFor="rating"></label> */}
                   <StarRating rating={rating} /> {/* Use the StarRating component */}
                   <select className='star-rating' name="rating" value={rating} onChange={handleRatingChange}>
                   {[1, 2, 3, 4, 5].map((value) => (

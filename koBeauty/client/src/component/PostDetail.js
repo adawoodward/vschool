@@ -24,9 +24,8 @@ const PostDetail = () => {
     const fetchPost = async () => {
         try {
             const res = await userAxios.get(`/api/post/posts/${_id}`); 
-            // const res = await userAxios.get(`/api/post/:postId`); 
             console.log(res.data);
-            setPostDetail(res.data); // updates issueDetail state with the retrieved data
+            setPostDetail(res.data); // updates postDetail state with the retrieved data
             setFormData(res.data) // sets formData state with the same data retrieved 
             return res.data;
         } catch (err) {
@@ -39,7 +38,7 @@ const PostDetail = () => {
         try {
             const res = await userAxios.get(`/api/review/posts/${postId}`);
             console.log(res.data);
-            setReviews(res.data || []); // updated comments state with res.data, and it will update the comments on frontend
+            setReviews(res.data || []); // updated review state with res.data, and it will update the reviews on frontend
             console.log(reviews);
         } catch (err) {
             console.error("Error fetching reviews: ", err.response);
@@ -51,7 +50,7 @@ const PostDetail = () => {
         const fetchData = async () => {
             try {
                 const postData = await fetchPost();
-                if (postData._id) { // if issueData._id exists, it calls fecthComments to fetch comments related to the issue with the same _id
+                if (postData._id) { // if postData._id exists, it calls fecthReview to fetch reviews related to the post with the same _id
                     await fetchReviews(postData._id); 
                 } else {
                     console.log("Invalid postId");
@@ -69,11 +68,11 @@ const PostDetail = () => {
     };
 
 
-    // function to update the comments 
+    // function to update the reviews 
     const updateReviews = async () => {
         if (postDetail._id) {
-            await fetchReviews(postDetail._id);  // If the issueDetail has a valid _id, it calls the fetchComments function, passing the _id as an argument to retrieve comments associated with that specific issue from the server
-        } // If there's no valid _id, the function won't make the call to fetch comments
+            await fetchReviews(postDetail._id);  // If the postDetail has a valid _id, it calls the fetchReviews function, passing the _id as an argument to retrieve reviews associated with that specific post from the server
+        } // If there's no valid _id, the function won't make the call to fetch reviews
     };
 
     async function postReview(newReview) {
@@ -84,8 +83,8 @@ const PostDetail = () => {
         console.log("postId: ", postDetail._id);
     
         try {
-            await postNewReview(newReview, postDetail._id); // call postNewComment to add the new comment to the issue with issueDetail._id
-            await updateReviews(); // after posting comment, it calls updateComments function to fetch and update the comments
+            await postNewReview(newReview, postDetail._id); // call postNewReviews to add the new review to the post with postDetail._id
+            await updateReviews(); // after posting review, it calls updateReviews function to fetch and update the reviews
             console.log(reviews);
         } catch (error) {
             console.error("Error updating reviews: ", error);
@@ -100,7 +99,7 @@ const PostDetail = () => {
             setUserState(prevUserState => ({
                 ...prevUserState,
                 posts: prevUserState.posts.filter(post => post._id !== _id)
-            })); // updating userState by removing the deleted issue from issues array
+            })); // updating userState by removing the deleted post from posts array
             navigate('/profile') 
         } catch (error) {
             console.error('Error deleting post:', error);
@@ -110,22 +109,22 @@ const PostDetail = () => {
     async function deleteReview(reviewId) {
         try {
             await userAxios.delete(`/api/review/${reviewId}`)
-            await updateReviews() // to refresh the comments after deleting
+            await updateReviews() // to refresh the reviews after deleting
         } catch (error) {
             console.error('Error deleting review:', error)
         }
     }
 
-    // functionality for saving changes made to an issue
+    // functionality for saving changes made to an post
     const handleSave = async (updatedFormData) => { // takes updatedFormData as an argument
         try {
-        // Make API request to update the issue with updatedFormData
+        // Make API request to update the post with updatedFormData
         await userAxios.put(`/api/post/${_id}`, updatedFormData);
       
         // After successful update, set isEditing to false
         setIsEditing(false);
 
-        // Refetch the issue and comments to update the UI
+        // Refetch the post and reviews to update the UI
         await fetchPost();
         await updateReviews();
 
@@ -133,7 +132,7 @@ const PostDetail = () => {
         setUserState(prevUserState => ({
             ...prevUserState,
             posts: prevUserState.posts.map(post => (post._id !== _id ? post : { ...post, ...updatedFormData })),
-        })); // maps through prevUserState.issues array and looks for the specific issue with the same _id, replaces old data with updatedFormData
+        })); // maps through prevUserState.posts array and looks for the specific post with the same _id, replaces old data with updatedFormData
         } catch (error) {
         console.error('Error updating post:', error);
         }
@@ -163,7 +162,6 @@ const PostDetail = () => {
                 <br></br>
                 <div className='detail-description'>Description:<br></br> {postDetail?.description}</div>
                 <br></br>
-                {/* <div>ImgUrl: {postDetail?.imgUrl}</div> */}
                 <img src={postDetail?.imgUrl} alt={postDetail?.imgUrl} width={300} />
 
                 <br></br>

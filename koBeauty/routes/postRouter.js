@@ -2,10 +2,9 @@ const express = require("express");
 const postRouter = express.Router();
 const Post = require('../models/post.js');
 
-// Get All Issues
+// Get All Posts
 postRouter.get("/", async (req, res, next) => {
   try {
-    // const issues = await Issue.find();
     const posts = await Post.find().populate('user'); // Add populate to also get user details
     return res.status(200).send(posts);
   } catch (err) {
@@ -14,10 +13,11 @@ postRouter.get("/", async (req, res, next) => {
   }
 });
 
+// Get Posts by ID
 postRouter.get('/posts/:postId', (req, res, next) => {
   console.log(req.params)
   console.log(req.params.postId)
-  Post.findOne({_id: req.params.postId})
+  Post.findOne({_id: req.params.postId}) // find the post matching the postId
   .then(item => 
   {
     console.log(item)
@@ -30,7 +30,7 @@ postRouter.get('/posts/:postId', (req, res, next) => {
   })
 })
 
-// Get issues by user id
+// Get posts by user id
 postRouter.get("/user", async (req, res, next) => {
   try {
     console.log('User ID: ', req.auth._id)
@@ -43,7 +43,7 @@ postRouter.get("/user", async (req, res, next) => {
   }
 });
 
-// Add new Issue
+// Add new Post
 postRouter.post("/", async (req, res, next) => {
   req.body.user = req.auth._id;
   try {
@@ -56,7 +56,7 @@ postRouter.post("/", async (req, res, next) => {
   }
 });
 
-// Delete Issue
+// Delete Post
 postRouter.delete("/:postId", async (req, res, next) => {
   try {
     const deletedPost = await Post.findOneAndDelete({ _id: req.params.postId, user: req.auth._id });
@@ -70,7 +70,7 @@ postRouter.delete("/:postId", async (req, res, next) => {
   }
 });
 
-// Update Issue
+// Update Post
 postRouter.put("/:postId", async (req, res, next) => {
   try {
     const updatedPost = await Post.findOneAndUpdate({ _id: req.params.postId, user: req.auth._id }, req.body, { new: true });
@@ -81,8 +81,9 @@ postRouter.put("/:postId", async (req, res, next) => {
   }
 });
 
+// Upvote post 
 postRouter.put('/upvote/:postId', async (req, res, next) => {
-  try {
+  try {                            // to update the post's likedUsers and dislikedUsers arrays based 
     const updatedPost = await Post.findOneAndUpdate(
       { _id: req.params.postId },
       {
@@ -98,6 +99,7 @@ postRouter.put('/upvote/:postId', async (req, res, next) => {
   }
 });
 
+// Downvote post
 postRouter.put('/downVote/:postId', async (req, res, next) => {
   try {
     const updatedPost = await Post.findOneAndUpdate(
