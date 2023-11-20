@@ -10,6 +10,7 @@ function Navbar(props){
       <Link to='/post'>Post</Link>
       <Link to='/post/search/category'>Search By Category</Link>
       <Link to="/post/search/brand">Search By Brand</Link>
+      <Link to="/likes">My Likes</Link>
       <button onClick={logout}>Logout</button>
     </div>
   )

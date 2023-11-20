@@ -146,5 +146,20 @@ postRouter.get("/search/brand", async (req, res, next) => {
   }
 });
 
+postRouter.get('/upvote/:postId', async (req, res, next) => {
+  console.log(req.params)
+  console.log(req.params.postId)
+  Post.findOne({_id: req.params.postId})
+  .then(item => 
+  {
+    console.log(item)
+    console.log(item._id)
+    res.status(200).send(item)
+  })
+  .catch((err) => {
+    res.status(500)
+    return next(err)
+  })
+});
 
 module.exports = postRouter;

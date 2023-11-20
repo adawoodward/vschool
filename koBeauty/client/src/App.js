@@ -11,6 +11,7 @@ import PostForm from './component/PostForm'
 import Category from './component/Category'
 import Brand from './component/Brand'
 import Hero from './component/Hero'
+import UserUpvotedPosts from './component/UserUpvotedPost'
 
 
 function App() {
@@ -65,7 +66,15 @@ function App() {
               <Brand />
             </ProtectedRoute>
           }
-        />
+      />
+      <Route
+          path="/likes"
+          element={
+            <ProtectedRoute token={token} redirectTo="/">
+              <UserUpvotedPosts />
+            </ProtectedRoute>
+          }
+      />  
     </Routes>
   </div>
   );
