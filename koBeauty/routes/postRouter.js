@@ -117,6 +117,7 @@ postRouter.put('/downVote/:postId', async (req, res, next) => {
   }
 });
 
+// Get specific category
 postRouter.get("/search/category", (req, res, next) => {
   Post.find({ category: req.query.category })
   .then((posts) => res.status(200).send(posts))
@@ -126,15 +127,7 @@ postRouter.get("/search/category", (req, res, next) => {
   })
 })
 
-// postRouter.get("/search/brand", (req, res, next) => {
-//   Post.find({ brand: req.query.brand })
-//     .then((posts) => res.status(200).send(posts))
-//     .catch((err) => {
-//       res.status(500);
-//       return next(err);
-//     });
-// });
-
+// Get specific brand
 postRouter.get("/search/brand", async (req, res, next) => {
   try {
     const brandQuery = req.query.brand;
