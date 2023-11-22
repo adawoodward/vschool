@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserProvider';
 import { Link } from 'react-router-dom';
 
 export default function Post(props) {
-  const { post } = props;
+  const { post } = props; // Receives the post object as a prop and destructures its properties
   const { title, brand, category, description, imgUrl } = post; // Destructure post directly
   const { _id, likedUsers, dislikedUsers } = post;
 

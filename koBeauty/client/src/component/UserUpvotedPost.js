@@ -32,7 +32,8 @@ export default function UserUpvotedPosts() {
         <div className='liked-post'>
         {userUpvotedPosts.map(post => (
         <Post key={post._id} post={post} />
-        ))}
+        ))} 
+        {/* maps through the userUpvotedPosts array and renders each post by passing the post object as a prop */}
         </div>
     </div>
   );
