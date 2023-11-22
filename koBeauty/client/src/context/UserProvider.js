@@ -149,10 +149,6 @@ export default function UserProvider(props) {
 function upVotePost(postId) {
     userAxios
       .put(`/api/post/upvote/${postId}`) // using userAxios to send a PUT request to this endpoint
-    //   .then(() => {
-    //     // Fetch updated post data after upvoting
-    //     return userAxios.get(`/api/post/${postId}`);
-    //   })
       .then(res => {
         console.log(res.data)
         // Update the specific issue in the state after upvoting
@@ -172,10 +168,6 @@ function upVotePost(postId) {
   function downVotePost(postId) {
     userAxios
       .put(`/api/post/downvote/${postId}`)
-    //   .then(() => {
-    //     // Fetch updated post data after downvoting
-    //     return userAxios.get(`/api/post/${postId}`);
-    //   })
       .then(res => {
         console.log(res.data)
         // Update the specific issue in the state after downvoting
