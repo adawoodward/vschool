@@ -19,8 +19,6 @@ mongoose
   });
 
 app.use('/auth', require('./routes/authRouter.js'))
-// app.use('/api/issue', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
-// app.use('/api/comment', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
 app.use('/api', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }))
 app.use('/api/post', require('./routes/postRouter.js'))
 app.use('/api/review', require('./routes/reviewRouter.js'))
