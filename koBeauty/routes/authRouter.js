@@ -16,7 +16,7 @@ authRouter.post("/signup", async (req, res, next) => {
     const newUser = new User(req.body);
     const savedUser = await newUser.save();
     const token = jwt.sign(savedUser.withoutPassword(), process.env.SECRET);
-
+                                // to exclude the password from the user data being sent back in the response to enhance security
     return res.status(201).send({ token, user: savedUser.withoutPassword() });
   } catch (err) {
     res.status(500);
