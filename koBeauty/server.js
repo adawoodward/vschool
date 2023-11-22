@@ -4,7 +4,6 @@ require('dotenv').config()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const {expressjwt} = require('express-jwt')
-// const expressJwt = require('express-jwt'); // Corrected import
 
 app.use(express.json())
 app.use(morgan('dev'))
