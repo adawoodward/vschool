@@ -29,51 +29,29 @@ function App() {
       />
       <Route 
         path='/profile'
-        element={
-          <ProtectedRoute token={token} redirectTo="/">
-            <Profile />
-          </ProtectedRoute>
-        }
-      />
+        element= {!token ? <Navigate to= "/" /> : <Profile />}/>
       <Route 
         path="/post/:_id" 
         element={<PostDetail />} />
       <Route 
         path="/public"
-        element={
-        <ProtectedRoute token={token} redirectTo="/">
-          <Public />
-        </ProtectedRoute>}
+        element={ !token ? <Navigate to= "/" /> : <Public />}
       />
       <Route 
         path="/post"
-        element={
-        <ProtectedRoute token={token} redirectTo="/">
-          <PostForm addPost={addPost} />
-        </ProtectedRoute>}
+        element={!token ? <Navigate to= "/" /> : <PostForm addPost={addPost} />}
       />
       <Route 
         path="/post/search/category"
-        element={
-        <ProtectedRoute token={token} redirectTo="/">
-          <Category />
-        </ProtectedRoute>}
+        element={!token ? <Navigate to= "/" /> : <Category />}
       />
       <Route
           path="/post/search/brand"
-          element={
-            <ProtectedRoute token={token} redirectTo="/">
-              <Brand />
-            </ProtectedRoute>
-          }
+          element={!token ? <Navigate to= "/" /> : <Brand /> }
       />
       <Route
           path="/likes"
-          element={
-            <ProtectedRoute token={token} redirectTo="/">
-              <UserUpvotedPosts />
-            </ProtectedRoute>
-          }
+          element={!token ? <Navigate to= "/" /> : <UserUpvotedPosts />}
       />  
     </Routes>
   </div>
